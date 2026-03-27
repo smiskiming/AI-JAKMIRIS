@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tentang Kami - JakMiris</title>
+  <link rel="stylesheet" type="text/css" href="CSS/template.css">
+  <link rel="stylesheet" type="text/css" href="CSS/aboutusstyle.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <img src="ICON/LOGO/JakMiris logo.png" alt="JakMiris Logo">
+    </div>
+
+    <nav class="header-top" aria-label="Main Navigation">
+      <a class="nav-link" href="home.html">Halaman Utama</a>
+      <a class="nav-link" href="bisnes.html">Bisnes</a>
+      <a class="nav-link" href="profile.html">Profile</a>
+      <a class="nav-link active" href="aboutus.html">About Us</a>
+      <button class="cart-btn" id="cart-btn" title="Troli beli-belah" type="button" aria-label="Troli beli-belah" aria-controls="cart-panel" aria-expanded="false">
+        🛒
+        <span class="cart-badge visible" id="cart-badge">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-panel" id="cart-panel" aria-hidden="true">
+    <div class="cart-panel-head">
+      <h3>Troli Anda</h3>
+      <button class="cart-close-btn" id="cart-close-btn" type="button" aria-label="Tutup troli">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-panel-foot">
+      <span class="cart-total-text" id="cart-total-text">0 item</span>
+      <button class="cart-clear-btn" id="cart-clear-btn" type="button">Kosongkan</button>
+    </div>
+  </aside>
+
+  <main class="about-main">
+    <section class="hero-about">
+      <p class="eyebrow">Komuniti Digital Padawan</p>
+      <h1>Membina Ekonomi Tempatan Dengan Teknologi Yang Mesra Komuniti</h1>
+      <p class="lead">
+        <strong>ai JakMiris</strong> menggabungkan pusat maklumat kampung dan platform digital untuk
+        memasarkan produk tempatan, menyokong ekonomi setempat serta memajukan komuniti melalui
+        teknologi inklusif dan mampan.
+      </p>
+    </section>
+
+    <section class="goals" aria-label="Tujuan Laman Web JakMiris">
+      <h2>Tujuan Laman Web JakMiris</h2>
+      <div class="goal-grid">
+        <article class="goal-card">
+          <h3>Pendapatan Samping</h3>
+          <p>Menyediakan peluang kepada komuniti untuk menjana pendapatan sampingan melalui platform digital.</p>
+        </article>
+        <article class="goal-card">
+          <h3>Perniagaan Komuniti Padawan</h3>
+          <p>Menyokong perniagaan komuniti Padawan agar terus berkembang dan berdaya saing.</p>
+        </article>
+        <article class="goal-card">
+          <h3>Teknik Pemasaran</h3>
+          <p>Memberdayakan para peniaga yang kurang mahir dengan bimbingan teknik pemasaran yang berkesan.</p>
+        </article>
+        <article class="goal-card">
+          <h3>Penglibatan Anak Muda</h3>
+          <p>Menggalakkan penglibatan anak muda serta memupuk semangat keusahawanan dalam komuniti.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="value-panel" aria-label="Mengapa pilih ai JakMiris">
+      <h2>Mengapa Pilih ai JakMiris?</h2>
+      <div class="value-table-wrap">
+        <table class="values" role="table" aria-label="Nilai JakMiris">
+          <thead>
+            <tr>
+              <th scope="col">Nilai Kami</th>
+              <th scope="col">Apakah Maksudnya Untuk Anda</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Akses Mudah</td>
+              <td>Maklumat komuniti dan produk tempatan lebih cepat dicapai.</td>
+            </tr>
+            <tr>
+              <td>Sokongan Usahawan Tempatan</td>
+              <td>Penduduk boleh memasarkan produk tanpa orang tengah.</td>
+            </tr>
+            <tr>
+              <td>Peningkatan Kemahiran Digital</td>
+              <td>Masyarakat belajar dan menggunakan teknologi dengan lebih yakin.</td>
+            </tr>
+            <tr>
+              <td>Pengukuhan Ekonomi dan Komuniti</td>
+              <td>Jualan terus, promosi pelancongan dan hubungan komuniti semakin kuat.</td>
+            </tr>
+            <tr>
+              <td>Pemeliharaan Budaya dan Masa Depan Digital</td>
+              <td>Identiti Padawan dipelihara sambil membina komuniti digital yang maju.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="about-footer">
+    <p>JakMiris - Dari Komuniti Untuk Komuniti</p>
+  </footer>
+
+  <script>
+    const CART_STORAGE_KEY = 'jakmiris_cart_items';
+
+    const badge = document.getElementById('cart-badge');
+    const cartBtn = document.getElementById('cart-btn');
+    const cartPanel = document.getElementById('cart-panel');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const cartCloseBtn = document.getElementById('cart-close-btn');
+    const cartClearBtn = document.getElementById('cart-clear-btn');
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartTotalText = document.getElementById('cart-total-text');
+
+    function getCartItems() {
+      try {
+        const raw = localStorage.getItem(CART_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function saveCartItems(items) {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    }
+
+    function updateCartBadge() {
+      const count = getCartItems().length;
+      badge.textContent = count;
+      badge.classList.add('visible');
+    }
+
+    function groupCartItems(items) {
+      const grouped = new Map();
+      items.forEach(item => {
+        const name = item && item.name ? item.name : 'Item';
+        grouped.set(name, (grouped.get(name) || 0) + 1);
+      });
+      return grouped;
+    }
+
+    function renderCartPanel() {
+      const items = getCartItems();
+      const grouped = groupCartItems(items);
+
+      cartItemsEl.innerHTML = '';
+
+      if (grouped.size === 0) {
+        cartItemsEl.innerHTML = '<div class="cart-empty">Troli masih kosong.</div>';
+      } else {
+        grouped.forEach((qty, name) => {
+          const row = document.createElement('div');
+          row.className = 'cart-item-row';
+          row.innerHTML =
+            '<span class="cart-item-name">' + name + '</span>' +
+            '<span class="cart-item-qty">x' + qty + '</span>' +
+            '<button class="cart-item-remove" data-name="' + name.replace(/"/g, '&quot;') + '" type="button">Buang 1</button>';
+          cartItemsEl.appendChild(row);
+        });
+      }
+
+      cartTotalText.textContent = items.length + (items.length === 1 ? ' item' : ' items');
+      cartClearBtn.disabled = items.length === 0;
+    }
+
+    function openCartPanel() {
+      renderCartPanel();
+      cartPanel.classList.add('open');
+      cartOverlay.classList.add('open');
+      cartPanel.setAttribute('aria-hidden', 'false');
+      cartBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeCartPanel() {
+      cartPanel.classList.remove('open');
+      cartOverlay.classList.remove('open');
+      cartPanel.setAttribute('aria-hidden', 'true');
+      cartBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleCartPanel() {
+      if (cartPanel.classList.contains('open')) {
+        closeCartPanel();
+      } else {
+        openCartPanel();
+      }
+    }
+
+    function removeOneFromCart(itemName) {
+      const items = getCartItems();
+      const index = items.findIndex(item => (item && item.name ? item.name : 'Item') === itemName);
+      if (index !== -1) {
+        items.splice(index, 1);
+        saveCartItems(items);
+        updateCartBadge();
+        renderCartPanel();
+      }
+    }
+
+    updateCartBadge();
+    renderCartPanel();
+
+    cartBtn.addEventListener('click', toggleCartPanel);
+    cartCloseBtn.addEventListener('click', closeCartPanel);
+    cartOverlay.addEventListener('click', closeCartPanel);
+    cartClearBtn.addEventListener('click', () => {
+      saveCartItems([]);
+      updateCartBadge();
+      renderCartPanel();
+    });
+
+    cartItemsEl.addEventListener('click', (event) => {
+      const removeBtn = event.target.closest('.cart-item-remove');
+      if (!removeBtn) return;
+      removeOneFromCart(removeBtn.dataset.name || 'Item');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeCartPanel();
+    });
+
+    window.addEventListener('storage', (event) => {
+      if (event.key !== CART_STORAGE_KEY) return;
+      updateCartBadge();
+      renderCartPanel();
+    });
+  </script>
+</body>
+</html>
