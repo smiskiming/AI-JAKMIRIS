@@ -1,0 +1,3041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="CSS/style.css">
+  <link rel="stylesheet" type="text/css" href="CSS/profilestyle.css">
+  <style>
+    body {
+      background: #f7ece0;
+      height: auto !important;
+      min-height: 100vh;
+      overflow-y: visible !important;
+    }
+
+    .header-top {
+      flex-wrap: nowrap;
+      row-gap: 8px;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-nav-balance-row {
+      width: min(1320px, 100%);
+      margin: 18px auto 0;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 12px;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+    }
+
+    .header-nav-balance-row .banner {
+      flex: 1.45 1 860px;
+      min-width: 0;
+    }
+
+    .header-nav-balance-row .header-top a {
+      min-width: 108px;
+      padding: 7px 10px;
+      font-size: 13px;
+      flex: 0 1 auto;
+    }
+
+    .header-nav-balance-row .header-top .logo {
+      flex: 0 0 auto;
+    }
+
+    .header-nav-balance-row .header-top .logo img {
+      width: 102px;
+      height: 102px;
+      object-fit: contain;
+    }
+
+    .nav-utility-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .nav-utility-item.utility-search {
+      grid-column: 1 / -1;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, rgba(255, 249, 239, 0.96) 0%, rgba(245, 229, 207, 0.94) 100%);
+      box-shadow: 0 10px 18px rgba(117, 79, 52, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    }
+
+    .search-bar-shell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(156, 112, 81, 0.18);
+      box-shadow: inset 0 1px 2px rgba(126, 86, 57, 0.06);
+    }
+
+    .search-bar-shell .utility-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .search-bar-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .search-bar-title {
+      font-size: 12px;
+      font-weight: 900;
+      color: #6c4328;
+      line-height: 1.2;
+    }
+
+    .search-bar-hint {
+      font-size: 10px;
+      font-weight: 600;
+      color: #9c6a4a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .search-bar-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #8b5e3c 0%, #b9865b 100%);
+      color: #fff8ef;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      box-shadow: 0 8px 16px rgba(107, 75, 56, 0.18);
+    }
+
+    .utility-search .nav-utility-subtitle {
+      white-space: normal;
+    }
+
+    .nav-utility-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(245, 234, 221, 0.78);
+      border: 1px solid rgba(145, 98, 67, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.52);
+      color: #6f4b35;
+    }
+
+    .nav-utility-item .utility-icon {
+      width: 20px;
+      height: 20px;
+      color: #8b5e3c;
+      stroke: currentColor;
+      flex-shrink: 0;
+    }
+
+    .nav-utility-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      gap: 1px;
+    }
+
+    .nav-utility-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: #6a432b;
+      line-height: 1.2;
+    }
+
+    .nav-utility-subtitle {
+      font-size: 10px;
+      font-weight: 600;
+      color: #9b6b4f;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .account-balance-widget {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      max-width: 100%;
+      padding: 12px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #0f4d3f 0%, #15735f 55%, #56b69b 100%);
+      border: 1px solid rgba(216, 255, 241, 0.32);
+      box-shadow: 0 14px 28px rgba(10, 57, 46, 0.34);
+      color: #eefdf7;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .account-balance-widget::before {
+      content: '';
+      position: absolute;
+      top: -34px;
+      right: -26px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(225, 255, 244, 0.28) 0%, rgba(225, 255, 244, 0) 72%);
+      pointer-events: none;
+    }
+
+    .header-balance-row {
+      width: auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: stretch;
+      padding: 0;
+      box-sizing: border-box;
+      margin: 0;
+      flex: 0.9 1 420px;
+      min-width: 0;
+    }
+
+    .account-balance-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .account-balance-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .account-balance-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(213, 255, 239, 0.86);
+      white-space: nowrap;
+    }
+
+    .account-balance-provider {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      color: #ffffff;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .account-balance-chip {
+      width: 34px;
+      height: 24px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #9be6ce 0%, #e5fff5 100%);
+      box-shadow: inset 0 0 0 1px rgba(13, 77, 58, 0.22);
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .account-balance-chip::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      right: 4px;
+      width: 10px;
+      height: 14px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .account-balance-main {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .account-balance-caption {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(215, 255, 240, 0.86);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .account-balance-amount {
+      font-size: 24px;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      line-height: 1.05;
+      transition: opacity 0.25s ease;
+    }
+
+    .account-balance-amount.masked {
+      letter-spacing: 0.06em;
+      opacity: 0.88;
+    }
+
+    .account-balance-meta {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .account-meta-item {
+      border-radius: 10px;
+      padding: 7px 8px;
+      background: rgba(226, 255, 243, 0.14);
+      border: 1px solid rgba(226, 255, 243, 0.22);
+      min-width: 0;
+    }
+
+    .account-meta-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(220, 255, 244, 0.82);
+      margin-bottom: 2px;
+    }
+
+    .account-meta-value {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      color: #ffffff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .account-balance-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .account-balance-toggle {
+      border: 1px solid rgba(226, 255, 243, 0.3);
+      border-radius: 999px;
+      background: rgba(226, 255, 243, 0.2);
+      color: #f3fff9;
+      padding: 5px 10px;
+      font-size: 10px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .account-balance-toggle:hover {
+      transform: translateY(-1px);
+      background: rgba(226, 255, 243, 0.32);
+    }
+
+    .account-balance-note {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(220, 255, 244, 0.86);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .header-bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 6px;
+      margin-bottom: 4px;
+      width: 100%;
+    }
+
+    .header-bottom .brand {
+      width: 100%;
+      text-align: center;
+      font-size: 44px !important;
+      line-height: 1.16;
+      margin: 0;
+      transform: translateY(0);
+    }
+
+    .listing-section {
+      display: flex !important;
+      flex-wrap: wrap;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 36px;
+      overflow: hidden;
+      height: auto;
+    }
+
+    .advanced-filter-panel,
+    .top-picks-banner,
+    .seller-grid {
+      flex: 1 1 100%;
+      min-width: 0;
+    }
+
+    .advanced-filter-panel {
+      margin: 0;
+      padding: 20px 20px 16px;
+      background: linear-gradient(140deg, #fff8f0 0%, #fdebd6 60%, #f5d9b8 100%);
+      border: none;
+      border-top: 4px solid #c47a3a;
+      border-radius: 14px;
+      box-shadow: 0 12px 32px rgba(95, 67, 50, 0.18), inset 0 0 0 1px rgba(196, 122, 58, 0.18);
+      position: relative;
+    }
+
+    .advanced-filter-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #c47a3a, #e8a060, #c47a3a);
+      border-radius: 14px 14px 0 0;
+    }
+
+    .afp-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(196, 122, 58, 0.2);
+    }
+
+    .afp-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #c47a3a, #e8a060);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+      box-shadow: 0 4px 10px rgba(196, 122, 58, 0.35);
+    }
+
+    .afp-title-group {
+      flex: 1;
+    }
+
+    .afp-badge {
+      background: linear-gradient(90deg, #c47a3a, #e8a060);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 2px 9px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .advanced-filter-panel h2 {
+      margin: 0;
+      color: #5c3516;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .afp-subtitle {
+      margin: 0;
+      font-size: 12px;
+      color: #a06840;
+      font-weight: 500;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(160px, 1fr));
+      gap: 10px;
+      align-items: end;
+    }
+
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .filter-field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #9b6b4f;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .filter-field input,
+    .filter-field select {
+      border: 1px solid rgba(155, 107, 79, 0.24);
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 14px;
+      color: #6f4b35;
+      background: #fffdfa;
+    }
+
+    .radius-note {
+      font-size: 12px;
+      color: #8b5e3c;
+    }
+
+    .filter-summary {
+      margin-top: 10px;
+      color: #6f4b35;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .seller-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .pedagang {
+      display: flex;
+      flex-direction: column !important;
+      gap: 12px !important;
+      background: linear-gradient(135deg, #FBF3D5 0%, #F5E2AD 100%) !important;
+      border: 1px solid rgba(155, 107, 79, 0.16) !important;
+      border-radius: 16px !important;
+      padding: 14px !important;
+      box-shadow: 0 10px 24px rgba(107, 75, 56, 0.08) !important;
+    }
+
+    .seller-primary {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .pedagang-profimg {
+      width: 124px !important;
+      min-width: 124px !important;
+      height: 124px !important;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(145, 95, 65, 0.2);
+      box-shadow: 0 10px 18px rgba(98, 68, 49, 0.14);
+    }
+
+    .pedagang-profimg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pedagang-biodata {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .biodata-core {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .biodata-core .wrap {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 1.4;
+      text-transform: none;
+      margin-bottom: 8px;
+    }
+
+    .biodata-core .biodata-title {
+      width: 108px;
+      min-width: 108px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #9B6B4F;
+    }
+
+    .biodata-core .biodata-info {
+      color: #8B5E3C;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .seller-head {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 8px;
+      padding: 3px 8px;
+      background: #1d9a65;
+      color: #ffffff;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      vertical-align: middle;
+    }
+
+    .seller-health {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 4px 0;
+    }
+
+    .stock-indicator,
+    .rating-chip {
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.85);
+      color: #6d4f3b;
+      border: 1px solid rgba(109, 79, 59, 0.2);
+    }
+
+    .stock-indicator.in-stock {
+      background: #d9f7ea;
+      color: #146c45;
+      border-color: #70caa1;
+    }
+
+    .stock-indicator.low-stock {
+      background: #ffeccf;
+      color: #916100;
+      border-color: #f2bf63;
+    }
+
+    .stock-indicator.out-stock {
+      background: #ffe0dc;
+      color: #a63e2f;
+      border-color: #ee8f83;
+    }
+
+    .our-story {
+      border-radius: 12px;
+      padding: 12px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 246, 236, 0.85) 100%);
+      border: 1px solid rgba(155, 107, 79, 0.24);
+      color: #7a5339;
+      font-size: 13px;
+      line-height: 1.5;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .journey-visual {
+      margin-top: 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(141, 95, 63, 0.2);
+      background: #fffdfb;
+      padding: 10px;
+    }
+
+    .journey-title {
+      margin: 0 0 8px;
+      color: #915f41;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .journey-track {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .journey-step {
+      position: relative;
+      border-radius: 9px;
+      padding: 8px;
+      background: #fff6ed;
+      border: 1px solid rgba(145, 95, 65, 0.22);
+      color: #7b5038;
+      font-size: 11px;
+      min-height: 68px;
+    }
+
+    .journey-step strong {
+      display: block;
+      font-size: 11px;
+      margin-bottom: 2px;
+      color: #6f4229;
+    }
+
+    .journey-step::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 8px;
+      width: 18px;
+      height: 3px;
+      border-radius: 999px;
+      background: #cf8f63;
+    }
+
+    .gallery-box {
+      display: grid;
+      grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr);
+      gap: 14px;
+      margin-top: 8px;
+      align-items: stretch;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(131, 86, 60, 0.24);
+      background: linear-gradient(142deg, #fffdf8 0%, #f1dcc9 55%, #edd4bd 100%);
+      box-shadow: 0 16px 34px rgba(83, 55, 38, 0.18);
+    }
+
+    .gallery-visual {
+      position: relative;
+      min-height: 280px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f0dfcf;
+    }
+
+    .gallery-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(165deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 42%, rgba(57, 34, 20, 0.14) 100%);
+    }
+
+    .gallery-main {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(121, 83, 56, 0.16);
+      box-shadow: 0 12px 24px rgba(87, 58, 41, 0.2);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    }
+
+    .gallery-main:hover {
+      transform: scale(1.03);
+      filter: saturate(1.06);
+      box-shadow: 0 18px 30px rgba(87, 58, 41, 0.28);
+    }
+
+    .image-cta-tip {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      z-index: 2;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(44, 28, 16, 0.72);
+      color: #fff6eb;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Top Picks / Customer Choices Banner ─────── */
+    .top-picks-banner {
+      margin: 20px 0 0;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      border-radius: 18px;
+      padding: 18px 22px;
+      background: linear-gradient(135deg, #3e1f00 0%, #8b4513 50%, #c8793e 100%);
+      box-shadow: 0 16px 40px rgba(62, 31, 0, 0.32);
+      position: relative;
+      overflow: hidden;
+    }
+    .top-picks-banner > * {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .top-picks-banner::after {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      pointer-events: none;
+    }
+    .tpb-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      min-width: 0;
+      width: 100%;
+    }
+    .tpb-crown { font-size: 28px; line-height: 1; flex-shrink: 0; }
+    .tpb-heading { flex: 1; min-width: 0; }
+    .tpb-heading h3 {
+      margin: 0;
+      color: #fff8ee;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+    }
+    .tpb-heading p {
+      margin: 2px 0 0;
+      color: rgba(255,238,200,0.82);
+      font-size: 12px;
+    }
+    .tpb-toggle { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; max-width: 100%; }
+    .tpb-toggle button {
+      border: 1px solid rgba(255,255,255,0.32);
+      border-radius: 999px;
+      padding: 6px 14px;
+      min-width: 0;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      color: #fff8ee;
+      transition: background 0.2s, color 0.2s;
+    }
+    .tpb-toggle button.tpb-active {
+      background: #fff8ee;
+      color: #6b3812;
+    }
+    .tpb-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      width: 100%;
+      min-width: 0;
+    }
+    .tpb-card {
+      border-radius: 12px;
+      padding: 10px 11px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .tpb-card:hover { transform: translateY(-2px); background: rgba(255,255,255,0.2); }
+    .tpb-avatar {
+      width: 50px; height: 50px; min-width: 50px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .tpb-info { flex: 1; min-width: 0; }
+    .tpb-name {
+      font-size: 13px; font-weight: 800; color: #fff8ee;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .tpb-product {
+      font-size: 11px; color: rgba(255,238,195,0.82); margin: 2px 0;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .tpb-meta { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+    .tpb-stars { color: #ffd866; font-size: 11px; }
+    .tpb-badge {
+      font-size: 10px; font-weight: 700;
+      padding: 2px 6px; border-radius: 999px;
+    }
+    .tpb-badge-picks  { background: #ffd866; color: #5c3100; }
+    .tpb-badge-choice { background: #a8f0c8; color: #115535; }
+    .tpb-badge-verified { background: rgba(255,255,255,0.22); color: #fff8ee; }
+
+    /* ── Product Info Panel ───────────────────────── */
+    .product-info-panel {
+      margin-top: 0;
+      border-radius: 12px;
+      padding: 14px;
+      background: linear-gradient(145deg, #ffffff 0%, #f8ece2 100%);
+      border: 1px solid rgba(155, 107, 79, 0.24);
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .panel-heading {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #7f4a29;
+    }
+
+    .panel-sub {
+      margin: 1px 0 4px;
+      font-size: 11px;
+      color: #976448;
+      font-weight: 600;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      border: 1px solid rgba(120, 90, 71, 0.2);
+      background: #f4ece4;
+      color: #7a5339;
+    }
+
+    .trust-pill.free {
+      background: #e5f9ee;
+      border-color: #8ad6b0;
+      color: #127247;
+    }
+
+    .availability-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #fff8ef;
+      border: 1px solid rgba(158, 109, 76, 0.18);
+    }
+
+    .availability-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #8a5839;
+    }
+
+    .availability-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 132px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      border: 1px solid transparent;
+    }
+
+    .availability-status.available {
+      background: #e5f9ee;
+      color: #0d7444;
+      border-color: #8ad6b0;
+    }
+
+    .availability-status.limited {
+      background: #fff1d7;
+      color: #8b5b00;
+      border-color: #e7bf72;
+    }
+
+    .availability-status.sold-out {
+      background: #ffe2dc;
+      color: #9a3428;
+      border-color: #ee9588;
+    }
+    .pip-slide-label {
+      font-size: 13px; font-weight: 800; color: #7b4523; margin-bottom: 5px;
+    }
+    .pip-price-row {
+      display: flex; align-items: center; gap: 7px; margin-bottom: 5px;
+    }
+    .pip-price-tag {
+      font-size: 10px; font-weight: 700;
+      background: #ffe3cc; color: #a04a18;
+      border-radius: 999px; padding: 2px 7px;
+    }
+    .pip-price-value { font-size: 15px; font-weight: 800; color: #b85c2a; }
+    .pip-usage {
+      font-size: 12px; color: #7a5139; line-height: 1.45; margin-bottom: 7px;
+    }
+    .pip-popularity-row { display: flex; align-items: center; gap: 8px; }
+    .pip-popularity-label {
+      font-size: 11px; font-weight: 700; color: #9b6b4f; white-space: nowrap;
+    }
+    .pip-bar-wrap {
+      flex: 1; height: 6px;
+      background: rgba(155, 107, 79, 0.15);
+      border-radius: 999px; overflow: hidden;
+    }
+    .pip-bar {
+      height: 100%; border-radius: 999px;
+      background: linear-gradient(90deg, #d4924e 0%, #e85a2a 100%);
+      transition: width 0.5s ease;
+    }
+    .pip-popularity-pct {
+      font-size: 11px; font-weight: 700; color: #b85c2a;
+      min-width: 32px; text-align: right;
+    }
+
+    .live-sidebar-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .live-stat {
+      border-radius: 8px;
+      padding: 7px;
+      background: #fff6ec;
+      border: 1px solid rgba(158, 109, 76, 0.2);
+      color: #7d4d2f;
+      font-size: 10px;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .checkout-cta {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 2px;
+      border-radius: 10px;
+      padding: 11px 12px;
+      text-decoration: none;
+      background: linear-gradient(135deg, #128c7e 0%, #27b35d 100%);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      box-shadow: 0 10px 18px rgba(18, 140, 126, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .checkout-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 20px rgba(18, 140, 126, 0.36);
+    }
+
+    /* ── Urgency Banner ──────────────────────────── */
+    .urgency-banner {
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 8px;
+      animation: urgencyPulse 2s ease-in-out infinite;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    }
+    @keyframes urgencyPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .urgency-badge { display: inline-block; background: rgba(255, 255, 255, 0.2); padding: 2px 6px; border-radius: 999px; margin-right: 6px; font-size: 10px; }
+
+    /* ── Activity Feed ───────────────────────────── */
+    .activity-feed {
+      background: linear-gradient(145deg, #fff9f6 0%, #fef3ee 100%);
+      border: 1px solid rgba(155, 107, 79, 0.18);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 8px;
+      max-height: 120px;
+      overflow-y: auto;
+      font-size: 11px;
+    }
+    .activity-item { padding: 6px 0; border-bottom: 1px solid rgba(107, 79, 59, 0.08); color: #7a5139; display: flex; gap: 6px; align-items: flex-start; animation: slideIn 0.4s ease-out; }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot { width: 6px; height: 6px; background: #ff6b35; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── Live Highlights ─────────────────────────── */
+    .live-highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 8px; }
+    .highlight-badge { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 6px; border-radius: 8px; font-size: 10px; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.03em; box-shadow: 0 4px 8px rgba(102, 126, 234, 0.2); }
+    .highlight-badge.hot { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); }
+    .highlight-badge.new { background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%); }
+    .highlight-badge.trending { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+
+    /* ── Purchase Alert ──────────────────────────── */
+    .purchase-alert {
+      position: fixed;
+      top: 140px;
+      right: 20px;
+      width: min(340px, calc(100vw - 32px));
+      border-radius: 14px;
+      padding: 12px 13px;
+      background: linear-gradient(145deg, #fff8ee 0%, #f3e1cf 100%);
+      border: 1px solid rgba(139, 94, 60, 0.26);
+      color: #6f4a32;
+      box-shadow: 0 16px 34px rgba(89, 58, 38, 0.24);
+      z-index: 1100;
+      animation: alertSlideIn 0.62s cubic-bezier(0.22, 1, 0.36, 1), alertFloat 4.8s ease-in-out 0.25s, alertSlideOut 0.58s cubic-bezier(0.4, 0, 0.2, 1) 5.1s;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transform: translate3d(0, 0, 0);
+      transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+      will-change: transform, opacity;
+    }
+
+      .purchase-alert.is-leaving {
+        opacity: 0;
+        transform: translate3d(0, -6px, 0) scale(0.985);
+      }
+
+      .alert-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 7px;
+      }
+
+      .alert-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 10px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #7f4a29;
+        background: rgba(255, 248, 238, 0.85);
+        border: 1px solid rgba(143, 95, 63, 0.2);
+        border-radius: 999px;
+        padding: 4px 8px;
+      }
+
+      .alert-time {
+        font-size: 10px;
+        font-weight: 700;
+        color: #9b6b4f;
+        opacity: 0.9;
+      }
+
+      .alert-title {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 800;
+        color: #6a3d22;
+        letter-spacing: 0.01em;
+      }
+
+      .alert-meta {
+        margin: 4px 0 0;
+        font-size: 12px;
+        color: #7a5339;
+        line-height: 1.4;
+      }
+
+      .alert-meta strong {
+        color: #5e361f;
+        font-weight: 800;
+      }
+
+      .alert-sub {
+        margin: 6px 0 0;
+        font-size: 11px;
+        color: #8b5c3e;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      @keyframes alertSlideIn {
+        from {
+          transform: translate3d(26px, 8px, 0) scale(0.985);
+          opacity: 0;
+        }
+        to {
+          transform: translate3d(0, 0, 0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes alertFloat {
+        0%, 100% {
+          transform: translate3d(0, 0, 0);
+        }
+        50% {
+          transform: translate3d(0, -2px, 0);
+        }
+      }
+
+      @keyframes alertSlideOut {
+        to {
+          transform: translate3d(18px, -3px, 0) scale(0.99);
+          opacity: 0;
+        }
+      }
+
+    .review-panel {
+      margin-top: 8px;
+      border-top: 1px solid rgba(155, 107, 79, 0.2);
+      padding-top: 10px;
+    }
+
+    .review-panel h4 {
+      margin: 0 0 8px;
+      color: #7d4f31;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .review-form {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .review-form select,
+    .review-form input,
+    .review-form button {
+      border-radius: 8px;
+      border: 1px solid rgba(155, 107, 79, 0.22);
+      font-size: 12px;
+      padding: 8px;
+    }
+
+    .review-form button {
+      background: #8d5f3f;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      color: #77513a;
+      font-size: 12px;
+    }
+
+    .map-wrap {
+      margin-top: 8px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(155, 107, 79, 0.2);
+      height: 160px;
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .hubungi-gallery,
+    .direct-inquiry-gallery,
+    .pickup-delivery-gallery {
+      margin-top: 10px;
+      border-radius: 14px;
+      padding: 12px;
+      background: linear-gradient(135deg, #fffefb 0%, #f5e6d8 100%);
+      border: 1px solid rgba(145, 95, 65, 0.24);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    }
+
+    .hubungi-title,
+    .direct-inquiry-title,
+    .pickup-delivery-title {
+      margin: 0 0 8px;
+      color: #7c4f33;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .inquiry-subtitle {
+      margin: -2px 0 10px;
+      font-size: 11px;
+      color: #9a6b4e;
+      font-weight: 600;
+    }
+
+    .pickup-delivery-note {
+      margin: -2px 0 10px;
+      font-size: 11px;
+      color: #8f6348;
+      font-weight: 600;
+    }
+
+    .seller-actions {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 0 !important;
+      gap: 9px !important;
+    }
+
+    .contact-tile {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 9px;
+      border-radius: 10px;
+      padding: 10px;
+      text-decoration: none;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .contact-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(102, 69, 49, 0.16);
+    }
+
+    .contact-tile .tile-icon {
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-tile .tile-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .tile-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .tile-label {
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .tile-meta {
+      font-size: 10px;
+      opacity: 0.78;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .tile-whatsapp {
+      background: #e4faef;
+      border-color: #7fd4ab;
+      color: #117145;
+    }
+
+    .tile-needs {
+      background: #fff0df;
+      border-color: #eab989;
+      color: #8b5220;
+    }
+
+    .tile-visit {
+      background: #e8f4ff;
+      border-color: #9fc9ec;
+      color: #225b8b;
+    }
+
+    .tile-favourite {
+      background: #edf5ff;
+      border-color: #b8d2f5;
+      color: #355d8a;
+    }
+
+    .tile-favourite.is-favourited {
+      background: #dceafe;
+      border-color: #8eb5ed;
+      color: #294d79;
+    }
+
+    .tile-map {
+      background: #fef2e4;
+      border-color: #e8b688;
+      color: #8a4f1f;
+    }
+
+    .tile-gallery {
+      background: #f8f0ff;
+      border-color: #d7b8f5;
+      color: #60348a;
+    }
+
+    .customer-needs-panel {
+      margin-top: 8px;
+      display: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+      border-radius: 10px;
+      padding: 8px;
+      background: #f2f1ff;
+      border: 1px solid rgba(121, 116, 175, 0.22);
+    }
+
+    .customer-needs-panel.show {
+      display: grid;
+    }
+
+    .needs-option {
+      border: 1.5px solid rgba(121, 116, 175, 0.5);
+      border-radius: 8px;
+      padding: 7px;
+      background: #f9f8ff;
+      color: #5f5a90;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .needs-option:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 12px rgba(102, 69, 49, 0.12);
+    }
+
+    .hidden-seller {
+      display: none !important;
+    }
+
+    .jakmiris-footer {
+      width: min(1240px, calc(100% - 48px));
+      margin: 28px auto 36px;
+      padding: 20px 22px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #5a2e12 0%, #8d4e1f 48%, #d8a061 100%);
+      box-shadow: 0 18px 40px rgba(82, 48, 28, 0.24);
+      color: #fff8ef;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .jakmiris-footer::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+
+    .jakmiris-footer::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: -30px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(255, 243, 222, 0.12);
+      pointer-events: none;
+    }
+
+    .jakmiris-footer-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .jakmiris-footer-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255, 248, 239, 0.12);
+      border: 1px solid rgba(255, 248, 239, 0.18);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff0dd;
+    }
+
+    .jakmiris-footer-title {
+      margin: 12px 0 8px;
+      font-size: 30px;
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      color: #fffaf3;
+    }
+
+    .jakmiris-footer-copy {
+      margin: 0;
+      max-width: 700px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 244, 232, 0.9);
+      font-weight: 600;
+    }
+
+    .jakmiris-footer-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .jakmiris-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 248, 239, 0.14);
+      border: 1px solid rgba(255, 248, 239, 0.16);
+      font-size: 11px;
+      font-weight: 800;
+      color: #fff3e4;
+      letter-spacing: 0.03em;
+    }
+
+    .jakmiris-footer-card {
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255, 249, 242, 0.14);
+      border: 1px solid rgba(255, 243, 229, 0.2);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    }
+
+    .jakmiris-footer-card h4 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fff6ea;
+    }
+
+    .jakmiris-footer-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .jakmiris-footer-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+      color: rgba(255, 244, 232, 0.92);
+      font-weight: 700;
+    }
+
+    .jakmiris-footer-item strong {
+      color: #fffefb;
+      font-weight: 900;
+    }
+
+    @media (max-width: 1040px) {
+      .filter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .seller-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tpb-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .header-nav-balance-row .header-top .logo img {
+        width: 82px;
+        height: 82px;
+      }
+
+      .header-top {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .header-nav-balance-row {
+        width: 100%;
+        gap: 10px;
+      }
+
+      .header-nav-balance-row .banner {
+        flex-basis: 100%;
+      }
+
+      .header-nav-balance-row .header-top a {
+        min-width: 0;
+        flex: 0 1 auto;
+      }
+
+      .jakmiris-footer {
+        width: calc(100% - 24px);
+        margin: 22px auto 28px;
+        padding: 18px 16px;
+      }
+
+      .jakmiris-footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .jakmiris-footer-title {
+        font-size: 24px;
+      }
+
+      .nav-utility-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-utility-item.utility-search {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-bar-cta {
+        width: 100%;
+      }
+
+      .header-balance-row {
+        width: 100%;
+        justify-content: center;
+        padding-top: 8px;
+      }
+
+      .account-balance-widget {
+        width: 100%;
+        max-width: 420px;
+      }
+
+      .header-bottom {
+        margin-bottom: 12px;
+      }
+
+      .header-bottom .brand {
+        font-size: 34px !important;
+      }
+
+      .advanced-filter-panel {
+        margin: 0;
+      }
+
+      .filter-grid,
+      .review-form {
+        grid-template-columns: 1fr;
+      }
+
+      .pedagang {
+        flex-direction: column !important;
+      }
+
+      .seller-primary {
+        flex-direction: column;
+      }
+
+      .biodata-core .wrap {
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .biodata-core .biodata-title {
+        width: auto;
+        min-width: 0;
+      }
+
+      .gallery-box {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-visual,
+      .gallery-main {
+        width: 100%;
+        max-width: none;
+        height: 230px;
+      }
+
+      .product-info-panel {
+        margin-top: 8px;
+      }
+
+      .pedagang-profimg {
+        width: 120px !important;
+        min-width: 120px !important;
+        height: 120px !important;
+      }
+
+      .seller-actions {
+        grid-template-columns: 1fr !important;
+      }
+
+      .contact-tile {
+        justify-content: flex-start;
+      }
+
+      .journey-track {
+        grid-template-columns: 1fr;
+      }
+
+      .top-picks-banner {
+        margin: 16px 0 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px;
+      }
+
+      .tpb-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .tpb-toggle {
+        width: 100%;
+        justify-content: stretch;
+      }
+
+      .tpb-toggle button {
+        flex: 1 1 calc(50% - 6px);
+      }
+
+      .purchase-alert {
+        top: auto;
+        right: 16px;
+        bottom: 16px;
+        left: 16px;
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+    <div class="header-bottom">
+      <p class="brand">Profile Pedagang JakMiris</p>
+    </div>
+    <div class="header-nav-balance-row">
+      <div class="banner">
+        <div class="header-top">
+          <div class="logo"> 
+            <img src="ICON/LOGO/JakMiris logo.png" alt="JakMiris logo">
+          </div>
+          <a href="home.html">Halaman Utama</a>
+          <a href="bisnes.html">Bisnes</a>
+          <a style="font-weight: bolder;" href="profile.html">Profile</a>
+          <a href="aboutus.html">About us</a>
+        </div>
+        <div class="nav-utility-row">
+          <div class="nav-utility-item">
+            <svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Cart">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <div class="nav-utility-copy">
+              <span class="nav-utility-title">Troli Tempatan</span>
+              <span class="nav-utility-subtitle">Semak pilihan belian harian</span>
+            </div>
+          </div>
+          <div class="nav-utility-item">
+            <svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Camera">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+            <div class="nav-utility-copy">
+              <span class="nav-utility-title">Imbas Komuniti</span>
+              <span class="nav-utility-subtitle">Lihat promosi dan gambar baharu</span>
+            </div>
+          </div>
+          <div class="nav-utility-item">
+            <svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Language">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <div class="nav-utility-copy">
+              <span class="nav-utility-title">Bahasa & Bantuan</span>
+              <span class="nav-utility-subtitle">BM / EN dan panduan pelanggan</span>
+            </div>
+          </div>
+          <div class="nav-utility-item utility-search">
+            <div class="search-bar-shell">
+              <svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Search">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+              <div class="search-bar-copy">
+                <span class="search-bar-title">Cari produk paling menarik hari ini</span>
+                <span class="search-bar-hint">Temui promo hangat, produk baharu, dan jualan kampung yang pelanggan paling suka</span>
+              </div>
+            </div>
+            <span class="search-bar-cta">Jom Terokai Sekarang</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-balance-row">
+        <div class="account-balance-widget" aria-live="polite">
+          <div class="account-balance-top">
+            <div class="account-balance-brand">
+              <span class="account-balance-label">E-Wallet</span>
+              <span class="account-balance-provider">JakMiris Pay</span>
+            </div>
+            <span class="account-balance-chip" aria-hidden="true"></span>
+          </div>
+          <div class="account-balance-main">
+            <span class="account-balance-caption">Baki Akaun</span>
+            <strong class="account-balance-amount" id="accountBalanceAmount">RM 0.00</strong>
+          </div>
+          <div class="account-balance-meta">
+            <div class="account-meta-item">
+              <span class="account-meta-label">Pelanggan</span>
+              <span class="account-meta-value" id="accountHolderName">Nur Iman</span>
+            </div>
+            <div class="account-meta-item">
+              <span class="account-meta-label">Top Up Terakhir</span>
+              <span class="account-meta-value" id="accountLastTopUp">RM 50.00</span>
+            </div>
+            <div class="account-meta-item">
+              <span class="account-meta-label">Belanja Hari Ini</span>
+              <span class="account-meta-value" id="accountSpendToday">RM 0.00</span>
+            </div>
+            <div class="account-meta-item">
+              <span class="account-meta-label">Cashback</span>
+              <span class="account-meta-value" id="accountCashback">RM 0.00</span>
+            </div>
+          </div>
+          <div class="account-balance-actions">
+            <span class="account-balance-note" id="accountBalanceNote">Dikemas kini sebentar tadi</span>
+            <button type="button" class="account-balance-toggle" id="accountBalanceToggle">Hide</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="listing-section">
+      <div class="listing-left">
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/Roslin.jpeg" alt="Roslin Senjon">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Roslin Senjon</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">64 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Sikog</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Nanas, Timun, Kacang Botol</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/Darnelle.jpg" alt="Darnelle">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Darnelle</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Benuk Segu, Jalan Penrissen</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Cheesekut Chocolate</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/laura.jpeg" alt="Laura Ann">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Laura Ann</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Gile</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Klip Rambut</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/kimberly.jpeg" alt="Kimberly">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Kimberly</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">26 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Simboh</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Pakaian</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/disman.jpeg" alt="Disman Sembong">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Disman Sembong</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">61 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Simboh</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Rebung</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/leo.jpeg" alt="Leo">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Leo</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">27 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Simboh</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Perhiasan</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/amelia.jpeg" alt="Amelia">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Amelia</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">37 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Simboh</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Bekas Makanan</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/racheal.jpeg" alt="Racheal">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Racheal</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Quob</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Kraftangan</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/carol.jpeg" alt="Carol">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Carol</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Sikog</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Jam Tangan</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/shina.jpeg" alt="Shina">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Shina</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">16 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Taman Landeh</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Polaroid</label></div>
+          </div>
+        </div>
+      </div>
+      <div class="listing-right">
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/yina.jpeg" alt="Yina">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Yina</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">18 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Taman Cinle</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Jagung Madu</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/sia jet sheng.jpeg" alt="Jet Sheng">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Jet Sheng</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">High Park</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Blind Box</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/sharon.jpeg" alt="Sharon">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Sharon</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">41 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Taman Penrissen</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Pakaian Tradisional</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/zeldeon.jpeg" alt="Zeldeon">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Zeldeon</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Taman Eden Field</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Kasut Sukan</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/shejario.jpeg" alt="Shejario">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Shejario</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Quob</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Burger</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/justine lawai.jpeg" alt="Justine">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Justine</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Giam</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Boba Homemade</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/christee eleicy.jpeg" alt="Kisti">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Kisti</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Taman Penrissen</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Chocojar</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/celestine.jpeg" alt="Celestine">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Celestine</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">43 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">High Park</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Kain Batik</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/anna.jpeg" alt="Anna">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Anna</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Kampung Quob</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Alat Solek</label></div>
+          </div>
+        </div>
+
+        <div class="pedagang">
+          <div class="pedagang-profimg">
+            <img src="ICON/SELLER/anelvinoah.jpeg" alt="Anel">
+          </div>
+          <div class="pedagang-biodata">
+            <div class="wrap"><label class="biodata-title">Nama Peniaga:</label><label class="biodata-info">Anel</label></div>
+            <div class="wrap"><label class="biodata-title">Umur:</label><label class="biodata-info">15 Tahun</label></div>
+            <div class="wrap"><label class="biodata-title">Kampung:</label><label class="biodata-info">Landeh</label></div>
+            <div class="wrap"><label class="biodata-title">Produk:</label><label class="biodata-info">Benih Cili</label></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <footer class="jakmiris-footer">
+    <div class="jakmiris-footer-inner">
+      <div>
+        <span class="jakmiris-footer-kicker">JakMiris Community Spotlight</span>
+        <h3 class="jakmiris-footer-title">Belanja dengan hati, sokong peniaga tempatan, dan jadikan JakMiris pilihan paling manis setiap hari.</h3>
+        <p class="jakmiris-footer-copy">Daripada hasil kampung segar hingga produk kreatif usahawan muda, JakMiris menghimpunkan jualan yang dekat di hati pelanggan. Setiap pembelian membantu komuniti berkembang dengan lebih kuat, lebih ceria, dan lebih bermakna.</p>
+        <div class="jakmiris-footer-pills">
+          <span class="jakmiris-pill">Produk Tempatan Paling Dicari</span>
+          <span class="jakmiris-pill">Sokong Usahawan Komuniti</span>
+          <span class="jakmiris-pill">Promo Menarik Setiap Minggu</span>
+        </div>
+      </div>
+      <div class="jakmiris-footer-card">
+        <h4>Kenapa JakMiris?</h4>
+        <div class="jakmiris-footer-list">
+          <div class="jakmiris-footer-item"><span>Peniaga aktif komuniti</span><strong>20+</strong></div>
+          <div class="jakmiris-footer-item"><span>Produk unik & segar</span><strong>Setiap Hari</strong></div>
+          <div class="jakmiris-footer-item"><span>Pilihan pelanggan tempatan</span><strong>Trusted</strong></div>
+          <div class="jakmiris-footer-item"><span>Semangat JakMiris</span><strong>Shop Local, Feel Proud</strong></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const normalizePath = (value) => value.toLowerCase().replace(/^.*[\\/]/, '');
+      const navLinks = document.querySelectorAll('.header-top a');
+      const currentPage = normalizePath(window.location.pathname || '');
+
+      const accountBalanceAmount = document.getElementById('accountBalanceAmount');
+      const accountBalanceToggle = document.getElementById('accountBalanceToggle');
+      const accountHolderName = document.getElementById('accountHolderName');
+      const accountLastTopUp = document.getElementById('accountLastTopUp');
+      const accountSpendToday = document.getElementById('accountSpendToday');
+      const accountCashback = document.getElementById('accountCashback');
+      const accountBalanceNote = document.getElementById('accountBalanceNote');
+
+      if (accountBalanceAmount && accountBalanceToggle) {
+        let currentBalance = 1200 + Math.random() * 900;
+        let spendToday = 18 + Math.random() * 55;
+        let cashbackToday = 1 + Math.random() * 8;
+        let isVisible = true;
+        let lastTopUpAmount = 50 + Math.floor(Math.random() * 4) * 10;
+
+        const formatMoney = (value) => 'RM ' + value.toLocaleString('en-MY', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+
+        if (accountHolderName) {
+          accountHolderName.textContent = 'Nur Iman';
+        }
+
+        const renderBalance = () => {
+          if (isVisible) {
+            accountBalanceAmount.textContent = formatMoney(currentBalance);
+            accountBalanceAmount.classList.remove('masked');
+            accountBalanceToggle.textContent = 'Hide';
+            if (accountLastTopUp) {
+              accountLastTopUp.textContent = formatMoney(lastTopUpAmount);
+            }
+            if (accountSpendToday) {
+              accountSpendToday.textContent = formatMoney(spendToday);
+            }
+            if (accountCashback) {
+              accountCashback.textContent = formatMoney(cashbackToday);
+            }
+            return;
+          }
+
+          accountBalanceAmount.textContent = 'RM ••••';
+          accountBalanceAmount.classList.add('masked');
+          if (accountLastTopUp) {
+            accountLastTopUp.textContent = '••••';
+          }
+          if (accountSpendToday) {
+            accountSpendToday.textContent = '••••';
+          }
+          if (accountCashback) {
+            accountCashback.textContent = '••••';
+          }
+          accountBalanceToggle.textContent = 'Show';
+        };
+
+        renderBalance();
+
+        setInterval(() => {
+          const fluctuation = (Math.random() * 14) - 4;
+          const spendChange = Math.random() * 2.6;
+          const cashbackChange = spendChange * (0.02 + Math.random() * 0.03);
+          currentBalance = Math.max(20, Math.min(9999, currentBalance + fluctuation));
+          spendToday = Math.max(0, Math.min(499, spendToday + spendChange));
+          cashbackToday = Math.max(0, Math.min(99, cashbackToday + cashbackChange));
+          if (Math.random() > 0.75) {
+            lastTopUpAmount = [20, 30, 50, 80, 100][Math.floor(Math.random() * 5)];
+          }
+          if (accountBalanceNote) {
+            accountBalanceNote.textContent = 'Dikemas kini pada ' + new Date().toLocaleTimeString('en-MY', {
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+          }
+          if (isVisible) {
+            renderBalance();
+          }
+        }, 9000);
+
+        accountBalanceToggle.addEventListener('click', () => {
+          isVisible = !isVisible;
+          renderBalance();
+        });
+      }
+
+      navLinks.forEach((link) => {
+        const target = normalizePath(link.getAttribute('href') || '');
+        if ((currentPage === '' && target === 'home.html') || target === currentPage || (currentPage === 'profile_new.html' && target === 'profile.html')) {
+          link.classList.add('nav-active');
+        }
+      });
+
+      const listingSection = document.querySelector('.listing-section');
+      if (!listingSection) {
+        return;
+      }
+
+      const columns = Array.from(listingSection.querySelectorAll('.listing-left, .listing-right'));
+      const cards = columns.flatMap((column) => Array.from(column.querySelectorAll('.pedagang')));
+
+      const sellerGrid = document.createElement('div');
+      sellerGrid.className = 'seller-grid';
+      cards.forEach((card) => sellerGrid.appendChild(card));
+      columns.forEach((column) => column.remove());
+
+      const filterPanel = document.createElement('section');
+      filterPanel.className = 'advanced-filter-panel';
+      filterPanel.innerHTML = [
+        '<div class="afp-header">',
+        '  <div class="afp-icon">🔍</div>',
+        '  <div class="afp-title-group">',
+        '    <span class="afp-badge">Alat Penting</span>',
+        '    <h2>Carian Lanjutan Peniaga</h2>',
+        '    <p class="afp-subtitle">Temui peniaga tempatan terbaik berhampiran anda dengan cepat & tepat</p>',
+        '  </div>',
+        '</div>',
+        '<div class="filter-grid">',
+
+        '  <div class="filter-field"><label for="searchSeller">Nama / Produk / Kampung</label><input id="searchSeller" type="text" placeholder="Contoh: kampung simboh"></div>',
+        '  <div class="filter-field"><label for="filterCategory">Kategori</label><select id="filterCategory"><option value="all">Semua Kategori</option><option value="Makanan">Makanan</option><option value="Pertanian">Pertanian</option><option value="Fesyen">Fesyen</option><option value="Kraftangan">Kraftangan</option><option value="Aksesori">Aksesori</option><option value="Elektronik">Elektronik</option><option value="Lain-lain">Lain-lain</option></select></div>',
+        '  <div class="filter-field"><label for="radiusRange">Radius Kampung</label><input id="radiusRange" type="range" min="1" max="30" value="30"><div class="radius-note">Dalam <strong id="radiusValue">30</strong> km</div></div>',
+        '  <div class="filter-field"><label for="sortBy">Susun Ikut</label><select id="sortBy"><option value="rating">Rating Tertinggi</option><option value="nearest">Paling Dekat</option><option value="stock">Stok Terbanyak</option><option value="name">Nama A-Z</option></select></div>',
+        '</div>',
+        '<div class="filter-summary" id="filterSummary">Memaparkan semua peniaga.</div>'
+      ].join('');
+
+      listingSection.prepend(filterPanel);
+      listingSection.appendChild(sellerGrid);
+
+      const searchSeller = document.getElementById('searchSeller');
+      const filterCategory = document.getElementById('filterCategory');
+      const radiusRange = document.getElementById('radiusRange');
+      const radiusValue = document.getElementById('radiusValue');
+      const sortBy = document.getElementById('sortBy');
+      const filterSummary = document.getElementById('filterSummary');
+
+      const verifiedNames = new Set(['Roslin Senjon', 'Disman Sembong', 'Sharon', 'Celestine', 'Kimberly', 'Leo', 'Amelia']);
+      const villageDistance = {
+        'kampung sikog': 4,
+        'kampung benuk segu, jalan penrissen': 6,
+        'kampung gile': 8,
+        'kampung simboh': 5,
+        'kampung quob': 10,
+        'taman landeh': 9,
+        'taman cinle': 12,
+        'high park': 14,
+        'taman penrissen': 7,
+        'taman eden field': 16,
+        'kampung giam': 11,
+        'landeh': 9
+      };
+
+      const categoryFromProduct = (productText) => {
+        const text = (productText || '').toLowerCase();
+        if (/nanas|timun|kacang|jagung|rebung|benih|cili/.test(text)) return 'Pertanian';
+        if (/cheesekut|burger|boba|chocojar/.test(text)) return 'Makanan';
+        if (/pakaian|kasut/.test(text)) return 'Fesyen';
+        if (/kraftangan|batik|bekas/.test(text)) return 'Kraftangan';
+        if (/jam|perhiasan|alat solek|klip/.test(text)) return 'Aksesori';
+        if (/polaroid|blind box/.test(text)) return 'Elektronik';
+        return 'Lain-lain';
+      };
+
+      const safeText = (value) => (value || '').trim();
+      const getInfo = (card, title) => {
+        const row = Array.from(card.querySelectorAll('.wrap')).find((item) => {
+          const heading = item.querySelector('.biodata-title');
+          return heading && heading.textContent.toLowerCase().indexOf(title) >= 0;
+        });
+        return row ? safeText(row.querySelector('.biodata-info') ? row.querySelector('.biodata-info').textContent : '') : '';
+      };
+
+      const stockState = {};
+      const reviewState = {};
+      const favouriteStorageKey = 'jakmiris-favourites';
+      let favouriteState = new Set();
+
+      try {
+        const storedFavourites = JSON.parse(localStorage.getItem(favouriteStorageKey) || '[]');
+        if (Array.isArray(storedFavourites)) {
+          favouriteState = new Set(storedFavourites);
+        }
+      } catch (error) {
+        favouriteState = new Set();
+      }
+
+      const saveFavourites = () => {
+        localStorage.setItem(favouriteStorageKey, JSON.stringify(Array.from(favouriteState)));
+      };
+
+      const getStars = (rating) => {
+        const rounded = Math.round(rating);
+        return Array.from({ length: 5 }, function (_, index) {
+          return index < rounded ? '&#9733;' : '&#9734;';
+        }).join('');
+      };
+
+      const sellerSlideLibrary = {
+        'Roslin Senjon': [
+          { label: 'Nanas Madu', price: 'RM 5 – RM 12', usage: 'Nanas segar pilihan dari ladang sendiri, manis dan masam segar.', popularity: 82 + Math.floor(Math.random() * 8) },
+          { label: 'Timun Tempatan', price: 'RM 2 – RM 5', usage: 'Timun segar untuk ulam dan masakan, dipetik setiap pagi.', popularity: 74 + Math.floor(Math.random() * 8) },
+          { label: 'Kacang Botol', price: 'RM 3 – RM 8', usage: 'Kacang botol segar, sesuai untuk tumisan dan sup harian.', popularity: 68 + Math.floor(Math.random() * 8) }
+        ],
+        'Darnelle': [
+          { label: 'Cheesekut Strawberi', price: 'RM 8 – RM 15', usage: 'Varian strawberi segar kegemaran kanak-kanak dan remaja.', popularity: 85 + Math.floor(Math.random() * 8) },
+          { label: 'Cheesekut Pandan', price: 'RM 8 – RM 15', usage: 'Rasa pandan lembut dengan aroma semula jadi yang wangi.', popularity: 79 + Math.floor(Math.random() * 8) },
+          { label: 'Set Hadiah Cheesekut', price: 'RM 22 – RM 38', usage: 'Set kotak cantik tiga rasa, sesuai untuk hadiah hari jadi.', popularity: 73 + Math.floor(Math.random() * 8) }
+        ],
+        'Laura Ann': [
+          { label: 'Klip Bunga Handmade', price: 'RM 5 – RM 12', usage: 'Klip rambut bunga tangan, cantik untuk majlis dan pemakaian harian.', popularity: 79 + Math.floor(Math.random() * 8) },
+          { label: 'Getah Rambut Warna', price: 'RM 3 – RM 8', usage: 'Getah rambut pelbagai warna, tahan lama dan tidak mudah putus.', popularity: 71 + Math.floor(Math.random() * 8) },
+          { label: 'Bando Rambut Berbunga', price: 'RM 6 – RM 14', usage: 'Bando berbunga sesuai untuk remaja dan kanak-kanak.', popularity: 65 + Math.floor(Math.random() * 8) }
+        ],
+        'Kimberly': [
+          { label: 'Baju Kurung Moden', price: 'RM 45 – RM 90', usage: 'Jahitan halus baju kurung moden sesuai untuk majlis rasmi.', popularity: 86 + Math.floor(Math.random() * 8) },
+          { label: 'Blaus Casual', price: 'RM 25 – RM 55', usage: 'Blaus selesa pelbagai warna untuk pemakaian santai harian.', popularity: 78 + Math.floor(Math.random() * 8) },
+          { label: 'Kain Pleated', price: 'RM 30 – RM 65', usage: 'Kain pleated elegance mudah dipadan dengan pelbagai baju atasan.', popularity: 72 + Math.floor(Math.random() * 8) }
+        ],
+        'Disman Sembong': [
+          { label: 'Rebung Segar', price: 'RM 4 – RM 10', usage: 'Rebung baru dipotong, sesuai untuk masakan tradisional tempatan.', popularity: 80 + Math.floor(Math.random() * 8) },
+          { label: 'Rebung Rebus', price: 'RM 5 – RM 12', usage: 'Rebung siap rebus, mudah terus digunakan dalam gulai atau tumisan.', popularity: 73 + Math.floor(Math.random() * 8) },
+          { label: 'Acar Rebung', price: 'RM 8 – RM 18', usage: 'Acar rebung buatan sendiri, pedas manis mengikut selera.', popularity: 66 + Math.floor(Math.random() * 8) }
+        ],
+        'Leo': [
+          { label: 'Gelang Tangan Ukiran', price: 'RM 15 – RM 45', usage: 'Gelang tangan berukir tempatan, sesuai dijadikan hadiah istimewa.', popularity: 84 + Math.floor(Math.random() * 8) },
+          { label: 'Anting-Anting', price: 'RM 10 – RM 30', usage: 'Anting ringan pelbagai reka bentuk moden, sesuai harian.', popularity: 77 + Math.floor(Math.random() * 8) },
+          { label: 'Cincin Perak', price: 'RM 20 – RM 60', usage: 'Cincin perak berkualiti, sesuai untuk hadiah dan pemakaian tetap.', popularity: 70 + Math.floor(Math.random() * 8) }
+        ],
+        'Amelia': [
+          { label: 'Bekas Nasi Kedap', price: 'RM 12 – RM 25', usage: 'Bekas nasi kedap udara, selamat dan mudah dibawa ke sekolah.', popularity: 83 + Math.floor(Math.random() * 8) },
+          { label: 'Tempat Lauk Berlapis', price: 'RM 15 – RM 30', usage: 'Tempat lauk tahan panas, elok dibawa untuk bekal.', popularity: 76 + Math.floor(Math.random() * 8) },
+          { label: 'Set Bekas Keluarga', price: 'RM 28 – RM 48', usage: 'Set bekas makan lengkap untuk keluarga, tahan lasak dan BPA-free.', popularity: 70 + Math.floor(Math.random() * 8) }
+        ],
+        'Racheal': [
+          { label: 'Bakul Anyaman', price: 'RM 20 – RM 55', usage: 'Bakul anyam tangan warisan tradisi, cantik dan fungsional.', popularity: 81 + Math.floor(Math.random() * 8) },
+          { label: 'Tikar Mengkuang', price: 'RM 30 – RM 80', usage: 'Tikar mengkuang halus, sesuai untuk alas duduk dan hiasan rumah.', popularity: 75 + Math.floor(Math.random() * 8) },
+          { label: 'Topi Anyam', price: 'RM 15 – RM 40', usage: 'Topi anyaman tradisional ringan, sesuai dipakai di luar dan petang hari.', popularity: 68 + Math.floor(Math.random() * 8) }
+        ],
+        'Carol': [
+          { label: 'Jam Tangan Klasik', price: 'RM 35 – RM 80', usage: 'Jam gaya klasik sesuai untuk pemakaian rasmi dan santai.', popularity: 85 + Math.floor(Math.random() * 8) },
+          { label: 'Jam Tangan Sukan', price: 'RM 40 – RM 90', usage: 'Jam sukan tahan air sesuai untuk aktiviti luar dan gimnasium.', popularity: 79 + Math.floor(Math.random() * 8) },
+          { label: 'Jam Tangan Kanak-Kanak', price: 'RM 20 – RM 45', usage: 'Jam warna-warni ringan dan selamat untuk kanak-kanak sekolah.', popularity: 72 + Math.floor(Math.random() * 8) }
+        ],
+        'Shina': [
+          { label: 'Cetakan Polaroid 4R', price: 'RM 3 – RM 8', usage: 'Cetakan gambar berkualiti tinggi, sesuai untuk hiasan dinding.', popularity: 89 + Math.floor(Math.random() * 8) },
+          { label: 'Album Polaroid Khas', price: 'RM 15 – RM 30', usage: 'Album simpan gambar polaroid, hadiah sempurna untuk sahabat.', popularity: 83 + Math.floor(Math.random() * 8) },
+          { label: 'Set Dekorasi Gambar', price: 'RM 10 – RM 22', usage: 'Set pita washi dan pin hias untuk papan kenangan polaroid.', popularity: 76 + Math.floor(Math.random() * 8) }
+        ],
+        'Yina': [
+          { label: 'Jagung Madu Rebus', price: 'RM 3 – RM 6', usage: 'Jagung madu rebus panas, manis semula jadi tanpa pewarna.', popularity: 87 + Math.floor(Math.random() * 8) },
+          { label: 'Jagung Bakar Mentega', price: 'RM 4 – RM 7', usage: 'Jagung bakar sapu mentega harum, lazat dinikmati petang hari.', popularity: 81 + Math.floor(Math.random() * 8) },
+          { label: 'Air Jagung Segar', price: 'RM 3 – RM 5', usage: 'Air jagung segar tanpa perisa tambahan, menyegarkan di cuaca panas.', popularity: 75 + Math.floor(Math.random() * 8) }
+        ],
+        'Jet Sheng': [
+          { label: 'Blind Box Binatang', price: 'RM 15 – RM 35', usage: 'Blind box koleksi binatang comel, kejutan setiap pembelian.', popularity: 88 + Math.floor(Math.random() * 8) },
+          { label: 'Blind Box Pahlawan', price: 'RM 18 – RM 40', usage: 'Figurin siri pahlawan pilihan, sesuai untuk peminat koleksi.', popularity: 82 + Math.floor(Math.random() * 8) },
+          { label: 'Blind Box Edisi Had', price: 'RM 45 – RM 90', usage: 'Edisi terhad berkualiti tinggi, hadiah istimewa paling dicari.', popularity: 76 + Math.floor(Math.random() * 8) }
+        ],
+        'Sharon': [
+          { label: 'Baju Bidayuh Tradisi', price: 'RM 60 – RM 120', usage: 'Pakaian tradisional Bidayuh berkualiti untuk majlis adat dan kebudayaan.', popularity: 86 + Math.floor(Math.random() * 8) },
+          { label: 'Kain Tenun Tangan', price: 'RM 40 – RM 95', usage: 'Kain tenun bermotif tradisional, setiap helai adalah unik.', popularity: 80 + Math.floor(Math.random() * 8) },
+          { label: 'Aksesori Tradisional', price: 'RM 25 – RM 65', usage: 'Set aksesori hiasan adat lengkap untuk persembahan budaya.', popularity: 73 + Math.floor(Math.random() * 8) }
+        ],
+        'Zeldeon': [
+          { label: 'Kasut Lari Ringan', price: 'RM 45 – RM 95', usage: 'Kasut lari ringan dan selesa, sesuai untuk joging pagi hari.', popularity: 84 + Math.floor(Math.random() * 8) },
+          { label: 'Kasut Futsal', price: 'RM 40 – RM 85', usage: 'Kasut futsal grip kuat, sesuai untuk padang dalam dan luar.', popularity: 77 + Math.floor(Math.random() * 8) },
+          { label: 'Stokin Sukan Tebal', price: 'RM 8 – RM 18', usage: 'Stokin sukan tebal menyerap peluh, lazim dipakai oleh atlet.', popularity: 70 + Math.floor(Math.random() * 8) }
+        ],
+        'Shejario': [
+          { label: 'Burger Daging Juicy', price: 'RM 5 – RM 10', usage: 'Burger daging buatan sendiri dengan roti lembut dan sos istimewa.', popularity: 90 + Math.floor(Math.random() * 8) },
+          { label: 'Burger Ayam Rangup', price: 'RM 4 – RM 8', usage: 'Burger ayam krispy dengan salad segar, kegemaran semua peringkat usia.', popularity: 85 + Math.floor(Math.random() * 8) },
+          { label: 'Set Burger & Minuman', price: 'RM 8 – RM 15', usage: 'Set lengkap burger dengan minuman sejuk, nilai terbaik di pasar.', popularity: 80 + Math.floor(Math.random() * 8) }
+        ],
+        'Justine': [
+          { label: 'Boba Brown Sugar', price: 'RM 5 – RM 8', usage: 'Boba homemade gula melaka dengan teh susu, manis dan segar.', popularity: 91 + Math.floor(Math.random() * 6) },
+          { label: 'Boba Taro', price: 'RM 5 – RM 8', usage: 'Boba ubi ungu susu segar, warna cantik dan sangat digemari remaja.', popularity: 86 + Math.floor(Math.random() * 6) },
+          { label: 'Boba Matcha', price: 'RM 5 – RM 9', usage: 'Teh hijau Jepun dengan biji sago kenyal, popular dalam kalangan pelajar.', popularity: 82 + Math.floor(Math.random() * 6) }
+        ],
+        'Kisti': [
+          { label: 'Chocojar Klasik', price: 'RM 12 – RM 22', usage: 'Coklat lembut berlapis biskut dalam balang cantik siap hadiah.', popularity: 88 + Math.floor(Math.random() * 8) },
+          { label: 'Chocojar Nutella', price: 'RM 14 – RM 26', usage: 'Krim Nutella pekat dengan biskut renyah, sangat sesuai dijadikan hadiah.', popularity: 83 + Math.floor(Math.random() * 8) },
+          { label: 'Set 3 Rasa Chocojar', price: 'RM 35 – RM 55', usage: 'Set tiga rasa dalam kotak hadiah eksklusif, sempurna untuk semua majlis.', popularity: 78 + Math.floor(Math.random() * 8) }
+        ],
+        'Celestine': [
+          { label: 'Batik Sarawak Eksklusif', price: 'RM 50 – RM 120', usage: 'Motif batik Sarawak asli, sesuai untuk baju majlis dan koleksi.', popularity: 87 + Math.floor(Math.random() * 8) },
+          { label: 'Kain Batik Pelikat', price: 'RM 35 – RM 75', usage: 'Kain batik pelikat lelaki berkualiti, warna tahan dan lembut.', popularity: 80 + Math.floor(Math.random() * 8) },
+          { label: 'Selendang Batik', price: 'RM 25 – RM 55', usage: 'Selendang batik pelbagai motif, lembut dan mudah dipadan.', popularity: 74 + Math.floor(Math.random() * 8) }
+        ],
+        'Anna': [
+          { label: 'Bedak Muka', price: 'RM 12 – RM 30', usage: 'Bedak muka halus sesuai untuk semua jenis kulit, tahan seharian.', popularity: 86 + Math.floor(Math.random() * 8) },
+          { label: 'Gincu Lip Cream', price: 'RM 10 – RM 25', usage: 'Lip cream matte tahan lama, tidak kering dan berwarna tua.', popularity: 81 + Math.floor(Math.random() * 8) },
+          { label: 'Set Alat Solek Lengkap', price: 'RM 30 – RM 65', usage: 'Set alat solek asas lengkap sesuai untuk permula dan harian.', popularity: 76 + Math.floor(Math.random() * 8) }
+        ],
+        'Anel': [
+          { label: 'Benih Cili Merah', price: 'RM 3 – RM 8', usage: 'Benih cili merah varieti tempatan, tumbuh subur dan berbuah lebat.', popularity: 83 + Math.floor(Math.random() * 8) },
+          { label: 'Benih Cili Padi', price: 'RM 3 – RM 8', usage: 'Benih cili padi pedas, sesuai untuk tanaman pokok kontena dan batas.', popularity: 77 + Math.floor(Math.random() * 8) },
+          { label: 'Baja Organik Kompos', price: 'RM 5 – RM 15', usage: 'Baja organik kompos sendiri, sesuai untuk semua jenis tanaman sayur.', popularity: 71 + Math.floor(Math.random() * 8) }
+        ]
+      };
+
+      const priceByCategory = (cat) => {
+        const m = { Pertanian: 'RM 3 – RM 15', Makanan: 'RM 5 – RM 25', Fesyen: 'RM 20 – RM 95', Kraftangan: 'RM 15 – RM 120', Aksesori: 'RM 10 – RM 60', Elektronik: 'RM 30 – RM 200', 'Lain-lain': 'RM 8 – RM 50' };
+        return m[cat] || 'RM 10 – RM 80';
+      };
+
+      const usageByCategory = (cat) => {
+        const m = { Pertanian: 'Segar dari ladang tempatan, sesuai untuk masakan harian.', Makanan: 'Buatan tangan, tanpa pengawet. Sempurna sebagai hadiah.', Fesyen: 'Berkualiti tinggi, sesuai untuk pemakaian harian dan majlis.', Kraftangan: 'Kraftangan warisan tempatan, unik dan bernilai koleksi.', Aksesori: 'Pelbagai warna dan saiz mengikut citarasa anda.', Elektronik: 'Sesuai untuk kegunaan rumah, pejabat dan pelajar.', 'Lain-lain': 'Produk istimewa tempatan yang sukar dijumpai di tempat lain.' };
+        return m[cat] || 'Produk tempatan berkualiti tinggi.';
+      };
+
+      const panelHeadings  = ['Most Loved by Shoppers', 'Customer Favourite', 'Best Selling Item', 'Top Rated Choice'];
+      const availabilityLabels = ['Selling Out Fast', 'Limited Stock', 'Hot Item', 'Highly Recommended'];
+      const ctaLabels = ['Order Now', 'Get This Best Seller', 'Claim Yours Today', 'Shop This Top Pick'];
+
+      const sellerMeta = cards.map((card, sellerIndex) => {
+        const name = getInfo(card, 'nama peniaga');
+        const village = getInfo(card, 'kampung');
+        const product = getInfo(card, 'produk');
+        const category = categoryFromProduct(product);
+        const normalizedVillage = village.toLowerCase();
+        const distanceKm = villageDistance[normalizedVillage] || 18;
+        const imageElement = card.querySelector('.pedagang-profimg img');
+        const profileImage = imageElement ? imageElement.getAttribute('src') : '';
+        const verified = verifiedNames.has(name);
+        const shortProduct = product.split(',')[0].trim();
+        const varIdx = sellerIndex % 4;
+        const panelHeading   = panelHeadings[varIdx];
+        const availabilityLabel = availabilityLabels[varIdx];
+        const ctaLabel       = ctaLabels[varIdx];
+
+        stockState[name] = Math.floor(Math.random() * 35) + 4;
+        reviewState[name] = {
+          values: [3 + Math.random() * 2, 3 + Math.random() * 2, 3 + Math.random() * 2],
+          comments: ['Produk kemas dan cepat sampai.', 'Penjual sangat mesra.', 'Harga berpatutan untuk kualiti.']
+        };
+
+        const nameRow = Array.from(card.querySelectorAll('.wrap')).find((item) => {
+          const heading = item.querySelector('.biodata-title');
+          return heading && heading.textContent.toLowerCase().indexOf('nama peniaga') >= 0;
+        });
+
+        if (nameRow && verified && !nameRow.querySelector('.verified-badge')) {
+          const infoNode = nameRow.querySelector('.biodata-info');
+          const badge = document.createElement('span');
+          badge.className = 'verified-badge';
+          badge.innerHTML = '&#10003; Disahkan';
+          infoNode.appendChild(badge);
+        }
+
+        const profileBox = card.querySelector('.pedagang-profimg');
+        const body = card.querySelector('.pedagang-biodata');
+        const sellerPrimary = document.createElement('div');
+        sellerPrimary.className = 'seller-primary';
+
+        const biodataCore = document.createElement('div');
+        biodataCore.className = 'biodata-core';
+        Array.from(body.querySelectorAll('.wrap')).forEach((row) => {
+          biodataCore.appendChild(row);
+        });
+
+        sellerPrimary.appendChild(profileBox);
+        sellerPrimary.appendChild(biodataCore);
+        card.insertBefore(sellerPrimary, body);
+
+        body.insertAdjacentHTML('beforeend', [
+          '<div class="seller-health">',
+          '  <span class="stock-indicator" data-stock-for="' + name + '"></span>',
+          '  <span class="rating-chip" data-rating-for="' + name + '"></span>',
+          '</div>',
+          '<div class="gallery-box" data-gallery-for="' + name + '">',
+          '  <div class="gallery-visual">',
+          '    <img class="gallery-main" src="' + profileImage + '" alt="Galeri ' + name + '">',
+          '    <span class="image-cta-tip">HD Preview · Klik untuk produk seterusnya</span>',
+          '  </div>',
+          '  <div class="product-info-panel" data-pip-for="' + name + '">',
+          '    <h4 class="panel-heading">' + panelHeading + '</h4>',
+          '    <p class="panel-sub">Harga dinamik, penggunaan produk, dan status semasa</p>',
+          '    <div class="trust-row"><span class="trust-pill">&#10003; Disahkan</span><span class="trust-pill free">FREE SHIPPING</span></div>',
+          '    <div class="pip-slide-label"></div>',
+          '    <div class="pip-price-row"><span class="pip-price-tag">HARGA</span><span class="pip-price-value"></span></div>',
+          '    <div class="availability-row"><span class="availability-label">Check Availability</span><span class="availability-status" data-availability-for="' + name + '"></span></div>',
+          '    <div class="pip-usage"></div>',
+          '    <div class="pip-popularity-row"><span class="pip-popularity-label">Populariti</span><div class="pip-bar-wrap"><div class="pip-bar" style="width:0%"></div></div><span class="pip-popularity-pct"></span></div>',
+          '    <div class="live-sidebar-stats"><span class="live-stat" data-demand-for="' + name + '"></span><span class="live-stat" data-orders-for="' + name + '"></span></div>',
+          '    <a class="checkout-cta" data-checkout-for="' + name + '" href="https://wa.me/60138765432?text=' + encodeURIComponent('Hi ' + name + ', saya mahu terus bertanya tentang produk ini.') + '" target="_blank" rel="noopener">' + ctaLabel + '</a>',
+          '  </div>',
+          '</div>',
+          '<div class="review-panel" data-review-for="' + name + '">',
+          '  <h4>Rating & Ulasan (5 Bintang)</h4>',
+          '  <div class="review-form">',
+          '    <select><option value="5">5 Bintang</option><option value="4">4 Bintang</option><option value="3">3 Bintang</option><option value="2">2 Bintang</option><option value="1">1 Bintang</option></select>',
+          '    <input type="text" maxlength="80" placeholder="Tulis ulasan ringkas">',
+          '    <button type="button">Hantar</button>',
+          '  </div>',
+          '  <div class="review-list"></div>',
+          '</div>',
+          '<div class="map-wrap"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=' + encodeURIComponent(village + ' Sarawak') + '&output=embed" title="Peta ' + village + '"></iframe></div>'
+        ].join(''));
+
+        const mainImage = body.querySelector('[data-gallery-for="' + name + '"] .gallery-main');
+        const fallbackGallery = [
+          profileImage,
+          'ICON/FESYEN/lagging pants.jfif',
+          'ICON/FESYEN/sport bra.jfif',
+          'ICON/ELEKTRONIK/Mouse.avif'
+        ];
+        const libSlides = sellerSlideLibrary[name] || [
+          { label: 'Produk Pilihan A', price: 'RM 10 – RM 30', usage: 'Produk tempatan berkualiti pilihan kampung.', popularity: 65 + Math.floor(Math.random() * 10) },
+          { label: 'Produk Pilihan B', price: 'RM 15 – RM 40', usage: 'Pilihan istimewa dari usahawan kampung.', popularity: 60 + Math.floor(Math.random() * 10) },
+          { label: 'Produk Pilihan C', price: 'RM 20 – RM 50', usage: 'Nilai terbaik untuk setiap pelanggan.', popularity: 55 + Math.floor(Math.random() * 10) }
+        ];
+        const slideData = [
+          { label: shortProduct, price: priceByCategory(category), usage: usageByCategory(category), popularity: 85 + Math.floor(Math.random() * 12) },
+          libSlides[0], libSlides[1], libSlides[2]
+        ];
+
+        let currentSlide = 0;
+        const renderAvailabilityStatus = () => {
+          const availabilityNode = body.querySelector('[data-availability-for="' + name + '"]');
+          const currentStock = stockState[name] || 0;
+          if (!availabilityNode) {
+            return;
+          }
+          availabilityNode.classList.remove('available', 'limited', 'sold-out');
+          if (currentStock <= 0) {
+            availabilityNode.classList.add('sold-out');
+            availabilityNode.textContent = 'Sold Out';
+            return;
+          }
+          if (currentStock <= 6) {
+            availabilityNode.classList.add('limited');
+            availabilityNode.textContent = 'Limited Stock';
+            return;
+          }
+          availabilityNode.classList.add('available');
+          availabilityNode.textContent = availabilityLabel;
+        };
+
+        const renderLiveSidebar = () => {
+          const demandNode = body.querySelector('[data-demand-for="' + name + '"]');
+          const ordersNode = body.querySelector('[data-orders-for="' + name + '"]');
+          const currentStock = stockState[name] || 0;
+          const viewers = Math.max(3, Math.min(35, 38 - currentStock + Math.floor(Math.random() * 6)));
+          const orders = 2 + Math.floor(Math.random() * 8);
+          if (demandNode) {
+            demandNode.textContent = viewers + ' viewing now';
+          }
+          if (ordersNode) {
+            ordersNode.textContent = orders + ' checkouts today';
+          }
+          renderAvailabilityStatus();
+        };
+
+        const updateInquiryLinks = (slide) => {
+          const checkoutNode = body.querySelector('[data-checkout-for="' + name + '"]');
+          const inquiryNode = body.querySelector('[data-inquiry-for="' + name + '"]');
+          if (!slide) {
+            return;
+          }
+          const currentStock = stockState[name] || 0;
+          const availabilityText = currentStock <= 0 ? 'sold out' : (currentStock <= 6 ? 'limited stock' : 'available today');
+          const inquiryMessage = 'Hi ' + name + ', saya ingin bertanya tentang "' + slide.label + '" pada harga ' + slide.price + ' dan status ' + availabilityText + ' (Kampung: ' + village + ').';
+          if (checkoutNode) {
+            checkoutNode.href = 'https://wa.me/60138765432?text=' + encodeURIComponent(inquiryMessage);
+          }
+          if (inquiryNode) {
+            inquiryNode.href = 'https://wa.me/60138765432?text=' + encodeURIComponent(inquiryMessage);
+          }
+        };
+
+        const renderTopPick = () => {
+          mainImage.src = fallbackGallery[currentSlide];
+          const pip = body.querySelector('[data-pip-for="' + name + '"]');
+          if (pip) {
+            const slide = slideData[currentSlide] || slideData[0];
+            pip.querySelector('.pip-slide-label').textContent = slide.label;
+            pip.querySelector('.pip-price-value').textContent = slide.price;
+            pip.querySelector('.pip-usage').textContent = slide.usage;
+            pip.querySelector('.pip-bar').style.width = slide.popularity + '%';
+            pip.querySelector('.pip-popularity-pct').textContent = slide.popularity + '%';
+            updateInquiryLinks(slide);
+          }
+          renderLiveSidebar();
+        };
+
+        mainImage.addEventListener('click', function () {
+          currentSlide = (currentSlide + 1) % fallbackGallery.length;
+          renderTopPick();
+        });
+
+        renderTopPick();
+
+        setInterval(function () {
+          currentSlide = (currentSlide + 1) % fallbackGallery.length;
+          renderTopPick();
+        }, 2600);
+
+        const actions = body.querySelector('.seller-actions') || document.createElement('div');
+        actions.className = 'seller-actions';
+        actions.innerHTML = [
+          '<a class="contact-tile tile-whatsapp" data-inquiry-for="' + name + '" href="https://wa.me/60138765432?text=' + encodeURIComponent('Hi ' + name + ', saya berminat dengan produk ' + product + ' dari ' + village + '. Boleh kongsi maklumat lanjut?') + '" target="_blank" rel="noopener">',
+          '  <span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .2 5.3.2 11.8c0 2.1.6 4.2 1.7 5.9L0 24l6.6-1.7a11.9 11.9 0 0 0 5.5 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.4zm-8.4 18.2h-.1c-1.8 0-3.6-.5-5.2-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 0 1-1.5-5.1c0-5.4 4.4-9.8 9.8-9.8 2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.9-9.3 9.9zm5.4-7.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.1c-.2.2-.4.2-.7 0-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.7 1.2 2.9c.2.2 2 3 4.8 4.2.7.3 1.2.5 1.7.7.7.2 1.3.2 1.8.1.5-.1 1.8-.7 2-1.4.2-.6.2-1.2.2-1.4 0-.1-.2-.2-.5-.4z"></path></svg></span>',
+          '  <span class="tile-copy"><span class="tile-label">Direct Inquiry</span><span class="tile-meta">Shortcut pantas untuk pertanyaan produk</span></span>',
+          '</a>',
+          '<button type="button" class="contact-tile tile-needs btn-needs">',
+          '  <span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>',
+          '  <span class="tile-copy"><span class="tile-label">Delivery Request</span><span class="tile-meta">Pilih penghantaran atau semakan stok</span></span>',
+          '</button>',
+          '<a class="contact-tile tile-visit" href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(village + ' Sarawak') + '" target="_blank" rel="noopener">',
+          '  <span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>',
+          '  <span class="tile-copy"><span class="tile-label">Local Pickup</span><span class="tile-meta">Semak lokasi ambil sendiri di peta</span></span>',
+          '</a>',
+          '<button type="button" class="contact-tile tile-favourite btn-favourite" data-seller="' + name + '">',
+          '  <span class="tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09A6 6 0 0 1 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54z"></path></svg></span>',
+          '  <span class="tile-copy"><span class="tile-label">Delivery Area</span><span class="tile-meta">Simpan untuk semakan penghantaran tempatan</span></span>',
+          '</button>'
+        ].join('');
+        const hubungiBox = body.querySelector('.hubungi-gallery') || document.createElement('section');
+        hubungiBox.className = 'hubungi-gallery direct-inquiry-gallery pickup-delivery-gallery';
+        hubungiBox.innerHTML = '<h4 class="hubungi-title direct-inquiry-title pickup-delivery-title">Local Pickup & Delivery Gallery</h4><p class="inquiry-subtitle pickup-delivery-note">Interaktif untuk pickup tempatan, penghantaran kawasan berhampiran, dan pertanyaan segera.</p>';
+        hubungiBox.appendChild(actions);
+        const needsPanel = document.createElement('div');
+        needsPanel.className = 'customer-needs-panel';
+        const needsOptions = [
+          { label: 'Check Availability', text: 'Hi ' + name + ', saya ingin semak availability semasa untuk ' + product + '.' },
+          { label: 'Local Pickup', text: 'Hi ' + name + ', saya mahu buat local pickup untuk ' + product + '. Bila masa sesuai?' },
+          { label: 'Delivery Request', text: 'Hi ' + name + ', boleh bantu info penghantaran untuk ' + product + ' ke kawasan saya?' },
+          { label: 'Direct Inquiry', text: 'Hi ' + name + ', saya ada pertanyaan lanjut tentang ' + product + '. Boleh bantu?' }
+        ];
+        needsOptions.forEach(function (option) {
+          const optionButton = document.createElement('button');
+          optionButton.type = 'button';
+          optionButton.className = 'needs-option';
+          optionButton.textContent = option.label;
+          optionButton.addEventListener('click', function () {
+            const waUrl = 'https://wa.me/60138765432?text=' + encodeURIComponent(option.text + ' (Kampung: ' + village + ')');
+            window.open(waUrl, '_blank', 'noopener');
+          });
+          needsPanel.appendChild(optionButton);
+        });
+        hubungiBox.appendChild(needsPanel);
+        if (!hubungiBox.parentNode) {
+          body.appendChild(hubungiBox);
+        }
+
+        const viewButton = actions.querySelector('.btn-view');
+        if (viewButton) {
+          viewButton.addEventListener('click', function () {
+            const gallery = body.querySelector('[data-gallery-for="' + name + '"]');
+            gallery.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          });
+        }
+
+        const needsButton = actions.querySelector('.btn-needs');
+        if (needsButton) {
+          needsButton.addEventListener('click', function () {
+            needsPanel.classList.toggle('show');
+          });
+        }
+
+        const favouriteButton = actions.querySelector('.btn-favourite');
+        const renderFavouriteButton = () => {
+          const isFavourited = favouriteState.has(name);
+          if (!favouriteButton) {
+            return;
+          }
+          favouriteButton.classList.toggle('is-favourited', isFavourited);
+          const labelNode = favouriteButton.querySelector('.tile-label');
+          const metaNode = favouriteButton.querySelector('.tile-meta');
+          if (labelNode) {
+            labelNode.textContent = isFavourited ? 'Delivery Area Saved' : 'Delivery Area';
+          }
+          if (metaNode) {
+            metaNode.textContent = isFavourited ? 'Rujukan penghantaran tempatan telah disimpan' : 'Simpan untuk semakan penghantaran tempatan';
+          }
+        };
+
+        if (favouriteButton) {
+          favouriteButton.addEventListener('click', function () {
+            if (favouriteState.has(name)) {
+              favouriteState.delete(name);
+            } else {
+              favouriteState.add(name);
+            }
+            saveFavourites();
+            renderFavouriteButton();
+          });
+          renderFavouriteButton();
+        }
+
+        const reviewPanel = body.querySelector('[data-review-for="' + name + '"]');
+        const formSelect = reviewPanel.querySelector('select');
+        const formInput = reviewPanel.querySelector('input');
+        const formButton = reviewPanel.querySelector('button');
+        const reviewList = reviewPanel.querySelector('.review-list');
+
+        const renderReviews = () => {
+          const values = reviewState[name].values;
+          const avg = values.reduce((sum, value) => sum + value, 0) / values.length;
+          const ratingChip = body.querySelector('[data-rating-for="' + name + '"]');
+          ratingChip.innerHTML = getStars(avg) + ' ' + avg.toFixed(1) + ' (' + values.length + ' ulasan)';
+
+          reviewList.innerHTML = reviewState[name].comments.slice(-3).reverse().map((comment, index) => {
+            const score = values[values.length - 1 - index] || avg;
+            return '<div>' + getStars(score) + ' ' + comment + '</div>';
+          }).join('');
+        };
+
+        formButton.addEventListener('click', function () {
+          const rating = parseInt(formSelect.value, 10);
+          const comment = formInput.value.trim() || 'Pelanggan berpuas hati dengan servis.';
+          reviewState[name].values.push(rating);
+          reviewState[name].comments.push(comment);
+          formInput.value = '';
+          renderReviews();
+          applyFiltersAndSort();
+        });
+
+        renderReviews();
+
+        return {
+          card,
+          name,
+          village,
+          product,
+          category,
+          distanceKm,
+          verified,
+          body,
+          profileImage
+        };
+      });
+
+      // ── Top Picks / Customer Choices Banner ───────
+      const topPicksBanner = document.createElement('section');
+      topPicksBanner.className = 'top-picks-banner';
+      let bannerMode = 'picks';
+
+      const getAvgRating = (sellerName) => {
+        const v = reviewState[sellerName] && reviewState[sellerName].values;
+        return v && v.length ? v.reduce(function (s, x) { return s + x; }, 0) / v.length : 0;
+      };
+
+      const renderBanner = () => {
+        const sorted = sellerMeta.slice().sort(function (a, b) {
+          if (bannerMode === 'picks') return getAvgRating(b.name) - getAvgRating(a.name);
+          const aLen = reviewState[a.name] ? reviewState[a.name].values.length : 0;
+          const bLen = reviewState[b.name] ? reviewState[b.name].values.length : 0;
+          return bLen - aLen;
+        });
+        const top3 = sorted.slice(0, 3);
+        const headingText = bannerMode === 'picks' ? 'Top Picks Tempatan' : 'Pilihan Pelanggan';
+        const subText = bannerMode === 'picks' ? 'Peniaga terbaik mengikut penilaian komuniti' : 'Produk paling popular mengikut ulasan pelanggan';
+
+        topPicksBanner.innerHTML = [
+          '<div class="tpb-header">',
+          '  <span class="tpb-crown">&#127942;</span>',
+          '  <div class="tpb-heading"><h3>' + headingText + '</h3><p>' + subText + '</p></div>',
+          '  <div class="tpb-toggle">',
+          '    <button data-mode="picks"' + (bannerMode === 'picks' ? ' class="tpb-active"' : '') + '>Top Picks</button>',
+          '    <button data-mode="choice"' + (bannerMode === 'choice' ? ' class="tpb-active"' : '') + '>Pilihan Pelanggan</button>',
+          '  </div>',
+          '</div>',
+          '<div class="tpb-cards">',
+          top3.map(function (seller, idx) {
+            const avg = getAvgRating(seller.name);
+            const topBadge = idx === 0
+              ? '<span class="tpb-badge tpb-badge-picks">' + (bannerMode === 'picks' ? '&#127942; #1 Top Pick' : '&#11088; #1 Pilihan') + '</span>'
+              : (idx === 1 ? '<span class="tpb-badge tpb-badge-choice">Trending</span>' : '');
+            const verBadge = seller.verified ? '<span class="tpb-badge tpb-badge-verified">&#10003;</span>' : '';
+            const safeName = seller.name.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+            return [
+              '<div class="tpb-card" data-scroll-to="' + safeName + '">',
+              '  <img class="tpb-avatar" src="' + seller.profileImage + '" alt="' + safeName + '">',
+              '  <div class="tpb-info">',
+              '    <div class="tpb-name">' + seller.name + '</div>',
+              '    <div class="tpb-product">' + seller.product + '</div>',
+              '    <div class="tpb-meta"><span class="tpb-stars">' + getStars(avg) + '</span>&nbsp;' + avg.toFixed(1) + '&nbsp;' + topBadge + verBadge + '</div>',
+              '  </div>',
+              '</div>'
+            ].join('');
+          }).join(''),
+          '</div>'
+        ].join('');
+
+        topPicksBanner.querySelectorAll('.tpb-toggle button').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            bannerMode = this.getAttribute('data-mode');
+            renderBanner();
+          });
+        });
+
+        topPicksBanner.querySelectorAll('.tpb-card').forEach(function (tcard) {
+          tcard.addEventListener('click', function () {
+            const scrollName = this.getAttribute('data-scroll-to');
+            const targetMeta = sellerMeta.find(function (s) { return s.name === scrollName; });
+            if (targetMeta) targetMeta.card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+      };
+
+      renderBanner();
+      listingSection.insertBefore(topPicksBanner, sellerGrid);
+
+      const updateStockBadge = (seller) => {
+        const stock = stockState[seller.name];
+        const stockNode = seller.body.querySelector('[data-stock-for="' + seller.name + '"]');
+        stockNode.classList.remove('in-stock', 'low-stock', 'out-stock');
+        if (stock <= 0) {
+          stockNode.classList.add('out-stock');
+          stockNode.textContent = 'Stok habis';
+          return;
+        }
+        if (stock <= 6) {
+          stockNode.classList.add('low-stock');
+          stockNode.textContent = 'Stok rendah: ' + stock;
+          return;
+        }
+        stockNode.classList.add('in-stock');
+        stockNode.textContent = 'Stok tersedia: ' + stock;
+      };
+
+      const applyFiltersAndSort = () => {
+        const searchTerm = (searchSeller.value || '').trim().toLowerCase();
+        const categoryValue = filterCategory.value;
+        const radiusValueKm = parseInt(radiusRange.value, 10);
+
+        radiusValue.textContent = String(radiusValueKm);
+
+        const filtered = sellerMeta.filter((seller) => {
+          const textPool = (seller.name + ' ' + seller.product + ' ' + seller.village).toLowerCase();
+          const searchMatch = !searchTerm || textPool.indexOf(searchTerm) >= 0;
+          const categoryMatch = categoryValue === 'all' || seller.category === categoryValue;
+          const radiusMatch = seller.distanceKm <= radiusValueKm;
+          return searchMatch && categoryMatch && radiusMatch;
+        });
+
+        const sorted = filtered.slice();
+        if (sortBy.value === 'nearest') {
+          sorted.sort((a, b) => a.distanceKm - b.distanceKm);
+        } else if (sortBy.value === 'stock') {
+          sorted.sort((a, b) => (stockState[b.name] || 0) - (stockState[a.name] || 0));
+        } else if (sortBy.value === 'name') {
+          sorted.sort((a, b) => a.name.localeCompare(b.name));
+        } else {
+          sorted.sort((a, b) => {
+            const aReviews = reviewState[a.name].values;
+            const bReviews = reviewState[b.name].values;
+            const aAvg = aReviews.reduce((sum, value) => sum + value, 0) / aReviews.length;
+            const bAvg = bReviews.reduce((sum, value) => sum + value, 0) / bReviews.length;
+            return bAvg - aAvg;
+          });
+        }
+
+        sellerMeta.forEach((seller) => {
+          seller.card.classList.add('hidden-seller');
+        });
+
+        sorted.forEach((seller) => {
+          seller.card.classList.remove('hidden-seller');
+          sellerGrid.appendChild(seller.card);
+        });
+
+        filterSummary.textContent = 'Memaparkan ' + sorted.length + ' daripada ' + sellerMeta.length + ' peniaga.';
+      };
+
+      sellerMeta.forEach((seller) => updateStockBadge(seller));
+
+      setInterval(function () {
+        sellerMeta.forEach((seller) => {
+          const delta = Math.floor(Math.random() * 5) - 2;
+          const nextValue = Math.max(0, Math.min(45, stockState[seller.name] + delta));
+          stockState[seller.name] = nextValue;
+          updateStockBadge(seller);
+        });
+      }, 5000);
+
+      [searchSeller, filterCategory, radiusRange, sortBy].forEach((control) => {
+        control.addEventListener('input', applyFiltersAndSort);
+        control.addEventListener('change', applyFiltersAndSort);
+      });
+
+      applyFiltersAndSort();
+
+      const sanitizeNoticeText = (value) => String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
+      // Live sidebar stats & purchase alerts every 30 seconds
+      setInterval(function() {
+        sellerMeta.forEach(function(seller) {
+          var demandNode = document.querySelector('[data-demand-for=\"' + seller.name + '\"]');
+          var ordersNode = document.querySelector('[data-orders-for=\"' + seller.name + '\"]');
+          var stock = stockState[seller.name] || 0;
+          if (demandNode) {
+            var viewers = Math.max(3, Math.min(35, 38 - stock + Math.floor(Math.random() * 7)));
+            demandNode.textContent = viewers + ' viewing now';
+          }
+          if (ordersNode) {
+            ordersNode.textContent = (2 + Math.floor(Math.random() * 8)) + ' checkouts today';
+          }
+        });
+        var sellerInfo = sellerMeta[Math.floor(Math.random() * sellerMeta.length)];
+        if (!sellerInfo) {
+          return;
+        }
+        var stockForSeller = stockState[sellerInfo.name] || 0;
+        var liveViewers = Math.max(3, Math.min(35, 38 - stockForSeller + Math.floor(Math.random() * 7)));
+        var orderCount = 2 + Math.floor(Math.random() * 7);
+        var promoCopy = [
+          'Promosi terhad hari ini',
+          'Diskaun khas untuk pelanggan baru',
+          'Harga istimewa sementara stok masih ada',
+          'Tawaran combo paling laris minggu ini'
+        ];
+        var promoText = promoCopy[Math.floor(Math.random() * promoCopy.length)];
+        var productLabel = (sellerInfo.product || 'Produk pilihan').split(',')[0].trim();
+        var sellerLatestList = sellerSlideLibrary[sellerInfo.name] || [];
+        var latestProduct = sellerLatestList.length ? sellerLatestList[0].label : productLabel;
+
+        var existingAlert = document.querySelector('.purchase-alert');
+        if (existingAlert) {
+          return;
+        }
+
+        var alert = document.createElement('div');
+        alert.className = 'purchase-alert';
+        alert.innerHTML = [
+          '<div class="alert-head">',
+          '  <span class="alert-badge">NEW PRODUCT HAVE BEEN ARRIVED</span>',
+          '  <span class="alert-time">Just now</span>',
+          '</div>',
+          '<p class="alert-title">Produk terbaru: ' + sanitizeNoticeText(latestProduct) + '</p>',
+          '<p class="alert-meta"><strong>' + sanitizeNoticeText(sellerInfo.name) + '</strong> · ' + sanitizeNoticeText(productLabel) + ' · ' + sanitizeNoticeText(sellerInfo.village) + '</p>',
+          '<p class="alert-sub">Iklan oleh ' + sanitizeNoticeText(sellerInfo.name) + ': ' + sanitizeNoticeText(promoText) + ' · ' + liveViewers + ' sedang melihat · ' + orderCount + ' tempahan hari ini</p>'
+        ].join('');
+
+        document.body.appendChild(alert);
+        setTimeout(function() {
+          alert.classList.add('is-leaving');
+        }, 5000);
+        setTimeout(function() {
+          if (alert && alert.parentNode) {
+            alert.remove();
+          }
+        }, 5450);
+      }, 30000);
+
+      const clickableSelectors = '.header-top a, .nav-utility-item, .seller-actions button, .seller-actions a';
+      const clickableElements = document.querySelectorAll(clickableSelectors);
+
+      clickableElements.forEach((element) => {
+        element.addEventListener('click', () => {
+          if (element.matches('.header-top a')) {
+            navLinks.forEach((link) => link.classList.remove('nav-active'));
+            element.classList.add('nav-active');
+          }
+
+          element.classList.remove('click-animate');
+          void element.offsetWidth;
+          element.classList.add('click-animate');
+
+          setTimeout(() => {
+            element.classList.remove('click-animate');
+          }, 420);
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

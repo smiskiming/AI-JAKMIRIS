@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>bisnes</title>
+  <link rel="stylesheet" type="text/css" href="CSS/style.css">
+  <style>
+    /* ══════════════════════════════════════
+       HEADER — clean minimalist override
+    ══════════════════════════════════════ */
+    .site-header {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 36px;
+      height: 92px;
+      background: rgba(253, 248, 240, 0.98) !important;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.07) !important;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      gap: 20px;
+    }
+
+    /* Logo — transparent, no box */
+    .site-header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0;
+      width: auto;
+      flex-shrink: 0;
+    }
+    .site-header .logo img {
+      height: 56px;
+      width: auto;
+      background: transparent;
+      filter: none;
+      margin: 0;
+    }
+    .site-header .brand-lockup {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+    .site-header .brand-lockup strong {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #3a2e1e;
+      font-family: 'Poppins', sans-serif;
+    }
+    .site-header .brand-lockup span {
+      font-size: 0.68rem;
+      color: #a0896a;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Nav — no pills, no borders, no boxes */
+    .site-header .header-top {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+      justify-content: center;
+      padding: 0 !important;
+      flex-wrap: nowrap;
+    }
+    .site-header .nav-link {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: #5c4a30 !important;
+      text-decoration: none;
+      padding: 10px 16px;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      position: relative;
+      transition: color 0.22s ease;
+    }
+    .site-header .nav-link::after {
+      display: none;
+    }
+    .site-header .nav-link:hover,
+    .site-header .nav-link.active {
+      color: #c8923a !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+
+    /* Cart button */
+    .cart-btn {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.55rem;
+      padding: 6px 8px;
+      line-height: 1;
+      border-radius: 50%;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .cart-btn:hover { background: rgba(200, 146, 58, 0.12); }
+    .cart-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #e03e2d;
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cart-badge.visible { display: flex; }
+
+    /* Cart panel */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease;
+      z-index: 1500;
+    }
+    .cart-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .cart-panel {
+      position: fixed;
+      top: 96px;
+      right: 18px;
+      width: min(360px, 92vw);
+      max-height: min(70vh, 620px);
+      background: #fffdf8;
+      border-radius: 16px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
+      z-index: 1600;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+      visibility: hidden;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .cart-panel.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      visibility: visible;
+    }
+    .cart-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 14px 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .cart-panel-head h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: #4a3a2b;
+      font-family: 'Poppins', sans-serif;
+    }
+    .cart-close-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #7a6a56;
+      line-height: 1;
+      padding: 4px;
+    }
+    .cart-items {
+      overflow: auto;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 84px;
+    }
+    .cart-item-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 8px;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+    }
+    .cart-item-name {
+      font-size: 0.9rem;
+      color: #493728;
+      font-family: 'Poppins', sans-serif;
+    }
+    .cart-item-qty {
+      font-size: 0.8rem;
+      color: #8b7457;
+      white-space: nowrap;
+      font-family: 'Poppins', sans-serif;
+    }
+    .cart-item-remove {
+      border: none;
+      background: #f8ece2;
+      color: #9d5e33;
+      border-radius: 999px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    .cart-empty {
+      font-size: 0.9rem;
+      color: #8b7457;
+      text-align: center;
+      padding: 22px 10px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .cart-panel-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      gap: 8px;
+    }
+    .cart-total-text {
+      font-size: 0.86rem;
+      color: #5c4a30;
+      font-family: 'Poppins', sans-serif;
+    }
+    .cart-clear-btn {
+      border: none;
+      border-radius: 999px;
+      background: #2d6a4f;
+      color: #fff;
+      padding: 7px 12px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    .cart-clear-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* ── Toast notification ── */
+    #cart-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #2d6a4f;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    #cart-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Slider wrapper ── */
+    .slider-section { padding: 40px 24px; }
+    .slider-section .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .slider-section .section-chip {
+      background: #f0e6d3;
+      color: #7a5230;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .slider-section h2 { margin: 6px 0 0; font-size: 1.6rem; }
+
+    .slider-viewport {
+      overflow: hidden;
+      border-radius: 16px;
+      position: relative;
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+
+    /* ── Card ── */
+    .category-card {
+      min-width: 280px;
+      flex: 0 0 280px;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-right: 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-media { position: relative; height: 180px; overflow: hidden; }
+    .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .category-card:hover .card-media img { transform: scale(1.05); }
+    .card-rank {
+      position: absolute;
+      top: 10px; left: 10px;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: none;
+    }
+    .card-content { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .card-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #7a5230;
+    }
+    .card-content h3 { margin: 0; font-size: 1rem; line-height: 1.3; }
+
+    /* ── Star rating ── */
+    .star-rating {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .star-rating .star {
+      font-size: 1.3rem;
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.15s, transform 0.15s;
+      line-height: 1;
+    }
+    .star-rating .star.filled { color: #f5a623; }
+    .star-rating .star:hover { transform: scale(1.2); }
+    .rating-count { font-size: 0.78rem; color: #888; margin-left: 6px; }
+
+    .card-meta { font-size: 0.8rem; color: #555; }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid #f0ece6;
+    }
+    .card-note { font-size: 0.78rem; color: #999; }
+    .add-to-cart-btn {
+      background: linear-gradient(135deg, #d8b47b, #c8923a);
+      color: #fffdf7;
+      border: 1px solid rgba(140, 95, 33, 0.18);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(200, 146, 58, 0.24);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+    .add-to-cart-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(200, 146, 58, 0.28);
+      filter: brightness(1.03);
+    }
+    .add-to-cart-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(200, 146, 58, 0.2);
+    }
+
+    /* ── Slider dots ── */
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .slider-dots .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .slider-dots .dot.active { background: #2d6a4f; transform: scale(1.3); }
+
+    /* ── Slider arrows ── */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 36px; height: 36px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      z-index: 10;
+      display: none;
+    }
+    .slider-arrow.prev { left: 8px; }
+    .slider-arrow.next { right: 8px; }
+
+    /* ── Search-only bar ── */
+    .search-only-bar {
+      padding: 20px 24px 8px;
+    }
+    .search-only-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .search-only-bar .search-panel {
+      display: flex;
+      justify-content: center;
+    }
+    .search-only-bar .search-panel input {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      width: min(760px, 92vw);
+      outline: none;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      color: #453423;
+    }
+    .search-only-bar .search-panel input:focus {
+      box-shadow: 0 0 0 3px rgba(200, 146, 58, 0.15), 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .search-suggest-list {
+      position: absolute;
+      top: 56px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(760px, 92vw);
+      background: #fffdf8;
+      border-radius: 12px;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+      padding: 8px;
+      z-index: 1200;
+      display: none;
+      max-height: 300px;
+      overflow: auto;
+    }
+    .search-suggest-list.show {
+      display: block;
+    }
+    .search-suggest-item {
+      width: 100%;
+      border: none;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      color: #4a3a2b;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+    }
+    .search-suggest-item:hover {
+      background: rgba(240, 230, 211, 0.6);
+    }
+    .search-suggest-tag {
+      font-size: 0.72rem;
+      color: #8b7457;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-left: 8px;
+      white-space: nowrap;
+    }
+    .search-suggest-empty {
+      padding: 12px;
+      color: #8b7457;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+    }
+
+    /* Search state feedback */
+    .category-card.search-dim {
+      opacity: 0.28;
+      filter: grayscale(30%);
+      transition: opacity 0.2s ease;
+    }
+    .category-card.search-match {
+      outline: 2px solid rgba(200, 146, 58, 0.55);
+      outline-offset: -2px;
+      box-shadow: 0 8px 20px rgba(200, 146, 58, 0.18);
+    }
+  </style>
+</head>
+<body>
+  <div id="cart-toast">✓ Ditambah ke dalam troli!</div>
+
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="logo">
+        <img src="ICON/LOGO/JakMiris logo.png" alt="JakMiris Logo">
+      </div>
+
+      <nav class="header-top" aria-label="Main Navigation">
+        <a class="nav-link" href="home.html">Halaman Utama</a>
+        <a class="nav-link active" href="bisnes.html">Bisnes</a>
+        <a class="nav-link" href="profile.html">Profile</a>
+        <a class="nav-link" href="aboutus.html">About Us</a>
+        <button class="cart-btn" id="cart-btn" title="Troli beli-belah" type="button" aria-controls="cart-panel" aria-expanded="false">
+          🛒
+          <span class="cart-badge visible" id="cart-badge">0</span>
+        </button>
+      </nav>
+    </header>
+
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-panel" id="cart-panel" aria-hidden="true">
+      <div class="cart-panel-head">
+        <h3>Troli Anda</h3>
+        <button class="cart-close-btn" id="cart-close-btn" type="button" aria-label="Tutup troli">&times;</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-panel-foot">
+        <span class="cart-total-text" id="cart-total-text">0 item</span>
+        <button class="cart-clear-btn" id="cart-clear-btn" type="button">Kosongkan</button>
+      </div>
+    </aside>
+
+    <main>
+
+      <!-- Search bar only -->
+      <div class="search-only-bar">
+        <div class="search-only-inner">
+          <div class="search-panel">
+            <input id="global-search" type="text" placeholder="Cari produk atau kategori...">
+          </div>
+          <div class="search-suggest-list" id="search-suggest-list" role="listbox" aria-label="Cadangan carian"></div>
+        </div>
+      </div>
+
+      <!-- ── FESYEN ── -->
+      <section class="slider-section">
+        <div class="section-head">
+          <div>
+            <span class="section-chip">Fesyen</span>
+            <h2>Pakaian &amp; Aksesori</h2>
+          </div>
+        </div>
+        <div class="slider-viewport">
+          <button class="slider-arrow prev" data-target="fesyen-track">&#8249;</button>
+          <button class="slider-arrow next" data-target="fesyen-track">&#8250;</button>
+          <div class="slider-track" id="fesyen-track">
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/FESYEN/aesthetic dress.png" alt="Aesthetic Dress"><div class="card-rank">01</div></div>
+              <div class="card-content">
+                <span class="card-tag">Fesyen</span>
+                <h3>Aesthetic Dress</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">88 orang</span></div>
+                <div class="card-meta">RM 79.00 &nbsp;·&nbsp; Sold: 142</div>
+                <div class="card-footer"><span class="card-note">Trending</span><button class="add-to-cart-btn" data-name="Aesthetic Dress">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/FESYEN/croptop long sleeve.jpg" alt="Croptop Long Sleeve"><div class="card-rank">02</div></div>
+              <div class="card-content">
+                <span class="card-tag">Fesyen</span>
+                <h3>Croptop Long Sleeve</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">61 orang</span></div>
+                <div class="card-meta">RM 45.00 &nbsp;·&nbsp; Sold: 98</div>
+                <div class="card-footer"><span class="card-note">Best Seller</span><button class="add-to-cart-btn" data-name="Croptop Long Sleeve">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/FESYEN/elegan dress.jpg" alt="Elegan Dress"><div class="card-rank">03</div></div>
+              <div class="card-content">
+                <span class="card-tag">Fesyen</span>
+                <h3>Elegan Dress</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">112 orang</span></div>
+                <div class="card-meta">RM 129.00 &nbsp;·&nbsp; Sold: 74</div>
+                <div class="card-footer"><span class="card-note">Premium</span><button class="add-to-cart-btn" data-name="Elegan Dress">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/FESYEN/jean.jpg" alt="Jean"><div class="card-rank">04</div></div>
+              <div class="card-content">
+                <span class="card-tag">Fesyen</span>
+                <h3>Jean Seluar</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">47 orang</span></div>
+                <div class="card-meta">RM 55.00 &nbsp;·&nbsp; Sold: 210</div>
+                <div class="card-footer"><span class="card-note">Klasik</span><button class="add-to-cart-btn" data-name="Jean Seluar">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/FESYEN/jersey.jpg" alt="Jersey"><div class="card-rank">05</div></div>
+              <div class="card-content">
+                <span class="card-tag">Fesyen</span>
+                <h3>Jersey Sukan</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">33 orang</span></div>
+                <div class="card-meta">RM 38.00 &nbsp;·&nbsp; Sold: 155</div>
+                <div class="card-footer"><span class="card-note">Sukan</span><button class="add-to-cart-btn" data-name="Jersey Sukan">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/FESYEN/kebaya.jpg" alt="Kebaya"><div class="card-rank">06</div></div>
+              <div class="card-content">
+                <span class="card-tag">Fesyen</span>
+                <h3>Kebaya Tradisional</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">76 orang</span></div>
+                <div class="card-meta">RM 95.00 &nbsp;·&nbsp; Sold: 89</div>
+                <div class="card-footer"><span class="card-note">Warisan</span><button class="add-to-cart-btn" data-name="Kebaya Tradisional">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/FESYEN/kasut tumit tinggi.jpg" alt="Kasut Tumit Tinggi"><div class="card-rank">07</div></div>
+              <div class="card-content">
+                <span class="card-tag">Fesyen</span>
+                <h3>Kasut Tumit Tinggi</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">54 orang</span></div>
+                <div class="card-meta">RM 68.00 &nbsp;·&nbsp; Sold: 67</div>
+                <div class="card-footer"><span class="card-note">Bergaya</span><button class="add-to-cart-btn" data-name="Kasut Tumit Tinggi">Add to Cart</button></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+        <div class="slider-dots" id="fesyen-dots"></div>
+      </section>
+
+      <!-- ── ELEKTRONIK ── -->
+      <section class="slider-section">
+        <div class="section-head">
+          <div>
+            <span class="section-chip">Elektronik</span>
+            <h2>Peranti &amp; Aksesori Teknologi</h2>
+          </div>
+        </div>
+        <div class="slider-viewport">
+          <button class="slider-arrow prev" data-target="elektronik-track">&#8249;</button>
+          <button class="slider-arrow next" data-target="elektronik-track">&#8250;</button>
+          <div class="slider-track" id="elektronik-track">
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/ELEKTRONIK/apple iphone17.jpg" alt="Apple iPhone 17"><div class="card-rank">01</div></div>
+              <div class="card-content">
+                <span class="card-tag">Elektronik</span>
+                <h3>Apple iPhone 17</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">204 orang</span></div>
+                <div class="card-meta">RM 4,999.00 &nbsp;·&nbsp; Sold: 38</div>
+                <div class="card-footer"><span class="card-note">Hot Item</span><button class="add-to-cart-btn" data-name="Apple iPhone 17">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/ELEKTRONIK/digital camera.jpg" alt="Digital Camera"><div class="card-rank">02</div></div>
+              <div class="card-content">
+                <span class="card-tag">Elektronik</span>
+                <h3>Digital Camera</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">91 orang</span></div>
+                <div class="card-meta">RM 1,299.00 &nbsp;·&nbsp; Sold: 52</div>
+                <div class="card-footer"><span class="card-note">Foto Pro</span><button class="add-to-cart-btn" data-name="Digital Camera">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/ELEKTRONIK/earbuds.jpg" alt="Earbuds"><div class="card-rank">03</div></div>
+              <div class="card-content">
+                <span class="card-tag">Elektronik</span>
+                <h3>Wireless Earbuds</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">137 orang</span></div>
+                <div class="card-meta">RM 159.00 &nbsp;·&nbsp; Sold: 185</div>
+                <div class="card-footer"><span class="card-note">Popular</span><button class="add-to-cart-btn" data-name="Wireless Earbuds">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/ELEKTRONIK/headphones.jpg" alt="Headphones"><div class="card-rank">04</div></div>
+              <div class="card-content">
+                <span class="card-tag">Elektronik</span>
+                <h3>Headphones</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">78 orang</span></div>
+                <div class="card-meta">RM 229.00 &nbsp;·&nbsp; Sold: 110</div>
+                <div class="card-footer"><span class="card-note">Studio</span><button class="add-to-cart-btn" data-name="Headphones">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/ELEKTRONIK/Mouse.jpg" alt="Mouse"><div class="card-rank">05</div></div>
+              <div class="card-content">
+                <span class="card-tag">Elektronik</span>
+                <h3>Wireless Mouse</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">55 orang</span></div>
+                <div class="card-meta">RM 45.00 &nbsp;·&nbsp; Sold: 267</div>
+                <div class="card-footer"><span class="card-note">Office</span><button class="add-to-cart-btn" data-name="Wireless Mouse">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/ELEKTRONIK/mini speaker.jpeg" alt="Mini Speaker"><div class="card-rank">06</div></div>
+              <div class="card-content">
+                <span class="card-tag">Elektronik</span>
+                <h3>Mini Bluetooth Speaker</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">42 orang</span></div>
+                <div class="card-meta">RM 89.00 &nbsp;·&nbsp; Sold: 93</div>
+                <div class="card-footer"><span class="card-note">Portable</span><button class="add-to-cart-btn" data-name="Mini Bluetooth Speaker">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/ELEKTRONIK/mesin pengisar.jpg" alt="Mesin Pengisar"><div class="card-rank">07</div></div>
+              <div class="card-content">
+                <span class="card-tag">Elektronik</span>
+                <h3>Mesin Pengisar</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">63 orang</span></div>
+                <div class="card-meta">RM 149.00 &nbsp;·&nbsp; Sold: 78</div>
+                <div class="card-footer"><span class="card-note">Dapur</span><button class="add-to-cart-btn" data-name="Mesin Pengisar">Add to Cart</button></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+        <div class="slider-dots" id="elektronik-dots"></div>
+      </section>
+
+      <!-- ── KRAFTANGAN ── -->
+      <section class="slider-section">
+        <div class="section-head">
+          <div>
+            <span class="section-chip">Kraftangan</span>
+            <h2>Seni &amp; Kraf Tangan Tempatan</h2>
+          </div>
+        </div>
+        <div class="slider-viewport">
+          <button class="slider-arrow prev" data-target="kraf-track">&#8249;</button>
+          <button class="slider-arrow next" data-target="kraf-track">&#8250;</button>
+          <div class="slider-track" id="kraf-track">
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/KRAFTANGAN/Bidayuh Mini Figure.jpg" alt="Bidayuh Mini Figure"><div class="card-rank">01</div></div>
+              <div class="card-content">
+                <span class="card-tag">Kraftangan</span>
+                <h3>Bidayuh Mini Figure</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">39 orang</span></div>
+                <div class="card-meta">RM 35.00 &nbsp;·&nbsp; Sold: 44</div>
+                <div class="card-footer"><span class="card-note">Warisan</span><button class="add-to-cart-btn" data-name="Bidayuh Mini Figure">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/KRAFTANGAN/kenyah hat.jpg" alt="Kenyah Hat"><div class="card-rank">02</div></div>
+              <div class="card-content">
+                <span class="card-tag">Kraftangan</span>
+                <h3>Kenyah Hat</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">52 orang</span></div>
+                <div class="card-meta">RM 65.00 &nbsp;·&nbsp; Sold: 31</div>
+                <div class="card-footer"><span class="card-note">Unik</span><button class="add-to-cart-btn" data-name="Kenyah Hat">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/KRAFTANGAN/manik.jpg" alt="Manik Tangan"><div class="card-rank">03</div></div>
+              <div class="card-content">
+                <span class="card-tag">Kraftangan</span>
+                <h3>Manik Tangan</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">28 orang</span></div>
+                <div class="card-meta">RM 25.00 &nbsp;·&nbsp; Sold: 83</div>
+                <div class="card-footer"><span class="card-note">Cantik</span><button class="add-to-cart-btn" data-name="Manik Tangan">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/KRAFTANGAN/tambok.jpg" alt="Tambok"><div class="card-rank">04</div></div>
+              <div class="card-content">
+                <span class="card-tag">Kraftangan</span>
+                <h3>Tambok</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">17 orang</span></div>
+                <div class="card-meta">RM 48.00 &nbsp;·&nbsp; Sold: 22</div>
+                <div class="card-footer"><span class="card-note">Tradisi</span><button class="add-to-cart-btn" data-name="Tambok">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/KRAFTANGAN/tikar kelasah.jpg" alt="Tikar Kelasah"><div class="card-rank">05</div></div>
+              <div class="card-content">
+                <span class="card-tag">Kraftangan</span>
+                <h3>Tikar Kelasah</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">44 orang</span></div>
+                <div class="card-meta">RM 120.00 &nbsp;·&nbsp; Sold: 19</div>
+                <div class="card-footer"><span class="card-note">Anyaman</span><button class="add-to-cart-btn" data-name="Tikar Kelasah">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/KRAFTANGAN/1 set aksesori.jpg" alt="Set Aksesori"><div class="card-rank">06</div></div>
+              <div class="card-content">
+                <span class="card-tag">Kraftangan</span>
+                <h3>Set Aksesori Tangan</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">60 orang</span></div>
+                <div class="card-meta">RM 55.00 &nbsp;·&nbsp; Sold: 47</div>
+                <div class="card-footer"><span class="card-note">Set Lengkap</span><button class="add-to-cart-btn" data-name="Set Aksesori Tangan">Add to Cart</button></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+        <div class="slider-dots" id="kraf-dots"></div>
+      </section>
+
+      <!-- ── MAAN ── -->
+      <section class="slider-section">
+        <div class="section-head">
+          <div>
+            <span class="section-chip">Maan</span>
+            <h2>Makanan Tradisional Tempatan</h2>
+          </div>
+        </div>
+        <div class="slider-viewport">
+          <button class="slider-arrow prev" data-target="maan-track">&#8249;</button>
+          <button class="slider-arrow next" data-target="maan-track">&#8250;</button>
+          <div class="slider-track" id="maan-track">
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/MAAN/ayam pansuh.jpg" alt="Ayam Pansuh"><div class="card-rank">01</div></div>
+              <div class="card-content">
+                <span class="card-tag">Maan</span>
+                <h3>Ayam Pansuh</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">130 orang</span></div>
+                <div class="card-meta">RM 22.00 &nbsp;·&nbsp; Sold: 310</div>
+                <div class="card-footer"><span class="card-note">Warisan</span><button class="add-to-cart-btn" data-name="Ayam Pansuh">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/MAAN/ikan salai.jpg" alt="Ikan Salai"><div class="card-rank">02</div></div>
+              <div class="card-content">
+                <span class="card-tag">Maan</span>
+                <h3>Ikan Salai</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">87 orang</span></div>
+                <div class="card-meta">RM 18.00 &nbsp;·&nbsp; Sold: 190</div>
+                <div class="card-footer"><span class="card-note">Asap Tradisi</span><button class="add-to-cart-btn" data-name="Ikan Salai">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/MAAN/paku pakis belacan.JPG" alt="Paku Pakis Belacan"><div class="card-rank">03</div></div>
+              <div class="card-content">
+                <span class="card-tag">Maan</span>
+                <h3>Paku Pakis Belacan</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">55 orang</span></div>
+                <div class="card-meta">RM 12.00 &nbsp;·&nbsp; Sold: 244</div>
+                <div class="card-footer"><span class="card-note">Segar</span><button class="add-to-cart-btn" data-name="Paku Pakis Belacan">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/MAAN/Pekasam Ikan Sungai.jpg" alt="Pekasam Ikan Sungai"><div class="card-rank">04</div></div>
+              <div class="card-content">
+                <span class="card-tag">Maan</span>
+                <h3>Pekasam Ikan Sungai</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">72 orang</span></div>
+                <div class="card-meta">RM 15.00 &nbsp;·&nbsp; Sold: 168</div>
+                <div class="card-footer"><span class="card-note">Tempatan</span><button class="add-to-cart-btn" data-name="Pekasam Ikan Sungai">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/MAAN/sambal petai.jpg" alt="Sambal Petai"><div class="card-rank">05</div></div>
+              <div class="card-content">
+                <span class="card-tag">Maan</span>
+                <h3>Sambal Petai</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">48 orang</span></div>
+                <div class="card-meta">RM 10.00 &nbsp;·&nbsp; Sold: 320</div>
+                <div class="card-footer"><span class="card-note">Pedas</span><button class="add-to-cart-btn" data-name="Sambal Petai">Add to Cart</button></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+        <div class="slider-dots" id="maan-dots"></div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <span>Produk tempatan</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // ── Cart (Beginner-friendly) ──────────────────────────
+    // You can change these two values later if needed.
+    const CART_STORAGE_KEY = 'jakmiris_cart_items';
+    const CART_BUTTON_LABEL = 'Tambah ke Troli';
+
+    const badge = document.getElementById('cart-badge');
+    const cartBtn = document.getElementById('cart-btn');
+    const cartPanel = document.getElementById('cart-panel');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const cartCloseBtn = document.getElementById('cart-close-btn');
+    const cartClearBtn = document.getElementById('cart-clear-btn');
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartTotalText = document.getElementById('cart-total-text');
+    const toast = document.getElementById('cart-toast');
+    let toastTimer;
+
+    function getCartItems() {
+      try {
+        const raw = localStorage.getItem(CART_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function saveCartItems(items) {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    }
+
+    function updateCartBadge() {
+      const count = getCartItems().length;
+      badge.textContent = count;
+      badge.classList.add('visible');
+    }
+
+    function groupCartItems(items) {
+      const grouped = new Map();
+      items.forEach(item => {
+        const name = item?.name || 'Item';
+        grouped.set(name, (grouped.get(name) || 0) + 1);
+      });
+      return grouped;
+    }
+
+    function renderCartPanel() {
+      const items = getCartItems();
+      const grouped = groupCartItems(items);
+
+      cartItemsEl.innerHTML = '';
+
+      if (grouped.size === 0) {
+        cartItemsEl.innerHTML = '<div class="cart-empty">Troli masih kosong.</div>';
+      } else {
+        grouped.forEach((qty, name) => {
+          const row = document.createElement('div');
+          row.className = 'cart-item-row';
+          row.innerHTML =
+            '<span class="cart-item-name">' + name + '</span>' +
+            '<span class="cart-item-qty">x' + qty + '</span>' +
+            '<button class="cart-item-remove" data-name="' + name.replace(/"/g, '&quot;') + '" type="button">Buang 1</button>';
+          cartItemsEl.appendChild(row);
+        });
+      }
+
+      cartTotalText.textContent = items.length + (items.length === 1 ? ' item' : ' items');
+      cartClearBtn.disabled = items.length === 0;
+    }
+
+    function openCartPanel() {
+      renderCartPanel();
+      cartPanel.classList.add('open');
+      cartOverlay.classList.add('open');
+      cartPanel.setAttribute('aria-hidden', 'false');
+      cartBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeCartPanel() {
+      cartPanel.classList.remove('open');
+      cartOverlay.classList.remove('open');
+      cartPanel.setAttribute('aria-hidden', 'true');
+      cartBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleCartPanel() {
+      if (cartPanel.classList.contains('open')) {
+        closeCartPanel();
+      } else {
+        openCartPanel();
+      }
+    }
+
+    function removeOneFromCart(itemName) {
+      const items = getCartItems();
+      const index = items.findIndex(item => (item?.name || 'Item') === itemName);
+      if (index !== -1) {
+        items.splice(index, 1);
+        saveCartItems(items);
+        updateCartBadge();
+        renderCartPanel();
+      }
+    }
+
+    function showToast() {
+      toast.textContent = 'Item berjaya ditambah ke troli';
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2200);
+    }
+
+    function addItemToCart(itemName) {
+      const items = getCartItems();
+      items.push({
+        name: itemName,
+        addedAt: new Date().toISOString()
+      });
+      saveCartItems(items);
+      updateCartBadge();
+      renderCartPanel();
+      showToast();
+    }
+
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+      // Keep all button labels consistent in Malay.
+      btn.textContent = CART_BUTTON_LABEL;
+
+      btn.addEventListener('click', () => {
+        addItemToCart(btn.dataset.name || 'Item');
+
+        // Small feedback animation on button.
+        btn.textContent = '✓ Ditambah';
+        btn.style.background = '#1b4332';
+
+        setTimeout(() => {
+          btn.textContent = CART_BUTTON_LABEL;
+          btn.style.background = '';
+        }, 1200);
+      });
+    });
+
+    // Ensure badge number is correct on first page load.
+    updateCartBadge();
+    renderCartPanel();
+
+    // Cart panel events
+    cartBtn.addEventListener('click', toggleCartPanel);
+    cartCloseBtn.addEventListener('click', closeCartPanel);
+    cartOverlay.addEventListener('click', closeCartPanel);
+    cartClearBtn.addEventListener('click', () => {
+      saveCartItems([]);
+      updateCartBadge();
+      renderCartPanel();
+    });
+    cartItemsEl.addEventListener('click', (event) => {
+      const removeBtn = event.target.closest('.cart-item-remove');
+      if (!removeBtn) return;
+      removeOneFromCart(removeBtn.dataset.name || 'Item');
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeCartPanel();
+    });
+
+    // ── Product Search (prefix + suggestion results) ─────
+    const searchInput = document.getElementById('global-search');
+    const suggestList = document.getElementById('search-suggest-list');
+    const searchInner = document.querySelector('.search-only-inner');
+    const allCards = Array.from(document.querySelectorAll('.category-card'));
+    let currentSuggestions = [];
+
+    function normalizeText(value) {
+      return (value || '').toLowerCase().trim();
+    }
+
+    const searchableProducts = allCards.map((card) => {
+      const name = card.querySelector('h3')?.textContent?.trim() || 'Item';
+      const tag = card.querySelector('.card-tag')?.textContent?.trim() || 'Kategori';
+      const meta = card.querySelector('.card-meta')?.textContent?.trim() || '';
+      return {
+        card,
+        name,
+        tag,
+        nameLower: normalizeText(name),
+        tagLower: normalizeText(tag),
+        fullLower: normalizeText(name + ' ' + tag + ' ' + meta)
+      };
+    });
+
+    function getMatchScore(item, query) {
+      if (!query) return 99;
+      if (item.nameLower.startsWith(query)) return 1;
+      if (item.tagLower.startsWith(query)) return 2;
+      if (item.nameLower.includes(query)) return 3;
+      if (item.tagLower.includes(query)) return 4;
+      if (item.fullLower.includes(query)) return 5;
+      return 99;
+    }
+
+    function getAllMatchingProducts(query) {
+      return searchableProducts
+        .map((item) => ({ item, score: getMatchScore(item, query) }))
+        .filter((entry) => entry.score < 99)
+        .sort((a, b) => a.score - b.score || a.item.name.localeCompare(b.item.name))
+        .map((entry) => entry.item);
+    }
+
+    function renderSuggestions(matches, query) {
+      if (!suggestList) return;
+
+      suggestList.innerHTML = '';
+      currentSuggestions = [];
+
+      if (!query) {
+        suggestList.classList.remove('show');
+        return;
+      }
+
+      if (matches.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'search-suggest-empty';
+        empty.textContent = 'Tiada produk dijumpai.';
+        suggestList.appendChild(empty);
+        suggestList.classList.add('show');
+        return;
+      }
+
+      currentSuggestions = matches.slice(0, 8);
+      currentSuggestions.forEach((entry, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'search-suggest-item';
+        button.dataset.index = String(index);
+        button.innerHTML = '<span>' + entry.name + '</span><span class="search-suggest-tag">' + entry.tag + '</span>';
+        suggestList.appendChild(button);
+      });
+
+      suggestList.classList.add('show');
+    }
+
+    function focusProductCard(card) {
+      if (!card) return;
+      card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+      card.classList.add('search-match');
+    }
+
+    function applySearch(query) {
+      const q = normalizeText(query);
+      const matches = getAllMatchingProducts(q);
+      const matchSet = new Set(matches.map((entry) => entry.card));
+
+      allCards.forEach((card) => {
+        card.classList.remove('search-dim', 'search-match');
+        if (!q) return;
+        card.classList.add(matchSet.has(card) ? 'search-match' : 'search-dim');
+      });
+
+      renderSuggestions(matches, q);
+      return matches;
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (event) => {
+        applySearch(event.target.value);
+      });
+
+      searchInput.addEventListener('focus', () => {
+        applySearch(searchInput.value);
+      });
+
+      // Press Enter to jump to the first matched product.
+      searchInput.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter') return;
+        const matches = applySearch(searchInput.value);
+        if (matches.length > 0) {
+          focusProductCard(matches[0].card);
+        }
+      });
+    }
+
+    if (suggestList) {
+      suggestList.addEventListener('click', (event) => {
+        const target = event.target.closest('.search-suggest-item');
+        if (!target) return;
+        const index = Number(target.dataset.index);
+        const selected = currentSuggestions[index];
+        if (!selected) return;
+
+        searchInput.value = selected.name;
+        applySearch(selected.name);
+        focusProductCard(selected.card);
+        suggestList.classList.remove('show');
+      });
+    }
+
+    document.addEventListener('click', (event) => {
+      if (!searchInner || !suggestList) return;
+      if (!searchInner.contains(event.target)) {
+        suggestList.classList.remove('show');
+      }
+    });
+
+    // ── Star Rating ───────────────────────────────────────
+    document.querySelectorAll('.star-rating').forEach(ratingEl => {
+      const stars = ratingEl.querySelectorAll('.star');
+      stars.forEach(star => {
+        star.addEventListener('mouseover', () => {
+          const val = parseInt(star.dataset.star);
+          stars.forEach(s => s.classList.toggle('filled', parseInt(s.dataset.star) <= val));
+        });
+        star.addEventListener('mouseleave', () => {
+          const val = parseInt(ratingEl.dataset.value);
+          stars.forEach(s => s.classList.toggle('filled', parseInt(s.dataset.star) <= val));
+        });
+        star.addEventListener('click', () => {
+          ratingEl.dataset.value = star.dataset.star;
+          const val = parseInt(star.dataset.star);
+          stars.forEach(s => s.classList.toggle('filled', parseInt(s.dataset.star) <= val));
+        });
+      });
+    });
+
+    // ── Multi-Slider ──────────────────────────────────────
+    function initSlider(trackId, dotsId) {
+      const track = document.getElementById(trackId);
+      const dotsContainer = document.getElementById(dotsId);
+      if (!track) return;
+      const viewport = track.closest('.slider-viewport');
+      const cards = track.querySelectorAll('.category-card');
+      const total = cards.length;
+      let current = 0;
+      let autoTimer;
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchEndX = 0;
+      let dragStartX = 0;
+      let isDraggingMouse = false;
+      let lastWheelAt = 0;
+      const SWIPE_THRESHOLD = 40;
+
+      cards.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Slaid ' + (i + 1));
+        dot.addEventListener('click', () => { goTo(i); startAuto(); });
+        dotsContainer.appendChild(dot);
+      });
+
+      function goTo(index) {
+        current = (index + total) % total;
+        const offset = current * (cards[0].offsetWidth + 20);
+        track.style.transform = 'translateX(-' + offset + 'px)';
+        dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      function startAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => goTo(current + 1), 2000);
+      }
+
+      function handleTouchStart(event) {
+        const touch = event.changedTouches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        touchEndX = touch.clientX;
+      }
+
+      function handleTouchEnd(event) {
+        const touch = event.changedTouches[0];
+        touchEndX = touch.clientX;
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        // Only trigger slider swipe for clear horizontal gestures.
+        if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaX) <= Math.abs(deltaY)) {
+          return;
+        }
+
+        if (deltaX < 0) {
+          goTo(current + 1);
+        } else {
+          goTo(current - 1);
+        }
+        startAuto();
+      }
+
+      function handleMouseDown(event) {
+        isDraggingMouse = true;
+        dragStartX = event.clientX;
+      }
+
+      function handleMouseUp(event) {
+        if (!isDraggingMouse) return;
+        isDraggingMouse = false;
+
+        const deltaX = event.clientX - dragStartX;
+        if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+
+        if (deltaX < 0) {
+          goTo(current + 1);
+        } else {
+          goTo(current - 1);
+        }
+        startAuto();
+      }
+
+      function handleWheel(event) {
+        const now = Date.now();
+        if (now - lastWheelAt < 250) return;
+
+        const scrollDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+        if (Math.abs(scrollDelta) < 12) return;
+
+        lastWheelAt = now;
+        event.preventDefault();
+
+        if (scrollDelta > 0) {
+          goTo(current + 1);
+        } else {
+          goTo(current - 1);
+        }
+        startAuto();
+      }
+
+      // Arrow buttons for this slider
+      viewport.querySelector('.prev').addEventListener('click', () => { goTo(current - 1); startAuto(); });
+      viewport.querySelector('.next').addEventListener('click', () => { goTo(current + 1); startAuto(); });
+
+      // Touch swipe support (mobile/tablet)
+      viewport.addEventListener('touchstart', handleTouchStart, { passive: true });
+      viewport.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+      // Manual drag support (desktop)
+      viewport.addEventListener('mousedown', handleMouseDown);
+      viewport.addEventListener('mouseup', handleMouseUp);
+      viewport.addEventListener('mouseleave', handleMouseUp);
+
+      // Mouse wheel / trackpad scroll support
+      viewport.addEventListener('wheel', handleWheel, { passive: false });
+
+      track.addEventListener('mouseenter', () => clearInterval(autoTimer));
+      track.addEventListener('mouseleave', startAuto);
+
+      startAuto();
+    }
+
+    initSlider('fesyen-track',    'fesyen-dots');
+    initSlider('elektronik-track','elektronik-dots');
+    initSlider('kraf-track',      'kraf-dots');
+    initSlider('maan-track',      'maan-dots');
+  </script>
+</body>
+</html>
