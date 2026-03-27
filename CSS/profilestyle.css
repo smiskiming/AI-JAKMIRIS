@@ -1,0 +1,73 @@
+/******This is the CSS for profile.html; added on 28/22/2025 8.00pm******/
+.listing-section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+    gap: 40px;
+
+    .listing-left, .listing-right{
+        /*width: 100%;*/
+        display: flex;
+        flex-direction: column; /*this frame consists of left, right elements.*/
+        flex: 1;
+        gap: 20px;
+        
+        
+        .pedagang{
+            display: flex;
+            flex-direction: row;
+            max-height: 100px;
+            overflow: hidden;
+            gap: 10px;
+            background-color: rgb(212 177 194);
+            border-radius: 5px;
+
+            .pedagang-profimg{
+                width: 80px; /*Setting a fixed width for the profile image frame*/
+                padding: 8px; /* this is to give some space for the image*/
+                /*border: 1px solid red;*/
+                display: flex;
+                align-items: center;
+
+                img{
+                    /*this is for photo of pedagang*/
+                    max-width: 100%;
+                    border-radius: 10px;
+                    
+                }
+            }
+            .pedagang-biodata{
+                /*this is for the pedagang names and other relevance info.*/
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                flex: 1;
+                padding: 10px;
+
+                .wrap{
+                    text-transform: uppercase;
+                    font-size: 12pt;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 5px;
+
+                    .biodata-title{
+                        font-size: 8pt;
+                        mi-width: 10px;
+                        max-width: 150px;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+
+            }
+        }
+
+            
+
+    }
+}
+
+
+/******END of CSS for profile.html******/

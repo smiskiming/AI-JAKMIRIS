@@ -1800,7 +1800,7 @@
           <div class="logo"> 
             <img src="ICON/LOGO/JakMiris logo.png" alt="JakMiris logo">
           </div>
-          <a href="home.html">Halaman Utama</a>
+          <a href="index.html">Halaman Utama</a>
           <a href="bisnes.html">Bisnes</a>
           <a style="font-weight: bolder;" href="profile.html">Profile</a>
           <a href="aboutus.html">About us</a>
@@ -2251,7 +2251,7 @@
 
       navLinks.forEach((link) => {
         const target = normalizePath(link.getAttribute('href') || '');
-        if ((currentPage === '' && target === 'home.html') || target === currentPage || (currentPage === 'profile_new.html' && target === 'profile.html')) {
+        if ((currentPage === '' && target === 'index.html') || target === currentPage || (currentPage === 'profile_new.html' && target === 'profile.html')) {
           link.classList.add('nav-active');
         }
       });
