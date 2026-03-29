@@ -1,73 +1,193 @@
-/******This is the CSS for profile.html; added on 28/22/2025 8.00pm******/
+/******This is the CSS for profile.html; standardized seller cards******/
 .listing-section{
     width: 100%;
+    padding: 36px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: transparent;
     display: flex;
-    flex-direction: row;
-    padding: 40px;
-    gap: 40px;
+    gap: 36px;
 
-    .listing-left, .listing-right{
-        /*width: 100%;*/
-        display: flex;
-        flex-direction: column; /*this frame consists of left, right elements.*/
+    .listing-left,
+    .listing-right{
         flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
         gap: 20px;
-        
-        
+    }
+
         .pedagang{
             display: flex;
             flex-direction: row;
-            max-height: 100px;
-            overflow: hidden;
-            gap: 10px;
-            background-color: rgb(212 177 194);
-            border-radius: 5px;
+            align-items: stretch;
+            min-height: 206px;
+            gap: 16px;
+            padding: 14px;
+            background: linear-gradient(135deg, #EFE2D6 0%, #E8D4C4 100%);
+            border: 1px solid rgba(155, 107, 79, 0.16);
+            border-radius: 16px;
+            box-shadow: 0 10px 24px rgba(107, 75, 56, 0.08);
+            box-sizing: border-box;
 
             .pedagang-profimg{
-                width: 80px; /*Setting a fixed width for the profile image frame*/
-                padding: 8px; /* this is to give some space for the image*/
-                /*border: 1px solid red;*/
+                width: 108px;
+                min-width: 108px;
+                height: 108px;
                 display: flex;
                 align-items: center;
+                justify-content: center;
+                background: rgba(255, 255, 255, 0.35);
+                border-radius: 14px;
+                overflow: hidden;
 
                 img{
-                    /*this is for photo of pedagang*/
-                    max-width: 100%;
-                    border-radius: 10px;
-                    
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 14px;
                 }
             }
+
             .pedagang-biodata{
-                /*this is for the pedagang names and other relevance info.*/
                 display: flex;
                 flex-direction: column;
-                gap: 5px;
+                justify-content: flex-start;
+                gap: 8px;
                 flex: 1;
-                padding: 10px;
+                min-width: 0;
 
                 .wrap{
-                    text-transform: uppercase;
-                    font-size: 12pt;
                     display: flex;
                     flex-direction: row;
-                    gap: 5px;
+                    align-items: flex-start;
+                    gap: 8px;
+                    font-size: 14px;
+                    line-height: 1.4;
+                    text-transform: none;
 
                     .biodata-title{
-                        font-size: 8pt;
-                        mi-width: 10px;
-                        max-width: 150px;
-                        display: flex;
-                        align-items: center;
+                        width: 108px;
+                        min-width: 108px;
+                        font-size: 12px;
+                        font-weight: 700;
+                        letter-spacing: 0.04em;
+                        text-transform: uppercase;
+                        color: #9B6B4F;
+                    }
+
+                    .biodata-info{
+                        color: #8B5E3C;
+                        font-weight: 600;
+                        overflow-wrap: anywhere;
                     }
                 }
 
+                .seller-actions{
+                    display: flex;
+                    gap: 10px;
+                    margin-top: auto;
+                    padding-top: 10px;
+
+                    button{
+                        flex: 1;
+                        border: none;
+                        border-radius: 10px;
+                        padding: 10px 12px;
+                        font-size: 12px;
+                        font-weight: 700;
+                        letter-spacing: 0.03em;
+                        cursor: pointer;
+                        transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, background 0.25s ease-out, color 0.25s ease-out;
+                    }
+
+                    .btn-view{
+                        background: linear-gradient(135deg, #D4A574 0%, #9B6B4F 100%);
+                        color: #fff8fb;
+                        box-shadow: 0 8px 16px rgba(107, 75, 56, 0.2);
+                    }
+
+                    .btn-contact{
+                        background: rgba(255, 248, 251, 0.88);
+                        color: #9B6B4F;
+                        border: 1px solid rgba(155, 107, 79, 0.16);
+                        box-shadow: 0 8px 16px rgba(155, 107, 79, 0.08);
+                    }
+
+                    button:hover{
+                        transform: translateY(-1px);
+                    }
+
+                    .btn-view:hover{
+                        background: linear-gradient(135deg, #C49564 0%, #8B6B4F 100%);
+                        box-shadow: 0 10px 18px rgba(107, 75, 56, 0.24);
+                    }
+
+                    .btn-contact:hover{
+                        background: #ffffff;
+                        box-shadow: 0 10px 18px rgba(107, 75, 56, 0.12);
+                    }
+                }
             }
         }
-
-            
-
     }
 }
 
+@media (max-width: 900px) {
+    .listing-section {
+        padding: 24px;
+        flex-direction: column;
+
+        .listing-left,
+        .listing-right {
+            gap: 16px;
+        }
+
+        .pedagang {
+            min-height: auto;
+        }
+    }
+}
+
+@media (max-width: 560px) {
+    .listing-section {
+        padding: 16px;
+        flex-direction: column;
+
+        .listing-left,
+        .listing-right {
+            gap: 12px;
+        }
+
+        .pedagang {
+            flex-direction: column;
+            min-height: auto;
+
+                .pedagang-profimg {
+                    width: 100%;
+                    min-width: 0;
+                    height: 180px;
+                }
+
+                .pedagang-biodata {
+                    .wrap {
+                        flex-direction: column;
+                        gap: 3px;
+
+                        .biodata-title {
+                            width: auto;
+                            min-width: 0;
+                        }
+                    }
+
+                    .seller-actions {
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+}
 
 /******END of CSS for profile.html******/
