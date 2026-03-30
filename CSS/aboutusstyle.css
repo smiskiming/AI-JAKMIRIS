@@ -27,81 +27,6 @@ body {
   min-height: 100vh;
 }
 
-.site-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 36px;
-  height: 92px;
-  background: rgba(253, 248, 240, 0.98);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  gap: 20px;
-}
-
-.site-header .logo {
-  display: flex;
-  align-items: center;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  width: auto;
-  flex-shrink: 0;
-}
-
-.site-header .logo img {
-  height: 56px;
-  width: auto;
-  background: transparent;
-  filter: none;
-  margin: 0;
-  border-radius: 0;
-}
-
-.site-header .header-top {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 14px;
-  flex: 1;
-  justify-content: center;
-  padding: 0;
-  flex-wrap: nowrap;
-}
-
-.site-header .nav-link {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.98rem;
-  font-weight: 500;
-  color: #5c4a30;
-  text-decoration: none;
-  padding: 10px 16px;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  position: relative;
-  transition: color 0.22s ease;
-}
-
-.site-header .nav-link::after {
-  display: none;
-}
-
-.site-header .nav-link:hover,
-.site-header .nav-link.active {
-  color: #c8923a;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  transform: none;
-}
-
 .cart-btn {
   position: relative;
   background: none;
@@ -473,23 +398,6 @@ body {
 }
 
 @media (max-width: 900px) {
-  .site-header {
-    padding: 10px 14px;
-    height: auto;
-    align-items: flex-start;
-  }
-
-  .site-header .header-top {
-    justify-content: flex-end;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .site-header .nav-link {
-    font-size: 0.9rem;
-    padding: 8px 10px;
-  }
-
   .goal-grid {
     grid-template-columns: 1fr;
   }
@@ -500,20 +408,6 @@ body {
 }
 
 @media (max-width: 640px) {
-  .site-header {
-    flex-direction: column;
-    gap: 8px;
-    align-items: stretch;
-  }
-
-  .site-header .logo {
-    justify-content: center;
-  }
-
-  .site-header .header-top {
-    justify-content: center;
-  }
-
   .about-main {
     width: min(1120px, 95%);
     margin-top: 18px;

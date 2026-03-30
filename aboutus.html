@@ -4,62 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tentang Kami - JakMiris</title>
-  <link rel="stylesheet" type="text/css" href="CSS/template.css">
+  <link rel="stylesheet" type="text/css" href="CSS/style.css">
   <link rel="stylesheet" type="text/css" href="CSS/aboutusstyle.css">
 </head>
-
 <body class="home-page">
-  <header class="store-header">
-    <div class="top-bar">
-      <div class="brand-block">
-        <img class="brand-logo" src="ICON/LOGO/Jak Miris Shop (4).png" alt="JakMiris Logo">
-        <div class="brand-text">
-          <span>JAKMIRIS</span>
+  <div class="page-shell">
+    <header class="store-header">
+      <div class="top-bar">
+        <div class="brand-block">
+          <img class="brand-logo" src="ICON/LOGO/Jak Miris Shop (4).png" alt="JakMiris Logo">
+          <div class="brand-text">
+            <span>JAKMIRIS</span>
+          </div>
+        </div>
+        <div class="search-wrap">
+          <input type="text" placeholder="Search products, brands, and categories">
+          <button aria-label="Search">🔍</button>
+        </div>
+        <div class="top-actions">
+          <span title="Account">👤</span>
+          <span title="Cart">🛒</span>
+          <span title="Wishlist">♡</span>
+          <span title="Language">EN | MY</span>
         </div>
       </div>
-      <div class="search-wrap">
-        <input type="text" placeholder="Search products, brands, and categories">
-        <button aria-label="Search">🔍</button>
+
+      <nav class="sub-nav">
+        <a href="index.html" class="active">Halaman Utama</a>
+        <a href="bisnes.html">Bisnes</a>
+        <a href="profile.html">Profile</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="#">Maan</a>
+        <a href="#">Handicraft</a>
+        <a href="#">Beauty</a>
+        <a href="#">Jewelery</a>
+        <a href="#">Home & Living</a>
+        <a href="#">Electronics</a>
+        <a href="#">Sports</a>
+        <a href="#">Accessories</a>
+        <a href="#">More</a>
+      </nav>
+    </header>
+
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <aside class="cart-panel" id="cart-panel" aria-hidden="true">
+      <div class="cart-panel-head">
+        <h3>Troli Anda</h3>
+        <button class="cart-close-btn" id="cart-close-btn" type="button" aria-label="Tutup troli">&times;</button>
       </div>
-      <div class="top-actions">
-        <span title="Account">👤</span>
-        <span title="Cart">🛒</span>
-        <span title="Wishlist">♡</span>
-        <span title="Language">EN | MY</span>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-panel-foot">
+        <span class="cart-total-text" id="cart-total-text">0 item</span>
+        <button class="cart-clear-btn" id="cart-clear-btn" type="button">Kosongkan</button>
       </div>
-    </div>
+    </aside>
 
-    <nav class="sub-nav">
-      <a href="index.html" class="active">Halaman Utama</a>
-      <a href="bisnes.html">Bisnes</a>
-      <a href="profile.html">Profile</a>
-      <a href="aboutus.html">About Us</a>
-      <a href="#">Maan</a>
-      <a href="#">Handcraft</a>
-      <a href="#">Beauty</a>
-      <a href="#">Jewelery</a>
-      <a href="#">Home & Living</a>
-      <a href="#">Electronics</a>
-      <a href="#">Sports</a>
-      <a href="#">Accessories</a>
-      <a href="#">More</a>
-    </nav>
-  </header>
-
-  <div class="cart-overlay" id="cart-overlay"></div>
-  <aside class="cart-panel" id="cart-panel" aria-hidden="true">
-    <div class="cart-panel-head">
-      <h3>Troli Anda</h3>
-      <button class="cart-close-btn" id="cart-close-btn" type="button" aria-label="Tutup troli">&times;</button>
-    </div>
-    <div class="cart-items" id="cart-items"></div>
-    <div class="cart-panel-foot">
-      <span class="cart-total-text" id="cart-total-text">0 item</span>
-      <button class="cart-clear-btn" id="cart-clear-btn" type="button">Kosongkan</button>
-    </div>
-  </aside>
-
-  <main class="about-main">
+    <main class="about-main">
     <section class="hero-about">
       <p class="eyebrow">Komuniti Digital Padawan</p>
       <h1>Membina Ekonomi Tempatan Dengan Teknologi Yang Mesra Komuniti</h1>
@@ -127,11 +127,12 @@
         </table>
       </div>
     </section>
-  </main>
+    </main>
 
-  <footer class="about-footer">
-    <p>JakMiris - Dari Komuniti Untuk Komuniti</p>
-  </footer>
+    <footer class="about-footer">
+      <p>JakMiris - Dari Komuniti Untuk Komuniti</p>
+    </footer>
+  </div>
 
   <script>
     const CART_STORAGE_KEY = 'jakmiris_cart_items';
