@@ -112,7 +112,7 @@
 
         .cart-item-row {
             display: grid;
-            grid-template-columns: 1fr auto auto;
+            grid-template-columns: minmax(0, 1fr) auto auto;
             gap: 8px;
             align-items: center;
             background: rgba(255, 255, 255, 0.9);
@@ -158,6 +158,12 @@
             border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
 
+        .cart-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .cart-total-text {
             font-size: 0.86rem;
             color: #5f4a33;
@@ -174,6 +180,22 @@
         }
 
         .cart-clear-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .cart-checkout-btn {
+            border: none;
+            background: #2f2418;
+            color: #fff;
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .cart-checkout-btn:disabled {
             opacity: 0.45;
             cursor: not-allowed;
         }
@@ -229,7 +251,10 @@
         <div class="cart-items" id="cart-items"></div>
         <div class="cart-panel-foot">
             <span class="cart-total-text" id="cart-total-text">0 item</span>
-            <button class="cart-clear-btn" id="cart-clear-btn" type="button">Kosongkan</button>
+            <div class="cart-actions">
+                <button class="cart-clear-btn" id="cart-clear-btn" type="button">Kosongkan</button>
+                <button class="cart-checkout-btn" id="cart-checkout-btn" type="button">Checkout</button>
+            </div>
         </div>
     </aside>
 
@@ -444,6 +469,7 @@
         const cartOverlay = document.getElementById('cart-overlay');
         const cartCloseBtn = document.getElementById('cart-close-btn');
         const cartClearBtn = document.getElementById('cart-clear-btn');
+        const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
         const cartItemsEl = document.getElementById('cart-items');
         const cartTotalText = document.getElementById('cart-total-text');
 
@@ -477,7 +503,7 @@
         }
 
         function renderCartPanel() {
-            if (!cartItemsEl || !cartTotalText || !cartClearBtn) return;
+            if (!cartItemsEl || !cartTotalText || !cartClearBtn || !cartCheckoutBtn) return;
             const items = getCartItems();
             const grouped = groupCartItems(items);
 
@@ -499,6 +525,27 @@
 
             cartTotalText.textContent = items.length + (items.length === 1 ? ' item' : ' items');
             cartClearBtn.disabled = items.length === 0;
+            cartCheckoutBtn.disabled = items.length === 0;
+        }
+
+        function checkoutCart() {
+            const items = getCartItems();
+            if (items.length === 0) {
+                alert('Troli masih kosong. Sila tambah item dahulu.');
+                return;
+            }
+
+            const grouped = groupCartItems(items);
+            const lines = [];
+            grouped.forEach((qty, name) => {
+                lines.push(name + ' x' + qty);
+            });
+
+            alert('Checkout berjaya!\n\nPesanan anda:\n' + lines.join('\n') + '\n\nJumlah item: ' + items.length);
+            saveCartItems([]);
+            updateCartBadge();
+            renderCartPanel();
+            closeCartPanel();
         }
 
         function openCartPanel() {
@@ -582,6 +629,9 @@
                 updateCartBadge();
                 renderCartPanel();
             });
+        }
+        if (cartCheckoutBtn) {
+            cartCheckoutBtn.addEventListener('click', checkoutCart);
         }
 
         if (cartItemsEl) {
