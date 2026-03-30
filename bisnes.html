@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>bisnes</title>
-  <link rel="stylesheet" type="text/css" href="CSS/bisnesstyle.css">
+  <link rel="stylesheet" type="text/css" href="CSS/style.css">
   <style>
     /* ══════════════════════════════════════
        HEADER — clean minimalist override
@@ -526,24 +526,44 @@
     }
   </style>
 </head>
-<body>
+<body class="home-page">
   <div id="cart-toast">✓ Ditambah ke dalam troli!</div>
 
   <div class="page-shell">
-    <header class="site-header">
-      <div class="logo">
-        <img src="ICON/LOGO/JakMiris logo.png" alt="JakMiris Logo">
+    <header class="store-header">
+      <div class="top-bar">
+        <div class="brand-block">
+          <img class="brand-logo" src="ICON/LOGO/Jak Miris Shop (4).png" alt="JakMiris Logo">
+          <div class="brand-text">
+            <span>JAKMIRIS</span>
+          </div>
+        </div>
+        <div class="search-wrap">
+          <input type="text" placeholder="Search products, brands, and categories">
+          <button aria-label="Search">🔍</button>
+        </div>
+        <div class="top-actions">
+          <span title="Account">👤</span>
+          <span title="Cart">🛒</span>
+          <span title="Wishlist">♡</span>
+          <span title="Language">EN | MY</span>
+        </div>
       </div>
 
-      <nav class="header-top" aria-label="Main Navigation">
-        <a class="nav-link" href="index.html">Halaman Utama</a>
-        <a class="nav-link active" href="bisnes.html">Bisnes</a>
-        <a class="nav-link" href="profile.html">Profile</a>
-        <a class="nav-link" href="aboutus.html">About Us</a>
-        <button class="cart-btn" id="cart-btn" title="Troli beli-belah" type="button" aria-controls="cart-panel" aria-expanded="false">
-          🛒
-          <span class="cart-badge visible" id="cart-badge">0</span>
-        </button>
+      <nav class="sub-nav">
+        <a href="index.html" class="active">Halaman Utama</a>
+        <a href="bisnes.html">Bisnes</a>
+        <a href="profile.html">Profile</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="#">Maan</a>
+        <a href="#">Handcraft</a>
+        <a href="#">Beauty</a>
+        <a href="#">Jewelery</a>
+        <a href="#">Home & Living</a>
+        <a href="#">Electronics</a>
+        <a href="#">Sports</a>
+        <a href="#">Accessories</a>
+        <a href="#">More</a>
       </nav>
     </header>
 
@@ -919,6 +939,57 @@
         <div class="slider-dots" id="maan-dots"></div>
       </section>
 
+      <!-- ── HOMESTAY ── -->
+      <section class="slider-section">
+        <div class="section-head">
+          <div>
+            <span class="section-chip">Homestay</span>
+            <h2>Penginapan Tempatan</h2>
+          </div>
+        </div>
+        <div class="slider-viewport">
+          <button class="slider-arrow prev" data-target="homestay-track">&#8249;</button>
+          <button class="slider-arrow next" data-target="homestay-track">&#8250;</button>
+          <div class="slider-track" id="homestay-track">
+
+            <article class="category-card">
+              <div class="card-media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23d9b27a'/%3E%3Cstop offset='100%25' stop-color='%23f7ead2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g1)'/%3E%3Cpath d='M120 390 L450 180 L780 390' fill='none' stroke='%236b4f2f' stroke-width='34' stroke-linecap='round'/%3E%3Crect x='210' y='310' width='480' height='220' rx='18' fill='%23fff8ec' stroke='%236b4f2f' stroke-width='10'/%3E%3Crect x='410' y='390' width='85' height='140' rx='8' fill='%23d8b17a'/%3E%3Crect x='280' y='360' width='80' height='70' rx='8' fill='%23f3ddbb'/%3E%3Crect x='540' y='360' width='80' height='70' rx='8' fill='%23f3ddbb'/%3E%3Ctext x='450' y='100' text-anchor='middle' font-size='58' font-family='Poppins, sans-serif' fill='%23503921'%3EHOMESTAY%3C/text%3E%3C/svg%3E" alt="Homestay Bandar"><div class="card-rank">01</div></div>
+              <div class="card-content">
+                <span class="card-tag">Homestay</span>
+                <h3>Homestay Bandar</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">46 orang</span></div>
+                <div class="card-meta">RM 180.00 / malam &nbsp;·&nbsp; Tempahan: 72</div>
+                <div class="card-footer"><span class="card-note">Pusat Bandar</span><button class="add-to-cart-btn" data-name="Homestay Bandar">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%2389c2d9'/%3E%3Cstop offset='100%25' stop-color='%23e0f4fb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g2)'/%3E%3Crect x='140' y='320' width='620' height='210' rx='20' fill='%23f8fdff' stroke='%23386b7f' stroke-width='10'/%3E%3Cpath d='M170 320 L450 180 L730 320' fill='%23c7e9f5' stroke='%23386b7f' stroke-width='10'/%3E%3Ccircle cx='770' cy='140' r='46' fill='%23ffe08a'/%3E%3Ctext x='450' y='104' text-anchor='middle' font-size='54' font-family='Poppins, sans-serif' fill='%232a4c5a'%3EHOMESTAY%3C/text%3E%3C/svg%3E" alt="Homestay Tepi Pantai"><div class="card-rank">02</div></div>
+              <div class="card-content">
+                <span class="card-tag">Homestay</span>
+                <h3>Homestay Tepi Pantai</h3>
+                <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">63 orang</span></div>
+                <div class="card-meta">RM 220.00 / malam &nbsp;·&nbsp; Tempahan: 58</div>
+                <div class="card-footer"><span class="card-note">Pemandangan Laut</span><button class="add-to-cart-btn" data-name="Homestay Tepi Pantai">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%239ecf98'/%3E%3Cstop offset='100%25' stop-color='%23eef9e6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g3)'/%3E%3Cpolygon points='120,520 300,240 480,520' fill='%2378a867'/%3E%3Cpolygon points='330,520 520,210 710,520' fill='%23628f57'/%3E%3Crect x='240' y='330' width='420' height='190' rx='16' fill='%23fffdf7' stroke='%23426a3b' stroke-width='10'/%3E%3Ctext x='450' y='106' text-anchor='middle' font-size='54' font-family='Poppins, sans-serif' fill='%23394d31'%3EHOMESTAY%3C/text%3E%3C/svg%3E" alt="Homestay Kampung"><div class="card-rank">03</div></div>
+              <div class="card-content">
+                <span class="card-tag">Homestay</span>
+                <h3>Homestay Kampung</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">39 orang</span></div>
+                <div class="card-meta">RM 150.00 / malam &nbsp;·&nbsp; Tempahan: 84</div>
+                <div class="card-footer"><span class="card-note">Suasana Damai</span><button class="add-to-cart-btn" data-name="Homestay Kampung">Add to Cart</button></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+        <div class="slider-dots" id="homestay-dots"></div>
+      </section>
+
     </main>
 
     <footer class="site-footer">
@@ -960,6 +1031,7 @@
     }
 
     function updateCartBadge() {
+      if (!badge) return;
       const count = getCartItems().length;
       badge.textContent = count;
       badge.classList.add('visible');
@@ -975,6 +1047,7 @@
     }
 
     function renderCartPanel() {
+      if (!cartItemsEl || !cartTotalText || !cartClearBtn) return;
       const items = getCartItems();
       const grouped = groupCartItems(items);
 
@@ -999,6 +1072,7 @@
     }
 
     function openCartPanel() {
+      if (!cartPanel || !cartOverlay || !cartBtn) return;
       renderCartPanel();
       cartPanel.classList.add('open');
       cartOverlay.classList.add('open');
@@ -1007,6 +1081,7 @@
     }
 
     function closeCartPanel() {
+      if (!cartPanel || !cartOverlay || !cartBtn) return;
       cartPanel.classList.remove('open');
       cartOverlay.classList.remove('open');
       cartPanel.setAttribute('aria-hidden', 'true');
@@ -1014,6 +1089,7 @@
     }
 
     function toggleCartPanel() {
+      if (!cartPanel) return;
       if (cartPanel.classList.contains('open')) {
         closeCartPanel();
       } else {
@@ -1076,21 +1152,38 @@
     renderCartPanel();
 
     // Cart panel events
-    cartBtn.addEventListener('click', toggleCartPanel);
-    cartCloseBtn.addEventListener('click', closeCartPanel);
-    cartOverlay.addEventListener('click', closeCartPanel);
-    cartClearBtn.addEventListener('click', () => {
-      saveCartItems([]);
-      updateCartBadge();
-      renderCartPanel();
-    });
-    cartItemsEl.addEventListener('click', (event) => {
-      const removeBtn = event.target.closest('.cart-item-remove');
-      if (!removeBtn) return;
-      removeOneFromCart(removeBtn.dataset.name || 'Item');
-    });
+    if (cartBtn) {
+      cartBtn.addEventListener('click', toggleCartPanel);
+    }
+    if (cartCloseBtn) {
+      cartCloseBtn.addEventListener('click', closeCartPanel);
+    }
+    if (cartOverlay) {
+      cartOverlay.addEventListener('click', closeCartPanel);
+    }
+    if (cartClearBtn) {
+      cartClearBtn.addEventListener('click', () => {
+        saveCartItems([]);
+        updateCartBadge();
+        renderCartPanel();
+      });
+    }
+    if (cartItemsEl) {
+      cartItemsEl.addEventListener('click', (event) => {
+        const removeBtn = event.target.closest('.cart-item-remove');
+        if (!removeBtn) return;
+        removeOneFromCart(removeBtn.dataset.name || 'Item');
+      });
+    }
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closeCartPanel();
+    });
+
+    // Keep cart UI in sync when another page updates localStorage.
+    window.addEventListener('storage', (event) => {
+      if (event.key !== CART_STORAGE_KEY) return;
+      updateCartBadge();
+      renderCartPanel();
     });
 
     // ── Product Search (prefix + suggestion results) ─────
@@ -1379,6 +1472,7 @@
     initSlider('elektronik-track','elektronik-dots');
     initSlider('kraf-track',      'kraf-dots');
     initSlider('maan-track',      'maan-dots');
+    initSlider('homestay-track',  'homestay-dots');
   </script>
 </body>
 </html>

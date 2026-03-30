@@ -1789,107 +1789,42 @@
     }
   </style>
 </head>
-<body>
-<header>
-    <div class="header-bottom">
-      <p class="brand">Profile Pedagang JakMiris</p>
-    </div>
-    <div class="header-nav-balance-row">
-      <div class="banner">
-        <div class="header-top">
-          <div class="logo"> 
-            <img src="ICON/LOGO/JakMiris logo.png" alt="JakMiris logo">
-          </div>
-          <a href="index.html">Halaman Utama</a>
-          <a href="bisnes.html">Bisnes</a>
-          <a style="font-weight: bolder;" href="profile.html">Profile</a>
-          <a href="aboutus.html">About us</a>
-        </div>
-        <div class="nav-utility-row">
-          <div class="nav-utility-item">
-            <svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Cart">
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-            <div class="nav-utility-copy">
-              <span class="nav-utility-title">Troli Tempatan</span>
-              <span class="nav-utility-subtitle">Semak pilihan belian harian</span>
-            </div>
-          </div>
-          <div class="nav-utility-item">
-            <svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Camera">
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-              <circle cx="12" cy="13" r="4"></circle>
-            </svg>
-            <div class="nav-utility-copy">
-              <span class="nav-utility-title">Imbas Komuniti</span>
-              <span class="nav-utility-subtitle">Lihat promosi dan gambar baharu</span>
-            </div>
-          </div>
-          <div class="nav-utility-item">
-            <svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Language">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-            </svg>
-            <div class="nav-utility-copy">
-              <span class="nav-utility-title">Bahasa & Bantuan</span>
-              <span class="nav-utility-subtitle">BM / EN dan panduan pelanggan</span>
-            </div>
-          </div>
-          <div class="nav-utility-item utility-search">
-            <div class="search-bar-shell">
-              <svg class="utility-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Search">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-              </svg>
-              <div class="search-bar-copy">
-                <span class="search-bar-title">Cari produk paling menarik hari ini</span>
-                <span class="search-bar-hint">Temui promo hangat, produk baharu, dan jualan kampung yang pelanggan paling suka</span>
-              </div>
-            </div>
-            <span class="search-bar-cta">Jom Terokai Sekarang</span>
-          </div>
+<body class="home-page">
+  <header class="store-header">
+    <div class="top-bar">
+      <div class="brand-block">
+        <img class="brand-logo" src="ICON/LOGO/Jak Miris Shop (4).png" alt="JakMiris Logo">
+        <div class="brand-text">
+          <span>JAKMIRIS</span>
         </div>
       </div>
-      <div class="header-balance-row">
-        <div class="account-balance-widget" aria-live="polite">
-          <div class="account-balance-top">
-            <div class="account-balance-brand">
-              <span class="account-balance-label">E-Wallet</span>
-              <span class="account-balance-provider">JakMiris Pay</span>
-            </div>
-            <span class="account-balance-chip" aria-hidden="true"></span>
-          </div>
-          <div class="account-balance-main">
-            <span class="account-balance-caption">Baki Akaun</span>
-            <strong class="account-balance-amount" id="accountBalanceAmount">RM 0.00</strong>
-          </div>
-          <div class="account-balance-meta">
-            <div class="account-meta-item">
-              <span class="account-meta-label">Pelanggan</span>
-              <span class="account-meta-value" id="accountHolderName">Nur Iman</span>
-            </div>
-            <div class="account-meta-item">
-              <span class="account-meta-label">Top Up Terakhir</span>
-              <span class="account-meta-value" id="accountLastTopUp">RM 50.00</span>
-            </div>
-            <div class="account-meta-item">
-              <span class="account-meta-label">Belanja Hari Ini</span>
-              <span class="account-meta-value" id="accountSpendToday">RM 0.00</span>
-            </div>
-            <div class="account-meta-item">
-              <span class="account-meta-label">Cashback</span>
-              <span class="account-meta-value" id="accountCashback">RM 0.00</span>
-            </div>
-          </div>
-          <div class="account-balance-actions">
-            <span class="account-balance-note" id="accountBalanceNote">Dikemas kini sebentar tadi</span>
-            <button type="button" class="account-balance-toggle" id="accountBalanceToggle">Hide</button>
-          </div>
-        </div>
+      <div class="search-wrap">
+        <input type="text" placeholder="Search products, brands, and categories">
+        <button aria-label="Search">🔍</button>
+      </div>
+      <div class="top-actions">
+        <span title="Account">👤</span>
+        <span title="Cart">🛒</span>
+        <span title="Wishlist">♡</span>
+        <span title="Language">EN | MY</span>
       </div>
     </div>
+
+    <nav class="sub-nav">
+      <a href="index.html" class="active">Halaman Utama</a>
+      <a href="bisnes.html">Bisnes</a>
+      <a href="profile.html">Profile</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="#">Maan</a>
+      <a href="#">Handcraft</a>
+      <a href="#">Beauty</a>
+      <a href="#">Jewelery</a>
+      <a href="#">Home & Living</a>
+      <a href="#">Electronics</a>
+      <a href="#">Sports</a>
+      <a href="#">Accessories</a>
+      <a href="#">More</a>
+    </nav>
   </header>
 
   <div class="listing-section">

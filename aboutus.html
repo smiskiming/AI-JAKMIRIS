@@ -8,21 +8,41 @@
   <link rel="stylesheet" type="text/css" href="CSS/aboutusstyle.css">
 </head>
 
-<body>
-  <header class="site-header">
-    <div class="logo">
-      <img src="ICON/LOGO/JakMiris logo.png" alt="JakMiris Logo">
+<body class="home-page">
+  <header class="store-header">
+    <div class="top-bar">
+      <div class="brand-block">
+        <img class="brand-logo" src="ICON/LOGO/Jak Miris Shop (4).png" alt="JakMiris Logo">
+        <div class="brand-text">
+          <span>JAKMIRIS</span>
+        </div>
+      </div>
+      <div class="search-wrap">
+        <input type="text" placeholder="Search products, brands, and categories">
+        <button aria-label="Search">🔍</button>
+      </div>
+      <div class="top-actions">
+        <span title="Account">👤</span>
+        <span title="Cart">🛒</span>
+        <span title="Wishlist">♡</span>
+        <span title="Language">EN | MY</span>
+      </div>
     </div>
 
-    <nav class="header-top" aria-label="Main Navigation">
-      <a class="nav-link" href="index.html">Halaman Utama</a>
-      <a class="nav-link" href="bisnes.html">Bisnes</a>
-      <a class="nav-link" href="profile.html">Profile</a>
-      <a class="nav-link active" href="aboutus.html">About Us</a>
-      <button class="cart-btn" id="cart-btn" title="Troli beli-belah" type="button" aria-label="Troli beli-belah" aria-controls="cart-panel" aria-expanded="false">
-        🛒
-        <span class="cart-badge visible" id="cart-badge">0</span>
-      </button>
+    <nav class="sub-nav">
+      <a href="index.html" class="active">Halaman Utama</a>
+      <a href="bisnes.html">Bisnes</a>
+      <a href="profile.html">Profile</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="#">Maan</a>
+      <a href="#">Handcraft</a>
+      <a href="#">Beauty</a>
+      <a href="#">Jewelery</a>
+      <a href="#">Home & Living</a>
+      <a href="#">Electronics</a>
+      <a href="#">Sports</a>
+      <a href="#">Accessories</a>
+      <a href="#">More</a>
     </nav>
   </header>
 
@@ -140,6 +160,7 @@
     }
 
     function updateCartBadge() {
+      if (!badge) return;
       const count = getCartItems().length;
       badge.textContent = count;
       badge.classList.add('visible');
@@ -155,6 +176,7 @@
     }
 
     function renderCartPanel() {
+      if (!cartItemsEl || !cartTotalText || !cartClearBtn) return;
       const items = getCartItems();
       const grouped = groupCartItems(items);
 
@@ -179,6 +201,7 @@
     }
 
     function openCartPanel() {
+      if (!cartPanel || !cartOverlay || !cartBtn) return;
       renderCartPanel();
       cartPanel.classList.add('open');
       cartOverlay.classList.add('open');
@@ -187,6 +210,7 @@
     }
 
     function closeCartPanel() {
+      if (!cartPanel || !cartOverlay || !cartBtn) return;
       cartPanel.classList.remove('open');
       cartOverlay.classList.remove('open');
       cartPanel.setAttribute('aria-hidden', 'true');
@@ -194,6 +218,7 @@
     }
 
     function toggleCartPanel() {
+      if (!cartPanel) return;
       if (cartPanel.classList.contains('open')) {
         closeCartPanel();
       } else {
@@ -215,20 +240,30 @@
     updateCartBadge();
     renderCartPanel();
 
-    cartBtn.addEventListener('click', toggleCartPanel);
-    cartCloseBtn.addEventListener('click', closeCartPanel);
-    cartOverlay.addEventListener('click', closeCartPanel);
-    cartClearBtn.addEventListener('click', () => {
-      saveCartItems([]);
-      updateCartBadge();
-      renderCartPanel();
-    });
+    if (cartBtn) {
+      cartBtn.addEventListener('click', toggleCartPanel);
+    }
+    if (cartCloseBtn) {
+      cartCloseBtn.addEventListener('click', closeCartPanel);
+    }
+    if (cartOverlay) {
+      cartOverlay.addEventListener('click', closeCartPanel);
+    }
+    if (cartClearBtn) {
+      cartClearBtn.addEventListener('click', () => {
+        saveCartItems([]);
+        updateCartBadge();
+        renderCartPanel();
+      });
+    }
 
-    cartItemsEl.addEventListener('click', (event) => {
-      const removeBtn = event.target.closest('.cart-item-remove');
-      if (!removeBtn) return;
-      removeOneFromCart(removeBtn.dataset.name || 'Item');
-    });
+    if (cartItemsEl) {
+      cartItemsEl.addEventListener('click', (event) => {
+        const removeBtn = event.target.closest('.cart-item-remove');
+        if (!removeBtn) return;
+        removeOneFromCart(removeBtn.dataset.name || 'Item');
+      });
+    }
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closeCartPanel();
