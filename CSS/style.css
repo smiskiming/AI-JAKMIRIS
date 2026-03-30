@@ -252,9 +252,141 @@
 
     .maan-page .maan-products {
         width: min(1400px, calc(100% - 48px));
-        margin: 48px auto 72px;
+        margin: 24px auto 72px;
         padding: 0;
         display: block;
+    }
+
+    .maan-page {
+        background:
+            radial-gradient(circle at 12% 8%, rgba(148, 72, 33, 0.18), transparent 28%),
+            radial-gradient(circle at 82% 14%, rgba(80, 113, 44, 0.14), transparent 30%),
+            linear-gradient(180deg, #fff6e8 0%, #f8ebd5 46%, #f3e4cb 100%);
+    }
+
+    .maan-page .maan-hero {
+        width: min(1400px, calc(100% - 48px));
+        margin: 26px auto 0;
+        padding: 34px 34px 30px;
+        border-radius: 28px;
+        display: grid;
+        grid-template-columns: minmax(280px, 1.25fr) minmax(280px, 0.95fr);
+        gap: 26px;
+        background:
+            linear-gradient(132deg, rgba(87, 45, 28, 0.95) 0%, rgba(146, 82, 37, 0.94) 45%, rgba(194, 131, 59, 0.94) 100%);
+        border: 1px solid rgba(255, 232, 200, 0.35);
+        box-shadow: 0 22px 40px rgba(92, 54, 24, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .maan-page .maan-hero::after {
+        content: "";
+        position: absolute;
+        right: -40px;
+        top: 0;
+        width: 48%;
+        height: 100%;
+        background:
+            linear-gradient(45deg, transparent 40%, rgba(255, 231, 195, 0.22) 40%, rgba(255, 231, 195, 0.22) 50%, transparent 50%, transparent 60%, rgba(255, 231, 195, 0.22) 60%),
+            linear-gradient(-45deg, transparent 40%, rgba(255, 246, 229, 0.14) 40%, rgba(255, 246, 229, 0.14) 50%, transparent 50%, transparent 60%, rgba(255, 246, 229, 0.14) 60%);
+        background-size: 52px 52px;
+        opacity: 0.9;
+        clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .maan-page .maan-hero-copy,
+    .maan-page .maan-hero-stats {
+        position: relative;
+        z-index: 1;
+    }
+
+    .maan-page .maan-eyebrow {
+        margin: 0 0 10px;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 241, 219, 0.85);
+    }
+
+    .maan-page .maan-hero h1 {
+        margin: 0;
+        font-size: clamp(30px, 3.6vw, 48px);
+        line-height: 1.06;
+        color: #fff8ec;
+        max-width: 13ch;
+    }
+
+    .maan-page .maan-lead {
+        margin: 16px 0 0;
+        max-width: 55ch;
+        color: rgba(255, 243, 220, 0.88);
+        font-size: 16px;
+        line-height: 1.72;
+    }
+
+    .maan-page .maan-hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        align-content: end;
+    }
+
+    .maan-page .maan-hero-stats article {
+        padding: 16px 14px;
+        border-radius: 16px;
+        background: rgba(255, 247, 232, 0.18);
+        border: 1px solid rgba(255, 231, 198, 0.38);
+        text-align: center;
+        backdrop-filter: blur(2px);
+    }
+
+    .maan-page .maan-hero-stats strong {
+        display: block;
+        color: #fff9ef;
+        font-size: 28px;
+        line-height: 1;
+        margin-bottom: 7px;
+    }
+
+    .maan-page .maan-hero-stats span {
+        display: block;
+        color: rgba(255, 242, 219, 0.86);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .maan-page .maan-products .products-toolbar {
+        margin-bottom: 20px;
+        padding: 18px 20px;
+        border-radius: 20px;
+        background: rgba(255, 247, 234, 0.86);
+        border: 1px solid rgba(153, 104, 57, 0.2);
+        box-shadow: 0 10px 22px rgba(96, 64, 35, 0.08);
+    }
+
+    .maan-page .maan-products .products-sort {
+        background: rgba(255, 244, 225, 0.95);
+        border-color: rgba(156, 104, 54, 0.35);
+        box-shadow: 0 8px 18px rgba(98, 67, 38, 0.1);
+    }
+
+    .maan-page .maan-products .product-card {
+        border-color: rgba(188, 142, 92, 0.32);
+        box-shadow: 0 16px 34px rgba(87, 56, 30, 0.12);
+    }
+
+    .maan-page .maan-products .product-badge {
+        background: #f8d69d;
+        color: #784417;
+    }
+
+    .maan-page .maan-products .product-badge.muted {
+        background: #f1ddbc;
+        color: #7a5538;
     }
 
     .kraft-page .products-toolbar {
@@ -569,6 +701,15 @@
             width: 100%;
             box-sizing: border-box;
         }
+
+        .maan-page .maan-hero {
+            grid-template-columns: 1fr;
+            padding: 26px 22px;
+        }
+
+        .maan-page .maan-hero-stats {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
     }
 
     @media (max-width: 640px) {
@@ -580,6 +721,25 @@
         .maan-page .maan-products {
             width: calc(100% - 24px);
             margin: 32px auto 48px;
+        }
+
+        .maan-page .maan-hero {
+            width: calc(100% - 24px);
+            padding: 22px 16px;
+            margin-top: 20px;
+        }
+
+        .maan-page .maan-hero h1 {
+            max-width: none;
+        }
+
+        .maan-page .maan-lead {
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .maan-page .maan-hero-stats {
+            grid-template-columns: 1fr;
         }
 
         .kraft-page .product-grid {
