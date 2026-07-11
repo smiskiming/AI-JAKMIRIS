@@ -199,6 +199,25 @@
             opacity: 0.45;
             cursor: not-allowed;
         }
+
+        .kraft-page .kraft-products .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        @media (max-width: 980px) {
+            .kraft-page .kraft-products .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .kraft-page .kraft-products .product-grid {
+                gap: 16px;
+            }
+        }
     </style>
 </head>
 <body class="home-page kraft-page">
@@ -259,16 +278,11 @@
     </aside>
 
     <p class="brand bisnes_margin">"Setiap hasil membawa cerita, miliki satu hari ini dan sokong komuniti Padawan dengan membelinya!"</p>
+
   <!-- Hero Section -->
 <section class="products kraft-products">
     <div class="products-toolbar">
         <div>
-            <p class="products-label">Produk Pilihan</p>
-            <h2>Koleksi Kraf Tangan</h2>
-        </div>
-        <div class="products-sort" aria-label="Sort products">
-            <span>Sort By</span>
-            <strong>Popular</strong>
         </div>
     </div>
 
