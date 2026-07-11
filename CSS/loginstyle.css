@@ -1,0 +1,311 @@
+/* ─── Auth Page Layout ────────────────────────────────────────── */
+.auth-main {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 4rem;
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 48px rgba(122, 47, 34, 0.14);
+  padding: 2.4rem 2.2rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid rgba(183, 106, 53, 0.15);
+}
+
+/* ─── Logo Block ─────────────────────────────────────────────── */
+.auth-logo {
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+.auth-logo img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(183, 106, 53, 0.22);
+}
+
+.auth-logo h1 {
+  margin: 0.5rem 0 0.2rem;
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #7a2f22;
+}
+
+.auth-tagline {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #b86a35;
+}
+
+/* ─── Tab Switch ─────────────────────────────────────────────── */
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid rgba(122, 47, 34, 0.18);
+  margin-bottom: 1.6rem;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 0.62rem 1rem;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #9b6a45;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.auth-tab.active {
+  background: linear-gradient(135deg, #7a2f22, #b86a35);
+  color: #fff;
+}
+
+/* ─── Form ───────────────────────────────────────────────────── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-form.hidden { display: none; }
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.form-group label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #4a2a18;
+}
+
+.form-group input {
+  padding: 0.62rem 0.9rem;
+  border: 1.5px solid #d4b89a;
+  border-radius: 10px;
+  font-size: 0.93rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #fffaf5;
+  color: #2a1d15;
+}
+
+.form-group input:focus {
+  border-color: #b86a35;
+  box-shadow: 0 0 0 3px rgba(183, 106, 53, 0.14);
+}
+
+.form-group input.invalid {
+  border-color: #d94040;
+  box-shadow: 0 0 0 3px rgba(217, 64, 64, 0.12);
+}
+
+/* ─── Password Toggle ────────────────────────────────────────── */
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap input {
+  width: 100%;
+  padding-right: 2.8rem;
+  box-sizing: border-box;
+}
+
+.toggle-pw {
+  position: absolute;
+  right: 0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.55;
+  padding: 0;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+
+.toggle-pw:hover { opacity: 1; }
+
+/* ─── Field Errors ───────────────────────────────────────────── */
+.field-error {
+  font-size: 0.76rem;
+  color: #d94040;
+  min-height: 0.9rem;
+  display: block;
+}
+
+/* ─── Strength Bar ───────────────────────────────────────────── */
+.strength-bar {
+  height: 4px;
+  background: #f0e4d4;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.3rem;
+}
+
+#strength-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 4px;
+  transition: width 0.3s, background 0.3s;
+}
+
+.strength-label {
+  font-size: 0.74rem;
+  color: #9b7a5a;
+}
+
+/* ─── Remember / Forgot ──────────────────────────────────────── */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.83rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.83rem;
+  color: #5a3a24;
+  cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+  accent-color: #b86a35;
+  width: 15px;
+  height: 15px;
+}
+
+.forgot-link {
+  color: #b86a35;
+  text-decoration: none;
+  font-size: 0.83rem;
+  font-weight: 500;
+}
+
+.forgot-link:hover { text-decoration: underline; }
+
+/* ─── Terms ──────────────────────────────────────────────────── */
+.terms-check {
+  align-items: flex-start;
+  line-height: 1.4;
+}
+
+.terms-check a {
+  color: #b86a35;
+  text-decoration: underline;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────── */
+.btn-auth {
+  margin-top: 0.4rem;
+  padding: 0.72rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7a2f22 0%, #b86a35 100%);
+  color: #fff;
+  font-size: 0.97rem;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  letter-spacing: 0.5px;
+}
+
+.btn-auth:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-auth:active { transform: translateY(0); }
+
+.btn-auth:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── Divider ────────────────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #b8a090;
+  font-size: 0.8rem;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e8d5c0;
+}
+
+/* ─── Social Buttons ─────────────────────────────────────────── */
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.62rem 1rem;
+  border: 1.5px solid #d4b89a;
+  border-radius: 10px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #3a2415;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
+}
+
+.btn-social:hover {
+  background: #fdf6ee;
+  border-color: #b86a35;
+}
+
+/* ─── Alert Banner ───────────────────────────────────────────── */
+.auth-alert {
+  padding: 0.72rem 1rem;
+  border-radius: 9px;
+  font-size: 0.87rem;
+  font-weight: 500;
+}
+
+.auth-alert.hidden { display: none; }
+
+.auth-alert.success {
+  background: #edf7ee;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.auth-alert.error {
+  background: #fdecea;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1.8rem 1.2rem 1.6rem;
+    border-radius: 16px;
+  }
+}
