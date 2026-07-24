@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Beauty</title>
+  <link rel="stylesheet" type="text/css" href="CSS/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Glacial Indifference, 'Outfit', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fff7f2 0%, #fef4e8 45%, #fffaf4 100%);
+      color: #4a3a2b;
+    }
+
+    .home-page {
+      min-height: 100vh;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+    }
+
+    .store-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 251, 246, 0.96);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 28px;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      height: 58px;
+      width: auto;
+    }
+
+    .brand-text span {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      color: #3b2a1e;
+      line-height: 1;
+    }
+
+    .search-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      max-width: 720px;
+      background: #fff;
+      border: 1px solid #eadbcf;
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .search-wrap input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 12px 16px;
+      font-size: 16px;
+      color: #4a3a2b;
+      background: transparent;
+    }
+
+    .search-wrap button {
+      border: none;
+      background: linear-gradient(135deg, #a95f27 0%, #c78a3d 100%);
+      color: #fff;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.2rem;
+      color: #5f4830;
+    }
+
+    .sub-nav {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px 14px;
+      flex-wrap: wrap;
+    }
+
+    .sub-nav a {
+      text-decoration: none;
+      color: #6a533a;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+
+    .sub-nav a:hover,
+    .sub-nav a.active {
+      background: #f6e4c8;
+      color: #8f4c20;
+    }
+
+    .beauty-hero {
+      max-width: 1180px;
+      margin: 24px auto 10px;
+      padding: 28px 30px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #f8e9d8 0%, #fff9f3 100%);
+      box-shadow: 0 14px 30px rgba(115, 72, 31, 0.12);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .beauty-hero h1 {
+      margin: 10px 0 12px;
+      font-size: clamp(32px, 4.4vw, 52px);
+      line-height: 0.97;
+      color: #352217;
+      font-weight: 900;
+    }
+
+    .beauty-hero p {
+      margin: 0;
+      color: #70553f;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .section-chip {
+      display: inline-block;
+      background: #f6dfbe;
+      color: #8a4e16;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .hero-tags span {
+      background: rgba(255,255,255,0.8);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: #74533c;
+      border: 1px solid rgba(141, 87, 35, 0.12);
+      font-weight: 700;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.86);
+      border-radius: 22px;
+      padding: 20px;
+      border: 1px solid rgba(125, 80, 35, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .hero-card h3 {
+      margin: 0 0 10px;
+      color: #4d2f1d;
+    }
+
+    .hero-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #6d533d;
+      line-height: 1.8;
+    }
+
+    .search-only-bar {
+      max-width: 1180px;
+      margin: 8px auto 0;
+      padding: 0 24px;
+    }
+
+    .search-only-inner {
+      position: relative;
+    }
+
+    .search-panel input {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.07);
+      outline: none;
+      color: #4a3a2b;
+      background: #fffdf9;
+    }
+
+    .slider-section {
+      max-width: 1180px;
+      margin: 28px auto 0;
+      padding: 0 24px 8px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .section-head h2 {
+      margin: 8px 0 0;
+      font-size: 22px;
+      color: #332118;
+      font-weight: 900;
+    }
+
+    .slider-track {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .category-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(76, 44, 24, 0.08);
+      border: 1px solid rgba(146, 96, 40, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-media {
+      height: 190px;
+      overflow: hidden;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .card-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8f4c20;
+    }
+
+    .card-content h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #352217;
+      font-weight: 800;
+    }
+
+    .card-meta {
+      font-size: 14px;
+      color: #6b513b;
+      line-height: 1.6;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px solid #f2e7db;
+    }
+
+    .card-note {
+      font-size: 12px;
+      color: #9b7250;
+      font-weight: 600;
+    }
+
+    .add-to-cart-btn {
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #a95f27 0%, #c78a3d 100%);
+      color: #fff;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 24px 16px 32px;
+      color: #7a5f44;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .beauty-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .slider-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .top-bar {
+        flex-wrap: wrap;
+      }
+
+      .search-wrap {
+        order: 3;
+        width: 100%;
+      }
+
+      .slider-track {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="home-page">
+  <div class="page-shell">
+    <header class="store-header">
+      <div class="top-bar">
+        <div class="brand-block">
+          <img class="brand-logo" src="ICON/LOGO/Jak Miris Shop (4).png" alt="JakMiris Logo">
+          <div class="brand-text">
+            <span>JAKMIRIS</span>
+          </div>
+        </div>
+        <div class="search-wrap">
+          <input type="text" placeholder="Cari servis atau produk kecantikan...">
+          <button aria-label="Search">🔍</button>
+        </div>
+        <div class="top-actions">
+          <a href="login.html" title="Account" style="text-decoration:none; color:inherit;">👤</a>
+          <span title="Cart">🛒</span>
+          <span title="Wishlist">♡</span>
+          <span title="Language">EN | MY</span>
+        </div>
+      </div>
+
+      <nav class="sub-nav">
+        <a href="index.html">Halaman Utama</a>
+        <a href="bisnes.html">Bisnes</a>
+        <a href="profile.html">Profile</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="#">Maan</a>
+        <a href="#">Handicraft</a>
+        <a href="beauty.html" class="active">Beauty</a>
+        <a href="#">Jewelery</a>
+        <a href="#">Home & Living</a>
+        <a href="#">Electronics</a>
+        <a href="#">Sports</a>
+        <a href="#">Accessories</a>
+        <a href="#">More</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="beauty-hero">
+        <div>
+          <span class="section-chip">Beauty Studio</span>
+          <h1>Perkhidmatan dan produk kecantikan yang tampil bersih, elegan dan penuh keyakinan.</h1>
+          <p>Temui rawatan wajah, potongan rambut, makeup dan produk penjagaan diri yang sesuai untuk gaya harian dan majlis khas.</p>
+          <div class="hero-tags">
+            <span>Facial Glow</span>
+            <span>Hair Styling</span>
+            <span>Makeup Essentials</span>
+            <span>Skincare Ritual</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>Kenapa pilih beauty di JakMiris?</h3>
+          <ul>
+            <li>Servis yang bersih, profesional dan mesra pelanggan</li>
+            <li>Produk yang menonjolkan kecantikan semula jadi</li>
+            <li>Rekaan moden yang sesuai untuk semua usia</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="search-only-bar">
+        <div class="search-only-inner">
+          <div class="search-panel">
+            <input type="text" placeholder="Cari servis, makeup, skincare atau treatment...">
+          </div>
+        </div>
+      </div>
+
+      <section class="slider-section">
+        <div class="section-head">
+          <div>
+            <span class="section-chip">Perkhidmatan</span>
+            <h2>Servis kecantikan yang paling dicari</h2>
+          </div>
+        </div>
+        <div class="slider-track">
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/BEAUTY/TREATMENT 2.jpg" alt="Glow Facial"></div>
+            <div class="card-content">
+              <span class="card-tag">Treatment</span>
+              <h3>Glow Facial</h3>
+              <div class="card-meta">Pembersihan mendalam, pelembapan dan pencahayaan kulit yang segar.</div>
+              <div class="card-footer"><span class="card-note">RM 120</span><button class="add-to-cart-btn">Book Now</button></div>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/BEAUTY/makeup 2.jpg" alt="Bridal Makeup"></div>
+            <div class="card-content">
+              <span class="card-tag">Makeup</span>
+              <h3>Bridal Makeup</h3>
+              <div class="card-meta">Look yang anggun, tahan lama dan sesuai untuk majlis istimewa.</div>
+              <div class="card-footer"><span class="card-note">RM 180</span><button class="add-to-cart-btn">Book Now</button></div>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/BEAUTY/hair.jpg" alt="Hair Styling"></div>
+            <div class="card-content">
+              <span class="card-tag">Hair</span>
+              <h3>Hair Styling</h3>
+              <div class="card-meta">Blowout, styling santai dan potongan yang memberi kesan penuh.</div>
+              <div class="card-footer"><span class="card-note">RM 85</span><button class="add-to-cart-btn">Book Now</button></div>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/BEAUTY/nails.jpg" alt="Nail Art"></div>
+            <div class="card-content">
+              <span class="card-tag">Nails</span>
+              <h3>Nail Art</h3>
+              <div class="card-meta">Rekaan minimal atau glam yang sesuai untuk setiap suasana.</div>
+              <div class="card-footer"><span class="card-note">RM 70</span><button class="add-to-cart-btn">Book Now</button></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="slider-section">
+        <div class="section-head">
+          <div>
+            <span class="section-chip">Produk</span>
+            <h2>Produk kecantikan pilihan</h2>
+          </div>
+        </div>
+        <div class="slider-track">
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/FESYEN/aesthetic dress.png" alt="Vitamin C Serum"></div>
+            <div class="card-content">
+              <span class="card-tag">Skincare</span>
+              <h3>Vitamin C Serum</h3>
+              <div class="card-meta">Membantu kulit nampak lebih cerah, lembut dan sihat.</div>
+              <div class="card-footer"><span class="card-note">RM 69</span><button class="add-to-cart-btn">Add to Cart</button></div>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/FESYEN/jean.jpg" alt="Glow Mist"></div>
+            <div class="card-content">
+              <span class="card-tag">Body Care</span>
+              <h3>Glow Mist</h3>
+              <div class="card-meta">Penyegar kulit yang ringan dan sesuai untuk penggunaan harian.</div>
+              <div class="card-footer"><span class="card-note">RM 45</span><button class="add-to-cart-btn">Add to Cart</button></div>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/FESYEN/lagging pants.jfif" alt="Hair Mask"></div>
+            <div class="card-content">
+              <span class="card-tag">Hair Care</span>
+              <h3>Silk Hair Mask</h3>
+              <div class="card-meta">Menjadikan rambut lebih lembut, berkilau dan mudah diurus.</div>
+              <div class="card-footer"><span class="card-note">RM 59</span><button class="add-to-cart-btn">Add to Cart</button></div>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/FESYEN/sport bra.jfif" alt="Matte Lip Tint"></div>
+            <div class="card-content">
+              <span class="card-tag">Makeup</span>
+              <h3>Matte Lip Tint</h3>
+              <div class="card-meta">Warna yang lembut, tahan lama dan memberi kesan penuh yakin.</div>
+              <div class="card-footer"><span class="card-note">RM 39</span><button class="add-to-cart-btn">Add to Cart</button></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>JakMiris Beauty • Koleksi servis dan produk untuk penampilan yang lebih bersinar</span>
+    </footer>
+  </div>
+</body>
+</html>
