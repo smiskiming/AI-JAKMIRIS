@@ -642,12 +642,20 @@
     }
 
     .maan-page .maan-products .product-grid {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 14px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
     }
 
     .maan-page .maan-products .product-image-frame {
-        height: 180px;
+        height: 190px;
+        overflow: hidden;
+    }
+
+    .maan-page .maan-products .product-image-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
 
     .maan-page .maan-products .product-meta {
@@ -699,7 +707,7 @@
         }
 
         .maan-page .maan-products .product-grid {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }
 
