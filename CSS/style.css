@@ -39,9 +39,21 @@
         --jm-white: #ffffff;
         --jm-text: #2a1d15;
         background:
-            radial-gradient(circle at top left, rgba(183, 106, 53, 0.14), transparent 32%),
-            radial-gradient(circle at right 15%, rgba(122, 47, 34, 0.1), transparent 28%),
-            linear-gradient(180deg, #fbf3e5 0%, #f2e7d4 48%, #f7f0e3 100%);
+            radial-gradient(circle at 12% 8%, rgba(140, 73, 34, 0.2), transparent 34%),
+            radial-gradient(circle at 88% 14%, rgba(108, 46, 30, 0.16), transparent 30%),
+            repeating-linear-gradient(
+                45deg,
+                rgba(128, 72, 38, 0.06) 0 10px,
+                rgba(215, 163, 74, 0.06) 10px 20px,
+                transparent 20px 30px,
+                rgba(128, 72, 38, 0.05) 30px 40px
+            ),
+            repeating-linear-gradient(
+                -45deg,
+                rgba(176, 112, 56, 0.05) 0 12px,
+                transparent 12px 24px
+            ),
+            linear-gradient(180deg, #fbf1df 0%, #f3e3c9 50%, #f8eddb 100%);
         color: var(--jm-text);
     }
 
@@ -642,12 +654,20 @@
     }
 
     .maan-page .maan-products .product-grid {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 14px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
     }
 
     .maan-page .maan-products .product-image-frame {
-        height: 180px;
+        height: 190px;
+        overflow: hidden;
+    }
+
+    .maan-page .maan-products .product-image-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
 
     .maan-page .maan-products .product-meta {
@@ -699,7 +719,7 @@
         }
 
         .maan-page .maan-products .product-grid {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }
 
@@ -1242,6 +1262,19 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
         gap: 18px;
+    }
+
+    .home-page .home-products-category {
+        margin-bottom: 28px;
+    }
+
+    .home-page .home-category-head {
+        margin: 0 0 14px;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #8b5a2b;
     }
 
     .home-page .home-product {
