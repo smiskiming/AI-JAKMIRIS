@@ -323,29 +323,62 @@
     .slider-section h2 { margin: 6px 0 0; font-size: 1.6rem; }
 
     .slider-viewport {
-      overflow: hidden;
+      overflow: visible;
       border-radius: 16px;
       position: relative;
     }
     .slider-track {
-      display: flex;
-      transition: transform 0.6s ease;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      transition: none;
     }
 
     /* ── Card ── */
     .category-card {
-      min-width: 280px;
-      flex: 0 0 280px;
+      min-width: 0;
+      width: 100%;
       background: #fff;
       border-radius: 16px;
       overflow: hidden;
-      margin-right: 20px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.08);
       display: flex;
       flex-direction: column;
     }
-    .card-media { position: relative; height: 180px; overflow: hidden; }
-    .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+
+    @media (max-width: 1200px) {
+      .slider-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .slider-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .slider-track {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card-media {
+      position: relative;
+      height: 360px;
+      overflow: hidden;
+      background: #efefef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 0.4s;
+    }
     .category-card:hover .card-media img { transform: scale(1.05); }
     .card-rank {
       position: absolute;
@@ -1420,14 +1453,14 @@
 
       function goTo(index) {
         current = (index + total) % total;
-        const offset = current * (cards[0].offsetWidth + 20);
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const offset = current * (cards[0].offsetWidth + gap);
         track.style.transform = 'translateX(-' + offset + 'px)';
         dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
       }
 
       function startAuto() {
         clearInterval(autoTimer);
-        autoTimer = setInterval(() => goTo(current + 1), 2000);
       }
 
       function handleTouchStart(event) {
@@ -1516,11 +1549,7 @@
       startAuto();
     }
 
-    initSlider('fesyen-track',    'fesyen-dots');
-    initSlider('elektronik-track','elektronik-dots');
-    initSlider('kraf-track',      'kraf-dots');
-    initSlider('maan-track',      'maan-dots');
-    initSlider('homestay-track',  'homestay-dots');
+    // Slider behavior disabled: categories now flow vertically in grid layout.
   </script>
 </body>
 </html>
