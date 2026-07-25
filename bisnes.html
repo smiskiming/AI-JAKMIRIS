@@ -323,29 +323,62 @@
     .slider-section h2 { margin: 6px 0 0; font-size: 1.6rem; }
 
     .slider-viewport {
-      overflow: hidden;
+      overflow: visible;
       border-radius: 16px;
       position: relative;
     }
     .slider-track {
-      display: flex;
-      transition: transform 0.6s ease;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      transition: none;
     }
 
     /* ── Card ── */
     .category-card {
-      min-width: 280px;
-      flex: 0 0 280px;
+      min-width: 0;
+      width: 100%;
       background: #fff;
       border-radius: 16px;
       overflow: hidden;
-      margin-right: 20px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.08);
       display: flex;
       flex-direction: column;
     }
-    .card-media { position: relative; height: 180px; overflow: hidden; }
-    .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+
+    @media (max-width: 1200px) {
+      .slider-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .slider-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .slider-track {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card-media {
+      position: relative;
+      height: 360px;
+      overflow: hidden;
+      background: #efefef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 0.4s;
+    }
     .category-card:hover .card-media img { transform: scale(1.05); }
     .card-rank {
       position: absolute;
@@ -563,7 +596,7 @@
           <button aria-label="Search">🔍</button>
         </div>
         <div class="top-actions">
-          <span title="Account">👤</span>
+          <a href="login.html" title="Account" style="text-decoration:none; color:inherit;">👤</a>
           <button class="cart-btn" id="cart-btn" title="Troli beli-belah" type="button" aria-controls="cart-panel" aria-expanded="false">
             🛒
             <span class="cart-badge visible" id="cart-badge">0</span>
@@ -574,19 +607,16 @@
       </div>
 
       <nav class="sub-nav">
-        <a href="index.html" class="active">Halaman Utama</a>
-        <a href="bisnes.html">Bisnes</a>
+        <a href="index.html">Halaman Utama</a>
+        <a href="bisnes.html" class="active">Bisnes</a>
         <a href="profile.html">Profile</a>
         <a href="aboutus.html">About Us</a>
-        <a href="#">Maan</a>
-        <a href="#">Handicraft</a>
-        <a href="#">Beauty</a>
-        <a href="#">Jewelery</a>
-        <a href="#">Home & Living</a>
-        <a href="#">Electronics</a>
-        <a href="#">Sports</a>
-        <a href="#">Accessories</a>
-        <a href="#">More</a>
+        <a href="maan.html">Maan</a>
+        <a href="kraftangan.html">Handicraft</a>
+        <a href="beauty.html">Beauty</a>
+        <a href="jewerly.html">Jewelry</a>
+        <a href="sport.html">Sports</a>
+        <a href="login.html">Login</a>
       </nav>
     </header>
 
@@ -632,7 +662,7 @@
           <div class="slider-track" id="fesyen-track">
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/FESYEN/aesthetic dress.png" alt="Aesthetic Dress"><div class="card-rank">01</div></div>
+              <div class="card-media"><img src="ICON/BISNES/womenclothing.jpg" alt="Aesthetic Dress"><div class="card-rank">01</div></div>
               <div class="card-content">
                 <span class="card-tag">Fesyen</span>
                 <h3>Aesthetic Dress</h3>
@@ -643,10 +673,10 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/FESYEN/croptop long sleeve.jpg" alt="Croptop Long Sleeve"><div class="card-rank">02</div></div>
+              <div class="card-media"><img src="ICON/BISNES/womenclothing1.jpg" alt="Swimming Suit"><div class="card-rank">02</div></div>
               <div class="card-content">
                 <span class="card-tag">Fesyen</span>
-                <h3>Croptop Long Sleeve</h3>
+                <h3>Swimming Suit</h3>
                 <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">61 orang</span></div>
                 <div class="card-meta">RM 45.00 &nbsp;·&nbsp; Sold: 98</div>
                 <div class="card-footer"><span class="card-note">Best Seller</span><button class="add-to-cart-btn" data-name="Croptop Long Sleeve">Add to Cart</button></div>
@@ -654,10 +684,10 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/FESYEN/elegan dress.jpg" alt="Elegan Dress"><div class="card-rank">03</div></div>
+              <div class="card-media"><img src="ICON/BISNES/womenclothing3.jpg" alt="Pink T-shirt"><div class="card-rank">03</div></div>
               <div class="card-content">
                 <span class="card-tag">Fesyen</span>
-                <h3>Elegan Dress</h3>
+                <h3>Pink T-shirt</h3>
                 <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">112 orang</span></div>
                 <div class="card-meta">RM 129.00 &nbsp;·&nbsp; Sold: 74</div>
                 <div class="card-footer"><span class="card-note">Premium</span><button class="add-to-cart-btn" data-name="Elegan Dress">Add to Cart</button></div>
@@ -665,10 +695,10 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/FESYEN/jean.jpg" alt="Jean"><div class="card-rank">04</div></div>
+              <div class="card-media"><img src="ICON/BISNES/womencllothing2.jpg" alt="Red Dress "><div class="card-rank">04</div></div>
               <div class="card-content">
                 <span class="card-tag">Fesyen</span>
-                <h3>Jean Seluar</h3>
+                <h3>Red Dress</h3>
                 <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">47 orang</span></div>
                 <div class="card-meta">RM 55.00 &nbsp;·&nbsp; Sold: 210</div>
                 <div class="card-footer"><span class="card-note">Klasik</span><button class="add-to-cart-btn" data-name="Jean Seluar">Add to Cart</button></div>
@@ -676,10 +706,10 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/FESYEN/jersey.jpg" alt="Jersey"><div class="card-rank">05</div></div>
+              <div class="card-media"><img src="ICON/BISNES/womenclothing2.jpg" alt="Pink Floral Blouse"><div class="card-rank">05</div></div>
               <div class="card-content">
                 <span class="card-tag">Fesyen</span>
-                <h3>Jersey Sukan</h3>
+                <h3>Pink Floral Blouse</h3>
                 <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">33 orang</span></div>
                 <div class="card-meta">RM 38.00 &nbsp;·&nbsp; Sold: 155</div>
                 <div class="card-footer"><span class="card-note">Sukan</span><button class="add-to-cart-btn" data-name="Jersey Sukan">Add to Cart</button></div>
@@ -687,10 +717,10 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/FESYEN/kebaya.jpg" alt="Kebaya"><div class="card-rank">06</div></div>
+              <div class="card-media"><img src="ICON/BISNES/womenclothing4.jpg" alt="Blue Cute Tops"><div class="card-rank">06</div></div>
               <div class="card-content">
                 <span class="card-tag">Fesyen</span>
-                <h3>Kebaya Tradisional</h3>
+                <h3>Blue Cute Tops</h3>
                 <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">76 orang</span></div>
                 <div class="card-meta">RM 95.00 &nbsp;·&nbsp; Sold: 89</div>
                 <div class="card-footer"><span class="card-note">Warisan</span><button class="add-to-cart-btn" data-name="Kebaya Tradisional">Add to Cart</button></div>
@@ -698,13 +728,24 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/FESYEN/kasut tumit tinggi.jpg" alt="Kasut Tumit Tinggi"><div class="card-rank">07</div></div>
+              <div class="card-media"><img src="ICON/BISNES/womenclothing5.jpg" alt="Brown Tops"><div class="card-rank">07</div></div>
               <div class="card-content">
                 <span class="card-tag">Fesyen</span>
-                <h3>Kasut Tumit Tinggi</h3>
+                <h3>Brown Tops</h3>
                 <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">54 orang</span></div>
                 <div class="card-meta">RM 68.00 &nbsp;·&nbsp; Sold: 67</div>
                 <div class="card-footer"><span class="card-note">Bergaya</span><button class="add-to-cart-btn" data-name="Kasut Tumit Tinggi">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/BISNES/womenclothing6.jpg" alt="Brown Tie Tops "><div class="card-rank">08</div></div>
+              <div class="card-content">
+                <span class="card-tag">Fesyen</span>
+                <h3>Brown Tie Tops</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">41 orang</span></div>
+                <div class="card-meta">RM 72.00 &nbsp;·&nbsp; Sold: 58</div>
+                <div class="card-footer"><span class="card-note">Baharu</span><button class="add-to-cart-btn" data-name="Cardigan Rajut">Add to Cart</button></div>
               </div>
             </article>
 
@@ -727,7 +768,7 @@
           <div class="slider-track" id="elektronik-track">
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/ELEKTRONIK/apple iphone17.jpg" alt="Apple iPhone 17"><div class="card-rank">01</div></div>
+              <div class="card-media"><img src="ICON/BISNES/peranti4.jpg" alt="Apple iPhone 17"><div class="card-rank">01</div></div>
               <div class="card-content">
                 <span class="card-tag">Elektronik</span>
                 <h3>Apple iPhone 17</h3>
@@ -738,7 +779,7 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/ELEKTRONIK/digital camera.jpg" alt="Digital Camera"><div class="card-rank">02</div></div>
+              <div class="card-media"><img src="ICON/BISNES/peranti2.jpg" alt="Digital Camera"><div class="card-rank">02</div></div>
               <div class="card-content">
                 <span class="card-tag">Elektronik</span>
                 <h3>Digital Camera</h3>
@@ -749,7 +790,7 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/ELEKTRONIK/earbuds.jpg" alt="Earbuds"><div class="card-rank">03</div></div>
+              <div class="card-media"><img src="ICON/BISNES/peranti3.jpg" alt="Earbuds"><div class="card-rank">03</div></div>
               <div class="card-content">
                 <span class="card-tag">Elektronik</span>
                 <h3>Wireless Earbuds</h3>
@@ -760,7 +801,7 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/ELEKTRONIK/headphones.jpg" alt="Headphones"><div class="card-rank">04</div></div>
+              <div class="card-media"><img src="ICON/BISNES/peranti1.jpg" alt="Headphones"><div class="card-rank">04</div></div>
               <div class="card-content">
                 <span class="card-tag">Elektronik</span>
                 <h3>Headphones</h3>
@@ -771,7 +812,7 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/ELEKTRONIK/Mouse.jpg" alt="Mouse"><div class="card-rank">05</div></div>
+              <div class="card-media"><img src="ICON/ELEKTRONIK/peranti.jpg" alt="Mouse"><div class="card-rank">05</div></div>
               <div class="card-content">
                 <span class="card-tag">Elektronik</span>
                 <h3>Wireless Mouse</h3>
@@ -782,7 +823,7 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/ELEKTRONIK/mini speaker.jpeg" alt="Mini Speaker"><div class="card-rank">06</div></div>
+              <div class="card-media"><img src="ICON/ELEKTRONIK/peranti1.jpg" alt="Mini Speaker"><div class="card-rank">06</div></div>
               <div class="card-content">
                 <span class="card-tag">Elektronik</span>
                 <h3>Mini Bluetooth Speaker</h3>
@@ -793,13 +834,24 @@
             </article>
 
             <article class="category-card">
-              <div class="card-media"><img src="ICON/ELEKTRONIK/mesin pengisar.jpg" alt="Mesin Pengisar"><div class="card-rank">07</div></div>
+              <div class="card-media"><img src="ICON/ELEKTRONIK/peranti2.jpg" alt="Mesin Pengisar"><div class="card-rank">07</div></div>
               <div class="card-content">
                 <span class="card-tag">Elektronik</span>
                 <h3>Mesin Pengisar</h3>
                 <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">63 orang</span></div>
                 <div class="card-meta">RM 149.00 &nbsp;·&nbsp; Sold: 78</div>
                 <div class="card-footer"><span class="card-note">Dapur</span><button class="add-to-cart-btn" data-name="Mesin Pengisar">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/ELEKTRONIK/peranti3.jpg" alt="iPhone Charger"><div class="card-rank">08</div></div>
+              <div class="card-content">
+                <span class="card-tag">Elektronik</span>
+                <h3>iPhone Charger</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">49 orang</span></div>
+                <div class="card-meta">RM 39.00 &nbsp;·&nbsp; Sold: 121</div>
+                <div class="card-footer"><span class="card-note">Cas Pantas</span><button class="add-to-cart-btn" data-name="iPhone Charger">Add to Cart</button></div>
               </div>
             </article>
 
@@ -884,6 +936,28 @@
                 <div class="star-rating" data-value="5"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star filled" data-star="5">★</span><span class="rating-count">60 orang</span></div>
                 <div class="card-meta">RM 55.00 &nbsp;·&nbsp; Sold: 47</div>
                 <div class="card-footer"><span class="card-note">Set Lengkap</span><button class="add-to-cart-btn" data-name="Set Aksesori Tangan">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/KRAFTANGAN/beg manik.jpg" alt="Beg Manik"><div class="card-rank">07</div></div>
+              <div class="card-content">
+                <span class="card-tag">Kraftangan</span>
+                <h3>Beg Manik</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">36 orang</span></div>
+                <div class="card-meta">RM 69.00 &nbsp;·&nbsp; Sold: 29</div>
+                <div class="card-footer"><span class="card-note">Aksesori</span><button class="add-to-cart-btn" data-name="Beg Manik">Add to Cart</button></div>
+              </div>
+            </article>
+
+            <article class="category-card">
+              <div class="card-media"><img src="ICON/KRAFTANGAN/bakul rotan.jpg" alt="Bakul Rotan"><div class="card-rank">08</div></div>
+              <div class="card-content">
+                <span class="card-tag">Kraftangan</span>
+                <h3>Bakul Rotan</h3>
+                <div class="star-rating" data-value="4"><span class="star filled" data-star="1">★</span><span class="star filled" data-star="2">★</span><span class="star filled" data-star="3">★</span><span class="star filled" data-star="4">★</span><span class="star" data-star="5">★</span><span class="rating-count">31 orang</span></div>
+                <div class="card-meta">RM 52.00 &nbsp;·&nbsp; Sold: 36</div>
+                <div class="card-footer"><span class="card-note">Anyaman</span><button class="add-to-cart-btn" data-name="Bakul Rotan">Add to Cart</button></div>
               </div>
             </article>
 
@@ -1423,14 +1497,14 @@
 
       function goTo(index) {
         current = (index + total) % total;
-        const offset = current * (cards[0].offsetWidth + 20);
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const offset = current * (cards[0].offsetWidth + gap);
         track.style.transform = 'translateX(-' + offset + 'px)';
         dotsContainer.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
       }
 
       function startAuto() {
         clearInterval(autoTimer);
-        autoTimer = setInterval(() => goTo(current + 1), 2000);
       }
 
       function handleTouchStart(event) {
@@ -1519,11 +1593,7 @@
       startAuto();
     }
 
-    initSlider('fesyen-track',    'fesyen-dots');
-    initSlider('elektronik-track','elektronik-dots');
-    initSlider('kraf-track',      'kraf-dots');
-    initSlider('maan-track',      'maan-dots');
-    initSlider('homestay-track',  'homestay-dots');
+    // Slider behavior disabled: categories now flow vertically in grid layout.
   </script>
 </body>
 </html>

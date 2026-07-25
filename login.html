@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login – JakMiris</title>
+  <title>Log Masuk – JakMiris</title>
   <link rel="stylesheet" href="CSS/style.css">
   <link rel="stylesheet" href="CSS/loginstyle.css">
 </head>
@@ -17,14 +17,22 @@
       </div>
       <div class="top-actions">
         <span title="Cart">🛒</span>
-        <span title="Language">EN | MY</span>
+        <button id="lang-btn" class="lang-toggle" onclick="toggleLang()" aria-label="Switch language">
+          <span class="lang-active">MY</span> | EN
+        </button>
       </div>
     </div>
     <nav class="sub-nav">
-      <a href="index.html">Halaman Utama</a>
-      <a href="bisnes.html">Bisnes</a>
-      <a href="profile.html">Profile</a>
-      <a href="aboutus.html">About Us</a>
+      <a href="index.html" data-i18n="nav.home">Halaman Utama</a>
+      <a href="bisnes.html" data-i18n="nav.bisnes">Bisnes</a>
+      <a href="profile.html" data-i18n="nav.profile">Profil</a>
+      <a href="aboutus.html" data-i18n="nav.aboutus">Tentang Kami</a>
+      <a href="maan.html">Maan</a>
+      <a href="kraftangan.html">Handicraft</a>
+      <a href="beauty.html">Beauty</a>
+      <a href="jewerly.html">Jewelry</a>
+      <a href="sport.html">Sports</a>
+      <a href="login.html" class="active">Log Masuk</a>
     </nav>
   </header>
 
@@ -33,13 +41,13 @@
       <div class="auth-logo">
         <img src="ICON/LOGO/Jak Miris Shop (4).png" alt="JakMiris Logo">
         <h1>JAKMIRIS</h1>
-        <p class="auth-tagline">Warisan Borneo, pilihan moden.</p>
+        <p class="auth-tagline" data-i18n="page.tagline">Warisan Borneo, pilihan moden.</p>
       </div>
 
       <!-- Tab Switch -->
       <div class="auth-tabs">
-        <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Log Masuk</button>
-        <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Daftar</button>
+        <button class="auth-tab active" id="tab-login" onclick="switchTab('login')" data-i18n="tab.login">Log Masuk</button>
+        <button class="auth-tab" id="tab-register" onclick="switchTab('register')" data-i18n="tab.register">Daftar</button>
       </div>
 
       <!-- Login Form -->
@@ -47,15 +55,19 @@
         <div id="login-alert" class="auth-alert hidden"></div>
 
         <div class="form-group">
-          <label for="login-email">E-mel / Nama Pengguna</label>
-          <input type="text" id="login-email" name="email" placeholder="contoh@email.com" autocomplete="username" required>
+          <label for="login-email" data-i18n="label.login.email">E-mel / Nama Pengguna</label>
+          <input type="text" id="login-email" name="email"
+                 data-i18n-ph="placeholder.login.email"
+                 placeholder="contoh@email.com" autocomplete="username" required>
           <span class="field-error" id="err-login-email"></span>
         </div>
 
         <div class="form-group">
-          <label for="login-password">Kata Laluan</label>
+          <label for="login-password" data-i18n="label.login.password">Kata Laluan</label>
           <div class="password-wrap">
-            <input type="password" id="login-password" name="password" placeholder="Masukkan kata laluan" autocomplete="current-password" required>
+            <input type="password" id="login-password" name="password"
+                   data-i18n-ph="placeholder.login.pw"
+                   placeholder="Masukkan kata laluan" autocomplete="current-password" required>
             <button type="button" class="toggle-pw" onclick="togglePassword('login-password', this)" aria-label="Show password">👁</button>
           </div>
           <span class="field-error" id="err-login-password"></span>
@@ -63,19 +75,22 @@
 
         <div class="form-row">
           <label class="remember-me">
-            <input type="checkbox" name="remember"> Ingat saya
+            <input type="checkbox" name="remember">
+            <span data-i18n="remember">Ingat saya</span>
           </label>
-          <a href="#" class="forgot-link">Lupa kata laluan?</a>
+          <a href="#" class="forgot-link" data-i18n="forgot">Lupa kata laluan?</a>
         </div>
 
-        <button type="submit" class="btn-auth" id="btn-login">Log Masuk</button>
+        <button type="submit" class="btn-auth" id="btn-login" data-i18n="btn.login">Log Masuk</button>
 
-        <div class="divider"><span>atau</span></div>
+        <div class="divider"><span data-i18n="or">atau</span></div>
         <button type="button" class="btn-social" onclick="socialLogin('google')">
-          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="20"> Teruskan dengan Google
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="20">
+          <span data-i18n="social.google">Teruskan dengan Google</span>
         </button>
         <button type="button" class="btn-social" onclick="socialLogin('facebook')">
-          <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook" width="20"> Teruskan dengan Facebook
+          <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook" width="20">
+          <span data-i18n="social.facebook">Teruskan dengan Facebook</span>
         </button>
       </form>
 
@@ -84,27 +99,34 @@
         <div id="register-alert" class="auth-alert hidden"></div>
 
         <div class="form-group">
-          <label for="reg-name">Nama Penuh</label>
-          <input type="text" id="reg-name" name="name" placeholder="Nama Penuh Anda" autocomplete="name" required>
+          <label for="reg-name" data-i18n="label.reg.name">Nama Penuh</label>
+          <input type="text" id="reg-name" name="name"
+                 data-i18n-ph="placeholder.reg.name"
+                 placeholder="Nama Penuh Anda" autocomplete="name" required>
           <span class="field-error" id="err-reg-name"></span>
         </div>
 
         <div class="form-group">
-          <label for="reg-email">E-mel</label>
-          <input type="email" id="reg-email" name="email" placeholder="contoh@email.com" autocomplete="email" required>
+          <label for="reg-email" data-i18n="label.reg.email">E-mel</label>
+          <input type="email" id="reg-email" name="email"
+                 data-i18n-ph="placeholder.login.email"
+                 placeholder="contoh@email.com" autocomplete="email" required>
           <span class="field-error" id="err-reg-email"></span>
         </div>
 
         <div class="form-group">
-          <label for="reg-phone">Nombor Telefon</label>
-          <input type="tel" id="reg-phone" name="phone" placeholder="+60 12-345 6789" autocomplete="tel">
+          <label for="reg-phone" data-i18n="label.reg.phone">Nombor Telefon</label>
+          <input type="tel" id="reg-phone" name="phone"
+                 placeholder="+60 12-345 6789" autocomplete="tel">
           <span class="field-error" id="err-reg-phone"></span>
         </div>
 
         <div class="form-group">
-          <label for="reg-password">Kata Laluan</label>
+          <label for="reg-password" data-i18n="label.reg.password">Kata Laluan</label>
           <div class="password-wrap">
-            <input type="password" id="reg-password" name="password" placeholder="Sekurang-kurangnya 8 aksara" autocomplete="new-password" required>
+            <input type="password" id="reg-password" name="password"
+                   data-i18n-ph="placeholder.reg.pw"
+                   placeholder="Sekurang-kurangnya 8 aksara" autocomplete="new-password" required>
             <button type="button" class="toggle-pw" onclick="togglePassword('reg-password', this)" aria-label="Show password">👁</button>
           </div>
           <span class="field-error" id="err-reg-password"></span>
@@ -113,9 +135,11 @@
         </div>
 
         <div class="form-group">
-          <label for="reg-confirm">Sahkan Kata Laluan</label>
+          <label for="reg-confirm" data-i18n="label.reg.confirm">Sahkan Kata Laluan</label>
           <div class="password-wrap">
-            <input type="password" id="reg-confirm" name="confirm" placeholder="Ulang kata laluan" autocomplete="new-password" required>
+            <input type="password" id="reg-confirm" name="confirm"
+                   data-i18n-ph="placeholder.reg.confirm"
+                   placeholder="Ulang kata laluan" autocomplete="new-password" required>
             <button type="button" class="toggle-pw" onclick="togglePassword('reg-confirm', this)" aria-label="Show password">👁</button>
           </div>
           <span class="field-error" id="err-reg-confirm"></span>
@@ -123,16 +147,17 @@
 
         <label class="remember-me terms-check">
           <input type="checkbox" id="reg-terms" required>
-          Saya bersetuju dengan <a href="#">Terma &amp; Syarat</a> dan <a href="#">Dasar Privasi</a>
+          <span id="terms-text">Saya bersetuju dengan <a href="#">Terma &amp; Syarat</a> dan <a href="#">Dasar Privasi</a></span>
         </label>
         <span class="field-error" id="err-reg-terms"></span>
 
-        <button type="submit" class="btn-auth" id="btn-register">Buat Akaun</button>
+        <button type="submit" class="btn-auth" id="btn-register" data-i18n="btn.register">Buat Akaun</button>
       </form>
 
     </div>
   </main>
 
+  <script src="js/i18n.js"></script>
   <script src="js/auth.js"></script>
 </body>
 </html>

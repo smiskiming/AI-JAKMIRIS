@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Essential Sports Equipment</title>
+  <title>Peralatan Sukan Penting</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" type="text/css" href="CSS/style.css">
@@ -11,83 +11,84 @@
 </head>
 <body class="home-page">
   <div class="notification-toast-stack" aria-live="polite" aria-atomic="true"></div>
+  <div class="page-shell">
 
   <header class="store-header site-header">
     <div class="top-bar header-main">
-      <a class="brand-block brand" href="index.html" aria-label="JAKMIRIS home">
+      <a class="brand-block brand" href="index.html" aria-label="Laman utama JAKMIRIS">
         <img class="brand-logo" src="ICON/LOGO/Jak Miris Shop (4).png" alt="JAKMIRIS logo">
         <div class="brand-text">
           <span>JAKMIRIS</span>
         </div>
       </a>
 
-      <form class="search-wrap header-search" role="search" aria-label="Search products">
+      <form class="search-wrap header-search" role="search" aria-label="Cari produk">
         <input
           type="search"
-          placeholder="Search products, brands, and categories"
-          aria-label="Search products, brands, and categories"
+          placeholder="Cari produk, jenama, dan kategori"
+          aria-label="Cari produk, jenama, dan kategori"
         >
-        <button type="submit" aria-label="Search">🔍</button>
+        <button type="submit" aria-label="Cari">🔍</button>
       </form>
 
-      <div class="top-actions header-actions" aria-label="Account and shopping actions">
-        <button class="icon-btn wishlist-btn" type="button" aria-label="Wishlist">
+      <div class="top-actions header-actions" aria-label="Akaun dan tindakan belian">
+        <button class="icon-btn wishlist-btn" type="button" aria-label="Senarai hasrat">
           <span aria-hidden="true">♡</span>
         </button>
-        <button class="icon-btn cart-btn" type="button" aria-label="Shopping cart" aria-expanded="false" aria-controls="cartPanel">
-          <span class="cart-badge" aria-label="0 items in cart">0</span>
+        <button class="icon-btn cart-btn" type="button" aria-label="Troli beli-belah" aria-expanded="false" aria-controls="cartPanel">
+          <span class="cart-badge" aria-label="0 item dalam troli">0</span>
           <span aria-hidden="true">🛒</span>
         </button>
-        <button class="icon-btn" type="button" aria-label="User profile">
+        <a class="icon-btn" href="login.html" aria-label="Profil pengguna">
           <span aria-hidden="true">👤</span>
-        </button>
-        <button class="language-switch" type="button" aria-label="Switch language">
+        </a>
+        <button class="language-switch" type="button" aria-label="Tukar bahasa">
           <span>EN | MY</span>
         </button>
 
-        <aside class="cart-panel" id="cartPanel" aria-label="Shopping cart" hidden>
-          <p class="cart-panel-title">Your Cart</p>
+        <aside class="cart-panel" id="cartPanel" aria-label="Troli beli-belah" hidden>
+          <p class="cart-panel-title">Troli Anda</p>
           <ul class="cart-items" aria-live="polite"></ul>
-          <p class="cart-empty">No items yet.</p>
+          <p class="cart-empty">Belum ada item.</p>
           <div class="cart-summary" hidden>
             <p class="cart-summary-row"><span>Subtotal</span><strong class="cart-subtotal">RM 0.00</strong></p>
-            <p class="cart-summary-row"><span>Discount</span><strong class="cart-discount">-RM 0.00</strong></p>
-            <p class="cart-summary-row total"><span>Total</span><strong class="cart-total">RM 0.00</strong></p>
-            <p class="cart-applied-coupon">No coupon applied.</p>
+            <p class="cart-summary-row"><span>Diskaun</span><strong class="cart-discount">-RM 0.00</strong></p>
+            <p class="cart-summary-row total"><span>Jumlah</span><strong class="cart-total">RM 0.00</strong></p>
+            <p class="cart-applied-coupon">Tiada kupon digunakan.</p>
           </div>
-          <button class="cart-clear-btn" type="button">Clear Cart</button>
+          <button class="cart-clear-btn" type="button">Kosongkan Troli</button>
         </aside>
 
-        <aside class="notification-panel" id="notificationPanel" aria-label="Notifications" hidden>
+        <aside class="notification-panel" id="notificationPanel" aria-label="Notifikasi" hidden>
           <div class="notification-head">
-            <p class="notification-title">Notifications</p>
-            <button class="notification-read-all" type="button">Mark all as read</button>
+            <p class="notification-title">Notifikasi</p>
+            <button class="notification-read-all" type="button">Tanda semua sebagai dibaca</button>
           </div>
           <ul class="notification-list" aria-live="polite"></ul>
         </aside>
 
-        <aside class="coupon-panel" id="couponPanel" aria-label="Coupons" hidden>
-          <p class="coupon-title">Available Coupons</p>
+        <aside class="coupon-panel" id="couponPanel" aria-label="Kupon" hidden>
+          <p class="coupon-title">Kupon Tersedia</p>
           <ul class="coupon-list">
             <li class="coupon-item" data-code="SPORT30" data-type="percent" data-value="30" data-min="100">
               <p class="coupon-code">SPORT30</p>
-              <p class="coupon-meta">30% OFF Sports Apparel</p>
-              <button class="coupon-use-btn" type="button" data-code="SPORT30">Use Coupon</button>
+              <p class="coupon-meta">Diskaun 30% Pakaian Sukan</p>
+              <button class="coupon-use-btn" type="button" data-code="SPORT30">Guna Kupon</button>
             </li>
             <li class="coupon-item" data-code="FITRM10" data-type="fixed" data-value="10" data-min="80">
               <p class="coupon-code">FITRM10</p>
-              <p class="coupon-meta">RM10 voucher for orders above RM80</p>
-              <button class="coupon-use-btn" type="button" data-code="FITRM10">Use Coupon</button>
+              <p class="coupon-meta">Baucar RM10 untuk pesanan melebihi RM80</p>
+              <button class="coupon-use-btn" type="button" data-code="FITRM10">Guna Kupon</button>
             </li>
             <li class="coupon-item" data-code="FREESHIP" data-type="fixed" data-value="12" data-min="60">
               <p class="coupon-code">FREESHIP</p>
-              <p class="coupon-meta">Free shipping for all fitness essentials</p>
-              <button class="coupon-use-btn" type="button" data-code="FREESHIP">Use Coupon</button>
+              <p class="coupon-meta">Penghantaran percuma untuk semua keperluan kecergasan</p>
+              <button class="coupon-use-btn" type="button" data-code="FREESHIP">Guna Kupon</button>
             </li>
             <li class="coupon-item" data-code="BAND15" data-type="percent" data-value="15" data-min="120">
               <p class="coupon-code">BAND15</p>
-              <p class="coupon-meta">15% OFF resistance and training gear</p>
-              <button class="coupon-use-btn" type="button" data-code="BAND15">Use Coupon</button>
+              <p class="coupon-meta">Diskaun 15% untuk peralatan rintangan dan latihan</p>
+              <button class="coupon-use-btn" type="button" data-code="BAND15">Guna Kupon</button>
             </li>
           </ul>
           <p class="coupon-feedback" aria-live="polite"></p>
@@ -95,32 +96,58 @@
       </div>
     </div>
 
-    <nav class="sub-nav site-nav" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="bisnes.html">Business</a>
-      <a href="profile.html">Profile</a>
-      <a href="aboutus.html">About Us</a>
-      <a href="maan.html">Food</a>
-      <a href="kraftangan.html">Handicraft</a>
-      <a href="#">Beauty</a>
-      <a href="#">Jewellery</a>
-      <a href="#">Home &amp; Living</a>
-      <a href="#">Electronics</a>
-      <a href="sport.html" class="active">Sports</a>
-      <a href="#">Accessories</a>
-      <a href="#">More</a>
+    <nav class="sub-nav site-nav" aria-label="Navigasi utama">
+      <a href="index.html">Halaman Utama</a>
+      <a href="bisnes.html">Bisnes</a>
+      <a href="profile.html">Profil</a>
+      <a href="aboutus.html">Tentang Kami</a>
+      <a href="maan.html">Makanan</a>
+      <a href="kraftangan.html">Kraftangan</a>
+      <a href="beauty.html">Kecantikan</a>
+      <a href="jewerly.html">Barang Kemas</a>
+      <a href="sport.html" class="active">Sukan</a>
+      <a href="login.html">Log Masuk</a>
     </nav>
   </header>
 
   <main class="sports-store">
-    <section class="hero" aria-label="Essential sports equipment showcase">
-      <form class="hero-search" role="search" aria-label="Search products or categories">
-        <input type="search" placeholder="Search for products or categories..." aria-label="Search for products or categories">
-        <button type="submit" aria-label="Search">🔍</button>
-      </form>
+    <div class="search-only-bar">
+      <div class="search-only-inner">
+        <div class="search-panel">
+          <input type="search" placeholder="Cari peralatan sukan, alat kecergasan atau kit latihan..." aria-label="Cari produk sukan">
+        </div>
+      </div>
+    </div>
+
+    <section class="sports-hero" aria-label="Pameran keperluan sukan">
+      <div>
+        <span class="section-chip">Studio Sukan</span>
+        <h1>Keperluan sukan yang dibina untuk prestasi, keselesaan dan latihan harian.</h1>
+        <p>Temui peralatan dipercayai dari kardio hingga kekuatan dan sukan berpasukan, dipilih khas untuk sekolah, kelab dan rutin kecergasan harian.</p>
+        <div class="hero-tags">
+          <span>Sukan Berpasukan</span>
+          <span>Senaman Di Rumah</span>
+          <span>Sedia Luar</span>
+          <span>Kecergasan Harian</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Mengapa beli sukan di JakMiris?</h3>
+        <ul>
+          <li>Peralatan praktikal untuk latihan, hari perlawanan dan pemulihan</li>
+          <li>Pilihan mampu milik untuk pelajar, kelab dan keluarga</li>
+          <li>Kualiti yang boleh dipercayai dengan reka bentuk moden berfokuskan sukan</li>
+        </ul>
+      </div>
     </section>
 
-    <section class="carousel-section" aria-label="Sports products carousel">
+    <section class="carousel-section" aria-label="Karusel produk sukan">
+      <div class="section-head">
+        <div>
+          <span class="section-chip">Pilihan</span>
+          <h2>Pilihan Sukan Paling Popular</h2>
+        </div>
+      </div>
       <div class="swiper sports-swiper">
         <div class="swiper-wrapper">
           <article class="swiper-slide product-card">
@@ -130,81 +157,81 @@
             <div class="product-content">
               <p class="product-category">SPORTS</p>
               <h2>Multifunction Golf Trolley</h2>
-              <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
+              <p class="rating" aria-label="4 out of 5 stars">★★★★</p>
               <div class="meta-row">
-                <p class="price">RM 540.00</p>
-                <span class="sold">3.4k sold</span>
+                <p class="price">RM 340.00</p>
+                <span class="sold">0.4k terjual</span>
               </div>
-              <p class="product-type">Type: Golf</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Golf</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
           <article class="swiper-slide product-card">
             <div class="product-image-wrap">
-              <img src="https://source.unsplash.com/900x900/?basketball" alt="Indoor outdoor basketball" loading="lazy">
+              <img src="ICON/SPORTS/kon.jpg" alt="Training Cons" loading="lazy">
             </div>
             <div class="product-content">
               <p class="product-category">SPORTS</p>
-              <h2>Grip Control Basketball</h2>
+              <h2>Training Cons</h2>
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
-                <p class="price">RM 95.00</p>
-                <span class="sold">1.1k sold</span>
+                <p class="price">RM 30.00</p>
+                <span class="sold">7.1k terjual</span>
               </div>
-              <p class="product-type">Type: Basketball</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Training Equipment</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
           <article class="swiper-slide product-card">
             <div class="product-image-wrap">
-              <img src="ICON/SPORTS/BADMINTON RACKET.jpg" alt="Badminton racket set" loading="lazy">
-            </div>
-            <div class="product-content">
-              <p class="product-category">SPORTS</p>
-              <h2>Carbon Badminton Racket</h2>
-              <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
-              <div class="meta-row">
-                <p class="price">RM 129.00</p>
-                <span class="sold">890 sold</span>
-              </div>
-              <p class="product-type">Type: Rackets</p>
-              <button type="button">Add to Cart</button>
-            </div>
-          </article>
-
-          <article class="swiper-slide product-card">
-            <div class="product-image-wrap">
-              <img src="https://source.unsplash.com/900x900/?shuttlecock" alt="Premium shuttlecock tube" loading="lazy">
+              <img src="ICON/SPORTS/shuttlecock.jpg" alt="Badminton shuttlecock" loading="lazy">
             </div>
             <div class="product-content">
               <p class="product-category">SPORTS</p>
               <h2>Feather Shuttlecock Pack</h2>
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
-                <p class="price">RM 38.00</p>
-                <span class="sold">2.2k sold</span>
+                <p class="price">RM 30.00</p>
+                <span class="sold">5.7k terjual</span>
               </div>
-              <p class="product-type">Type: Shuttlecocks</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Badminton</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
           <article class="swiper-slide product-card">
             <div class="product-image-wrap">
-              <img src="https://source.unsplash.com/900x900/?running,shoes" alt="Sports running shoes" loading="lazy">
+              <img src="ICON/SPORTS/dumbbell.jpg" alt="Dumbbell Set for Beginner" loading="lazy">
             </div>
             <div class="product-content">
               <p class="product-category">SPORTS</p>
-              <h2>Velocity Sports Shoes</h2>
+              <h2>Dumbbell Set for Beginner</h2>
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
-                <p class="price">RM 189.00</p>
-                <span class="sold">760 sold</span>
+                <p class="price">RM 16.00</p>
+                <span class="sold">2.2k terjual</span>
               </div>
-              <p class="product-type">Type: Footwear</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Dumbbells</p>
+              <button type="button">Tambah ke Troli</button>
+            </div>
+          </article>
+
+          <article class="swiper-slide product-card">
+            <div class="product-image-wrap">
+              <img src="ICON/SPORTS/mat.jpg" alt="Multi-purpose Yoga Mat" loading="lazy">
+            </div>
+            <div class="product-content">
+              <p class="product-category">SPORTS</p>
+              <h2>Multi-purposeYoga Mat</h2>
+              <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
+              <div class="meta-row">
+                <p class="price">RM 10.00</p>
+                <span class="sold">1.1k terjual</span>
+              </div>
+              <p class="product-type">Jenis: Yoga</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
@@ -218,10 +245,10 @@
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
                 <p class="price">RM 55.00</p>
-                <span class="sold">1.9k sold</span>
+                <span class="sold">1.9k terjual</span>
               </div>
-              <p class="product-type">Type: Hydration</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Hydration</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
@@ -235,10 +262,10 @@
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
                 <p class="price">RM 249.00</p>
-                <span class="sold">530 sold</span>
+                <span class="sold">530 terjual</span>
               </div>
-              <p class="product-type">Type: Strength</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Strength</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
@@ -252,10 +279,10 @@
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
                 <p class="price">RM 68.00</p>
-                <span class="sold">1.3k sold</span>
+                <span class="sold">1.3k terjual</span>
               </div>
-              <p class="product-type">Type: Flexibility</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Flexibility</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
@@ -269,10 +296,10 @@
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
                 <p class="price">RM 49.00</p>
-                <span class="sold">1.7k sold</span>
+                <span class="sold">1.7k terjual</span>
               </div>
-              <p class="product-type">Type: Training</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Training</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
@@ -286,10 +313,10 @@
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
                 <p class="price">RM 92.00</p>
-                <span class="sold">610 sold</span>
+                <span class="sold">610 terjual</span>
               </div>
-              <p class="product-type">Type: Volleyball</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Volleyball</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
@@ -303,10 +330,10 @@
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
                 <p class="price">RM 299.00</p>
-                <span class="sold">480 sold</span>
+                <span class="sold">480 terjual</span>
               </div>
-              <p class="product-type">Type: Footwear</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Footwear</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
@@ -320,10 +347,10 @@
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
                 <p class="price">RM 35.00</p>
-                <span class="sold">2k sold</span>
+                <span class="sold">2k terjual</span>
               </div>
-              <p class="product-type">Type: Coaching</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Coaching</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
@@ -337,10 +364,10 @@
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
                 <p class="price">RM 19.00</p>
-                <span class="sold">3.1k sold</span>
+                <span class="sold">3.1k terjual</span>
               </div>
-              <p class="product-type">Type: Coaching</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Coaching</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
@@ -354,10 +381,10 @@
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
                 <p class="price">RM 42.00</p>
-                <span class="sold">1.6k sold</span>
+                <span class="sold">1.6k terjual</span>
               </div>
-              <p class="product-type">Type: Cardio</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Cardio</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
 
@@ -371,20 +398,25 @@
               <p class="rating" aria-label="5 out of 5 stars">★★★★★</p>
               <div class="meta-row">
                 <p class="price">RM 110.00</p>
-                <span class="sold">705 sold</span>
+                <span class="sold">705 terjual</span>
               </div>
-              <p class="product-type">Type: Goalkeeping</p>
-              <button type="button">Add to Cart</button>
+              <p class="product-type">Jenis: Goalkeeping</p>
+              <button type="button">Tambah ke Troli</button>
             </div>
           </article>
         </div>
 
-        <div class="swiper-button-prev" aria-label="Previous products"></div>
-        <div class="swiper-button-next" aria-label="Next products"></div>
+        <div class="swiper-button-prev" aria-label="Produk sebelumnya"></div>
+        <div class="swiper-button-next" aria-label="Produk seterusnya"></div>
         <div class="swiper-pagination"></div>
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <span>JakMiris Sukan • Peralatan aktif untuk setiap hari latihan</span>
+  </footer>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/sports.js"></script>

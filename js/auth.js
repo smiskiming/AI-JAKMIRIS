@@ -38,10 +38,10 @@ if (regPassword) {
     const label = document.getElementById('strength-label');
     const levels = [
       { width: '0%',   bg: 'transparent', text: '' },
-      { width: '25%',  bg: '#e53935',     text: 'Lemah' },
-      { width: '50%',  bg: '#fb8c00',     text: 'Sederhana' },
-      { width: '75%',  bg: '#fdd835',     text: 'Kuat' },
-      { width: '100%', bg: '#43a047',     text: 'Sangat Kuat' },
+      { width: '25%',  bg: '#e53935',     text: t('strength.weak') },
+      { width: '50%',  bg: '#fb8c00',     text: t('strength.fair') },
+      { width: '75%',  bg: '#fdd835',     text: t('strength.strong') },
+      { width: '100%', bg: '#43a047',     text: t('strength.vstrong') },
     ];
     const level = this.value.length === 0 ? levels[0] : levels[score];
     fill.style.width = level.width;
@@ -84,14 +84,14 @@ if (formLogin) {
     let valid = true;
 
     if (!email) {
-      setError('login-email', 'err-login-email', 'Sila masukkan e-mel atau nama pengguna.');
+      setError('login-email', 'err-login-email', t('err.login.email'));
       valid = false;
     } else {
       setError('login-email', 'err-login-email', '');
     }
 
     if (!password) {
-      setError('login-password', 'err-login-password', 'Sila masukkan kata laluan.');
+      setError('login-password', 'err-login-password', t('err.login.password'));
       valid = false;
     } else {
       setError('login-password', 'err-login-password', '');
@@ -101,7 +101,7 @@ if (formLogin) {
 
     const btn = document.getElementById('btn-login');
     btn.disabled = true;
-    btn.textContent = 'Sedang masuk…';
+    btn.textContent = t('btn.login.loading');
 
     try {
       const res  = await fetch('php/login.php', {
@@ -112,16 +112,16 @@ if (formLogin) {
       const data = await res.json();
 
       if (data.success) {
-        showAlert('login-alert', '✓ Berjaya log masuk! Mengalihkan…', 'success');
+        showAlert('login-alert', t('alert.login.success'), 'success');
         setTimeout(() => { window.location.href = data.redirect || 'index.html'; }, 1200);
       } else {
-        showAlert('login-alert', data.message || 'E-mel atau kata laluan tidak sah.', 'error');
+        showAlert('login-alert', data.message || t('alert.login.invalid'), 'error');
       }
     } catch {
-      showAlert('login-alert', 'Ralat sambungan. Sila cuba lagi.', 'error');
+      showAlert('login-alert', t('err.connection'), 'error');
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Log Masuk';
+      btn.textContent = t('btn.login');
     }
   });
 }
@@ -142,35 +142,35 @@ if (formRegister) {
     let valid = true;
 
     if (!name) {
-      setError('reg-name', 'err-reg-name', 'Nama penuh diperlukan.'); valid = false;
+      setError('reg-name', 'err-reg-name', t('err.reg.name')); valid = false;
     } else { setError('reg-name', 'err-reg-name', ''); }
 
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRe.test(email)) {
-      setError('reg-email', 'err-reg-email', 'Sila masukkan e-mel yang sah.'); valid = false;
+      setError('reg-email', 'err-reg-email', t('err.reg.email')); valid = false;
     } else { setError('reg-email', 'err-reg-email', ''); }
 
     if (phone && !/^\+?[\d\s\-()]{7,15}$/.test(phone)) {
-      setError('reg-phone', 'err-reg-phone', 'Format telefon tidak sah.'); valid = false;
+      setError('reg-phone', 'err-reg-phone', t('err.reg.phone')); valid = false;
     } else { setError('reg-phone', 'err-reg-phone', ''); }
 
     if (password.length < 8) {
-      setError('reg-password', 'err-reg-password', 'Kata laluan sekurang-kurangnya 8 aksara.'); valid = false;
+      setError('reg-password', 'err-reg-password', t('err.reg.password')); valid = false;
     } else { setError('reg-password', 'err-reg-password', ''); }
 
     if (password !== confirm) {
-      setError('reg-confirm', 'err-reg-confirm', 'Kata laluan tidak sepadan.'); valid = false;
+      setError('reg-confirm', 'err-reg-confirm', t('err.reg.confirm')); valid = false;
     } else { setError('reg-confirm', 'err-reg-confirm', ''); }
 
     if (!terms) {
-      document.getElementById('err-reg-terms').textContent = 'Anda mesti bersetuju dengan terma.'; valid = false;
+      document.getElementById('err-reg-terms').textContent = t('err.reg.terms'); valid = false;
     } else { document.getElementById('err-reg-terms').textContent = ''; }
 
     if (!valid) return;
 
     const btn = document.getElementById('btn-register');
     btn.disabled = true;
-    btn.textContent = 'Mendaftar…';
+    btn.textContent = t('btn.register.loading');
 
     try {
       const res  = await fetch('php/register.php', {
@@ -181,22 +181,22 @@ if (formRegister) {
       const data = await res.json();
 
       if (data.success) {
-        showAlert('register-alert', '✓ Akaun berjaya dibuat! Sila log masuk.', 'success');
+        showAlert('register-alert', t('alert.register.success'), 'success');
         formRegister.reset();
         setTimeout(() => switchTab('login'), 1800);
       } else {
-        showAlert('register-alert', data.message || 'Pendaftaran gagal. Sila cuba lagi.', 'error');
+        showAlert('register-alert', data.message || t('alert.register.fail'), 'error');
       }
     } catch {
-      showAlert('register-alert', 'Ralat sambungan. Sila cuba lagi.', 'error');
+      showAlert('register-alert', t('err.connection'), 'error');
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Buat Akaun';
+      btn.textContent = t('btn.register');
     }
   });
 }
 
 // ── Social Login Placeholder ──────────────────────────────────
 function socialLogin(provider) {
-  alert(`Integrasi ${provider} akan datang!`);
+  alert(provider + t('social.soon'));
 }

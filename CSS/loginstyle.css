@@ -302,6 +302,31 @@
   border: 1px solid #ef9a9a;
 }
 
+/* ─── Language Toggle ────────────────────────────────────────── */
+.lang-toggle {
+  background: none;
+  border: 1.5px solid rgba(122, 47, 34, 0.3);
+  border-radius: 20px;
+  padding: 0.28rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #7a2f22;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.18s, border-color 0.18s;
+}
+
+.lang-toggle:hover {
+  background: rgba(122, 47, 34, 0.07);
+  border-color: #b86a35;
+}
+
+.lang-active {
+  color: #b86a35;
+  font-weight: 800;
+}
+
 /* ─── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .auth-card {
