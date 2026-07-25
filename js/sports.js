@@ -49,12 +49,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartSummary = cartPanel?.querySelector('.cart-summary');
   const cartClearBtn = cartPanel?.querySelector('.cart-clear-btn');
 
+  function applyMalayLocalization() {
+    document.querySelectorAll('.product-content button').forEach((button) => {
+      button.textContent = 'Tambah ke Troli';
+    });
+
+    document.querySelectorAll('.product-type').forEach((typeLabel) => {
+      typeLabel.textContent = typeLabel.textContent.replace(/^Type:/, 'Jenis:');
+    });
+
+    document.querySelectorAll('.sold').forEach((soldLabel) => {
+      soldLabel.textContent = soldLabel.textContent.replace(/ sold$/i, ' terjual');
+    });
+  }
+
   function getCartItems() {
     try {
       const stored = localStorage.getItem(CART_STORAGE_KEY);
       return stored ? JSON.parse(stored) : [];
     } catch (error) {
-      console.warn('Unable to read cart items:', error);
+      console.warn('Tidak dapat membaca item troli:', error);
       return [];
     }
   }
@@ -72,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const items = getCartItems();
     const total = getTotalQuantity(items);
     cartBadge.textContent = total;
-    cartBadge.setAttribute('aria-label', `${total} items in cart`);
+    cartBadge.setAttribute('aria-label', `${total} item dalam troli`);
   }
 
   function renderCart() {
@@ -148,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function handleAddToCart(button) {
     const card = button.closest('.product-card');
-    const name = card?.querySelector('h2')?.textContent?.trim() || 'Sports product';
+    const name = card?.querySelector('h2')?.textContent?.trim() || 'Produk sukan';
     const priceText = card?.querySelector('.price')?.textContent?.trim() || '0';
     const price = Number.parseFloat(priceText.replace(/[^\d.]/g, '')) || 0;
 
@@ -166,18 +180,15 @@ document.addEventListener('DOMContentLoaded', () => {
     openCart();
   }
 
-  document.querySelectorAll('.product-content button').forEach((button) => {
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      handleAddToCart(button);
-    });
-    button.addEventListener('pointerup', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      handleAddToCart(button);
-    });
+  // Swiper loop mode clones slides, so delegate clicks from the carousel root.
+  carousel?.addEventListener('click', (event) => {
+    const button = event.target.closest('.product-content button');
+    if (!button) return;
+    event.preventDefault();
+    event.stopPropagation();
+    handleAddToCart(button);
   });
 
+  applyMalayLocalization();
   renderCart();
 });
