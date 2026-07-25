@@ -2,666 +2,262 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KrafTangan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handicraft</title>
   <link rel="stylesheet" type="text/css" href="CSS/style.css">
-    <style>
-        .cart-btn {
-            position: relative;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.55rem;
-            padding: 6px 8px;
-            line-height: 1;
-            border-radius: 50%;
-            transition: background 0.2s;
-            flex-shrink: 0;
-        }
-
-        .cart-btn:hover {
-            background: rgba(200, 146, 58, 0.12);
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: #e03e2d;
-            color: #fff;
-            font-size: 0.6rem;
-            font-weight: 700;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease;
-            z-index: 1500;
-        }
-
-        .cart-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .cart-panel {
-            position: fixed;
-            top: 96px;
-            right: 18px;
-            width: min(360px, 92vw);
-            max-height: min(70vh, 620px);
-            background: #fffdf8;
-            border-radius: 16px;
-            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
-            z-index: 1600;
-            display: flex;
-            flex-direction: column;
-            opacity: 0;
-            transform: translateY(-8px) scale(0.98);
-            visibility: hidden;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
-
-        .cart-panel.open {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            visibility: visible;
-        }
-
-        .cart-panel-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 14px 10px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .cart-panel-head h3 {
-            margin: 0;
-            font-size: 1rem;
-            color: #4a3a2b;
-        }
-
-        .cart-close-btn {
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: #7a6a56;
-            line-height: 1;
-            padding: 4px;
-        }
-
-        .cart-items {
-            overflow: auto;
-            padding: 8px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            min-height: 84px;
-        }
-
-        .cart-item-row {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) auto auto;
-            gap: 8px;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        .cart-item-name {
-            font-size: 0.9rem;
-            color: #493728;
-        }
-
-        .cart-item-qty {
-            font-size: 0.8rem;
-            color: #8b7457;
-            white-space: nowrap;
-        }
-
-        .cart-item-remove {
-            border: none;
-            background: rgba(224, 62, 45, 0.14);
-            color: #ab2e20;
-            border-radius: 8px;
-            padding: 6px 8px;
-            font-size: 0.75rem;
-            cursor: pointer;
-        }
-
-        .cart-empty {
-            text-align: center;
-            color: #8f7c66;
-            padding: 20px 10px;
-            font-size: 0.9rem;
-        }
-
-        .cart-panel-foot {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 10px 12px 12px;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .cart-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cart-total-text {
-            font-size: 0.86rem;
-            color: #5f4a33;
-        }
-
-        .cart-clear-btn {
-            border: none;
-            background: #c8923a;
-            color: #fff;
-            border-radius: 10px;
-            padding: 8px 10px;
-            font-size: 0.78rem;
-            cursor: pointer;
-        }
-
-        .cart-clear-btn:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-        }
-
-        .cart-checkout-btn {
-            border: none;
-            background: #2f2418;
-            color: #fff;
-            border-radius: 10px;
-            padding: 8px 10px;
-            font-size: 0.78rem;
-            cursor: pointer;
-            font-weight: 700;
-        }
-
-        .cart-checkout-btn:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-        }
-
-        .kraft-page .kraft-products .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 22px;
-        }
-
-        @media (max-width: 980px) {
-            .kraft-page .kraft-products .product-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 18px;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .kraft-page .kraft-products .product-grid {
-                gap: 16px;
-            }
-        }
-    </style>
+  <link rel="stylesheet" type="text/css" href="CSS/jewerly.html.css">
 </head>
-<body class="home-page kraft-page">
+<body class="home-page">
+  <div class="page-shell">
     <header class="store-header">
-        <div class="top-bar">
-            <div class="brand-block">
-                <img class="brand-logo" src="ICON/LOGO/Jak Miris Shop (4).png" alt="JakMiris Logo">
-                <div class="brand-text">
-                    <span>JAKMIRIS</span>
-                </div>
-            </div>
-            <div class="search-wrap">
-                <input type="text" placeholder="Search products, brands, and categories">
-                <button aria-label="Search">🔍</button>
-            </div>
-            <div class="top-actions">
-                <a href="login.html" title="Account" style="text-decoration:none; color:inherit;">👤</a>
-                <button class="cart-btn" id="cart-btn" title="Troli beli-belah" type="button" aria-label="Troli beli-belah" aria-controls="cart-panel" aria-expanded="false">
-                    🛒
-                    <span class="cart-badge" id="cart-badge">0</span>
-                </button>
-                <span title="Wishlist">♡</span>
-                <span title="Language">EN | MY</span>
-            </div>
+      <div class="top-bar">
+        <div class="brand-block">
+          <img class="brand-logo" src="ICON/LOGO/Jak Miris Shop (4).png" alt="JakMiris Logo">
+          <div class="brand-text">
+            <span>JAKMIRIS</span>
+          </div>
         </div>
+        <div class="search-wrap">
+          <input type="text" placeholder="Cari kraf tangan, anyaman atau cenderahati...">
+          <button aria-label="Search">🔍</button>
+        </div>
+        <div class="top-actions">
+          <a href="login.html" title="Account" style="text-decoration:none; color:inherit;">👤</a>
+          <span title="Cart">🛒</span>
+          <span title="Wishlist">♡</span>
+          <span title="Language">EN | MY</span>
+        </div>
+      </div>
 
-        <nav class="sub-nav">
-            <a href="index.html">Halaman Utama</a>
-            <a href="bisnes.html">Bisnes</a>
-            <a href="profile.html">Profile</a>
-            <a href="aboutus.html">About Us</a>
-            <a href="maan.html">Maan</a>
-            <a href="kraftangan.html" class="active">Handicraft</a>
-            <a href="beauty.html">Beauty</a>
-            <a href="jewerly.html">Jewelry</a>
-            <a href="sport.html">Sports</a>
-            <a href="login.html">Login</a>
-        </nav>
+      <nav class="sub-nav">
+        <a href="index.html">Halaman Utama</a>
+        <a href="bisnes.html">Bisnes</a>
+        <a href="profile.html">Profile</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="maan.html">Maan</a>
+        <a href="kraftangan.html" class="active">Handicraft</a>
+        <a href="beauty.html">Beauty</a>
+        <a href="jewerly.html">Jewelry</a>
+        <a href="sport.html">Sports</a>
+        <a href="login.html">Login</a>
+      </nav>
     </header>
 
-    <div class="cart-overlay" id="cart-overlay"></div>
-    <aside class="cart-panel" id="cart-panel" aria-hidden="true">
-        <div class="cart-panel-head">
-            <h3>Troli Anda</h3>
-            <button class="cart-close-btn" id="cart-close-btn" type="button" aria-label="Tutup troli">&times;</button>
+    <main>
+      <div class="search-only-bar">
+        <div class="search-only-inner">
+          <div class="search-panel">
+            <input type="text" placeholder="Cari bakul, manik, tikar atau hiasan...">
+          </div>
         </div>
-        <div class="cart-items" id="cart-items"></div>
-        <div class="cart-panel-foot">
-            <span class="cart-total-text" id="cart-total-text">0 item</span>
-            <div class="cart-actions">
-                <button class="cart-clear-btn" id="cart-clear-btn" type="button">Kosongkan</button>
-                <button class="cart-checkout-btn" id="cart-checkout-btn" type="button">Checkout</button>
-            </div>
-        </div>
-    </aside>
+      </div>
 
-    <p class="brand bisnes_margin">"Setiap hasil membawa cerita, miliki satu hari ini dan sokong komuniti Padawan dengan membelinya!"</p>
-
-  <!-- Hero Section -->
-<section class="products kraft-products">
-    <div class="products-toolbar">
+      <section class="jewerly-hero">
         <div>
+          <span class="section-chip">Handicraft Studio</span>
+          <h1>Koleksi kraftangan yang autentik, kreatif dan sarat dengan warisan Borneo.</h1>
+          <p>Temui anyaman, manik, tekstil dan cenderahati buatan komuniti tempatan untuk gaya hidup dan hadiah bermakna.</p>
+          <div class="hero-tags">
+            <span>Buatan Tangan</span>
+            <span>Warisan Tempatan</span>
+            <span>Hadiah Unik</span>
+            <span>Sokong Komuniti</span>
+          </div>
         </div>
-    </div>
+        <div class="hero-card">
+          <h3>Kenapa pilih kraftangan di JakMiris?</h3>
+          <ul>
+            <li>Setiap hasil menampilkan identiti budaya Sarawak</li>
+            <li>Kualiti kerja tangan yang teliti dan bernilai seni</li>
+            <li>Sesuai dijadikan koleksi, dekorasi atau hadiah istimewa</li>
+          </ul>
+        </div>
+      </section>
 
-    <div class="product-grid">
-        <article class="product-card">
-            <span class="product-badge">Pilihan</span>
-            <div class="product-image-frame">
-                <img src="ICON/KRAFTANGAN/1 set aksesori.jpg" alt="Set aksesori">
+      <section class="slider-section">
+        <div class="section-head">
+          <div>
+            <span class="section-chip">Pilihan</span>
+            <h2>Kraftangan yang paling dicari</h2>
+          </div>
+        </div>
+        <div class="slider-track">
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/1 set aksesori.jpg" alt="Set aksesori etnik"></div>
+            <div class="card-content">
+              <span class="card-tag">Aksesori</span>
+              <h3>Set Aksesori Etnik</h3>
+              <div class="card-meta">Set lengkap manik tangan dengan gaya tradisi moden.</div>
+              <div class="card-footer"><span class="card-note">RM 90</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-            <div class="product-meta">
-                <h3>Aksesori Wanita Bidayuh</h3>
-                <p class="product-subtitle">Buatan tangan komuniti Padawan</p>
-                <div class="stars"><span class="filled">★★★★★</span><span class="rating-count">(135)</span></div>
-                <div class="product-summary"><p class="price">RM90.00</p><span class="sold">135 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          </article>
+
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/bakul rotan.jpg" alt="Bakul rotan"></div>
+            <div class="card-content">
+              <span class="card-tag">Anyaman</span>
+              <h3>Bakul Rotan</h3>
+              <div class="card-meta">Anyaman rotan kemas untuk dekorasi dan kegunaan harian.</div>
+              <div class="card-footer"><span class="card-note">RM 52</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge muted">Baru</span>
-            <div class="product-image-frame">
-                <img src="ICON/KRAFTANGAN/Bidayuh Mini Figure.jpg" alt="Bidayuh Mini Figure">
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/beg manik.jpg" alt="Beg manik"></div>
+            <div class="card-content">
+              <span class="card-tag">Manik</span>
+              <h3>Beg Manik Tradisi</h3>
+              <div class="card-meta">Rekaan manik buatan tangan dengan sentuhan elegan.</div>
+              <div class="card-footer"><span class="card-note">RM 69</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-            <div class="product-meta">
-                <h3>Bidayuh Mini Figure</h3>
-                <p class="product-subtitle">Mini dekorasi etnik untuk koleksi rumah</p>
-                <div class="stars"><span class="filled">★★★</span><span class="nofilled">★★</span><span class="rating-count">(102)</span></div>
-                <div class="product-summary"><p class="price">RM45.00</p><span class="sold">102 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          </article>
+
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/Bidayuh Mini Figure.jpg" alt="Mini figure Bidayuh"></div>
+            <div class="card-content">
+              <span class="card-tag">Dekorasi</span>
+              <h3>Bidayuh Mini Figure</h3>
+              <div class="card-meta">Dekorasi etnik comel untuk meja kerja atau ruang tamu.</div>
+              <div class="card-footer"><span class="card-note">RM 45</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge">Laris</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN/tambok.jpg" alt="Tambok Bidayuh"></div>
-            <div class="product-meta">
-                <h3>Tambok Bidayuh</h3>
-                <p class="product-subtitle">Anyaman tradisional untuk simpanan serbaguna</p>
-                <div class="stars"><span class="filled">★★★★★</span><span class="rating-count">(230)</span></div>
-                <div class="product-summary"><p class="price">RM45.00</p><span class="sold">230 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/gong tawok.jpg" alt="Gong tawok"></div>
+            <div class="card-content">
+              <span class="card-tag">Warisan</span>
+              <h3>Gong Tawok</h3>
+              <div class="card-meta">Simbol budaya tradisional untuk koleksi seni tempatan.</div>
+              <div class="card-footer"><span class="card-note">RM 320</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge muted">Premium</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN/tikar kelasah.jpg" alt="Tikar Kerasah"></div>
-            <div class="product-meta">
-                <h3>Tikar Kerasah</h3>
-                <p class="product-subtitle">Tikar anyaman besar untuk ruang tamu</p>
-                <div class="stars"><span class="filled">★★★★</span><span class="nofilled">★</span><span class="rating-count">(156)</span></div>
-                <div class="product-summary"><p class="price">RM185.00</p><span class="sold">156 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/kenyah hat.jpg" alt="Topi Kenyah"></div>
+            <div class="card-content">
+              <span class="card-tag">Pakaian</span>
+              <h3>Topi Kenyah</h3>
+              <div class="card-meta">Aksesori tradisi untuk persembahan dan acara budaya.</div>
+              <div class="card-footer"><span class="card-note">RM 120</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge">Eksklusif</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN/manik.jpg" alt="Manik Borneo"></div>
-            <div class="product-meta">
-                <h3>Manik Borneo</h3>
-                <p class="product-subtitle">Aksesori kecil dengan sentuhan tradisi Sarawak</p>
-                <div class="stars"><span class="filled">★★★★★</span><span class="rating-count">(67)</span></div>
-                <div class="product-summary"><p class="price">RM25.00</p><span class="sold">67 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/manik.jpg" alt="Manik Borneo"></div>
+            <div class="card-content">
+              <span class="card-tag">Souvenir</span>
+              <h3>Manik Borneo</h3>
+              <div class="card-meta">Pilihan cenderahati ringan dengan motif etnik tempatan.</div>
+              <div class="card-footer"><span class="card-note">RM 25</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge muted">Warisan</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN/kenyah hat.jpg" alt="Topi Kenyah"></div>
-            <div class="product-meta">
-                <h3>Topi Kenyah</h3>
-                <p class="product-subtitle">Aksesori tradisional untuk persembahan budaya</p>
-                <div class="stars"><span class="filled">★★★★</span><span class="nofilled">★</span><span class="rating-count">(81)</span></div>
-                <div class="product-summary"><p class="price">RM120.00</p><span class="sold">81 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/tambok.jpg" alt="Tambok Bidayuh"></div>
+            <div class="card-content">
+              <span class="card-tag">Anyaman</span>
+              <h3>Tambok Bidayuh</h3>
+              <div class="card-meta">Anyaman tradisional serbaguna yang tahan lama.</div>
+              <div class="card-footer"><span class="card-note">RM 45</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
+        </div>
+      </section>
 
-        <article class="product-card">
-            <span class="product-badge">Laris</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN_NEXT/gong tawok.jpg" alt="Sape Tradisional"></div>
-            <div class="product-meta">
-                <h3>Sape Tradisional</h3>
-                <p class="product-subtitle">Alat muzik etnik untuk koleksi seni budaya</p>
-                <div class="stars"><span class="filled">★★★★★</span><span class="rating-count">(118)</span></div>
-                <div class="product-summary"><p class="price">RM320.00</p><span class="sold">118 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+      <section class="slider-section">
+        <div class="section-head">
+          <div>
+            <span class="section-chip">Koleksi Tradisional</span>
+            <h2>Lebih banyak pilihan di bahagian bawah</h2>
+          </div>
+        </div>
+        <div class="slider-track">
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/tikar kelasah.jpg" alt="Tikar kelasah"></div>
+            <div class="card-content">
+              <span class="card-tag">Anyaman</span>
+              <h3>Tikar Kelasah</h3>
+              <div class="card-meta">Anyaman halus untuk ruang santai dengan sentuhan desa.</div>
+              <div class="card-footer"><span class="card-note">RM 185</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge">Pilihan</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN/tikar kelasah.jpg" alt="Tikar Rotan"></div>
-            <div class="product-meta">
-                <h3>Tikar Rotan</h3>
-                <p class="product-subtitle">Anyaman rotan kemas untuk ruang santai</p>
-                <div class="stars"><span class="filled">★★★★★</span><span class="rating-count">(142)</span></div>
-                <div class="product-summary"><p class="price">RM165.00</p><span class="sold">142 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/tikar palembang.jpg" alt="Tikar palembang"></div>
+            <div class="card-content">
+              <span class="card-tag">Anyaman</span>
+              <h3>Tikar Palembang</h3>
+              <div class="card-meta">Corak tradisional yang sesuai untuk dekorasi ruang tamu.</div>
+              <div class="card-footer"><span class="card-note">RM 168</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge muted">Anyaman</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN/tambok.jpg" alt="Anyaman Bakul"></div>
-            <div class="product-meta">
-                <h3>Anyaman Bakul</h3>
-                <p class="product-subtitle">Bakul buatan tangan untuk hiasan dan guna harian</p>
-                <div class="stars"><span class="filled">★★★★★</span><span class="rating-count">(119)</span></div>
-                <div class="product-summary"><p class="price">RM75.00</p><span class="sold">119 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/tikar.jpeg" alt="Tikar anyaman klasik"></div>
+            <div class="card-content">
+              <span class="card-tag">Rumah</span>
+              <h3>Tikar Anyaman Klasik</h3>
+              <div class="card-meta">Rekaan klasik untuk kegunaan harian yang praktikal.</div>
+              <div class="card-footer"><span class="card-note">RM 140</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge">Motif</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN_NEXT/kain batik.jpg" alt="Kain Batik Borneo"></div>
-            <div class="product-meta">
-                <h3>Kain Batik Borneo</h3>
-                <p class="product-subtitle">Kain bermotif etnik untuk pakaian dan dekorasi</p>
-                <div class="stars"><span class="filled">★★★★</span><span class="nofilled">★</span><span class="rating-count">(96)</span></div>
-                <div class="product-summary"><p class="price">RM95.00</p><span class="sold">96 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/kain batik.jpg" alt="Kain batik Borneo"></div>
+            <div class="card-content">
+              <span class="card-tag">Tekstil</span>
+              <h3>Kain Batik Borneo</h3>
+              <div class="card-meta">Kain bermotif etnik untuk fesyen atau dekorasi kreatif.</div>
+              <div class="card-footer"><span class="card-note">RM 95</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge">Warisan</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN_NEXT/kain pua kumbu.jpg" alt="Kain Pua Kumbu"></div>
-            <div class="product-meta">
-                <h3>Kain Pua Kumbu</h3>
-                <p class="product-subtitle">Tenunan khas Iban dengan corak simbolik</p>
-                <div class="stars"><span class="filled">★★★★★</span><span class="rating-count">(131)</span></div>
-                <div class="product-summary"><p class="price">RM210.00</p><span class="sold">131 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/kain pua kumbu.jpg" alt="Kain Pua Kumbu"></div>
+            <div class="card-content">
+              <span class="card-tag">Warisan</span>
+              <h3>Kain Pua Kumbu</h3>
+              <div class="card-meta">Tenunan ikonik Sarawak dengan makna budaya mendalam.</div>
+              <div class="card-footer"><span class="card-note">RM 210</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge muted">Perisai</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN_NEXT/terabai.jpg" alt="Terabai Tradisional"></div>
-            <div class="product-meta">
-                <h3>Terabai Tradisional</h3>
-                <p class="product-subtitle">Perisai kayu tradisi untuk koleksi warisan</p>
-                <div class="stars"><span class="filled">★★★★</span><span class="nofilled">★</span><span class="rating-count">(73)</span></div>
-                <div class="product-summary"><p class="price">RM260.00</p><span class="sold">73 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/terabai.jpg" alt="Terabai tradisional"></div>
+            <div class="card-content">
+              <span class="card-tag">Ukiran</span>
+              <h3>Terabai Tradisional</h3>
+              <div class="card-meta">Perisai kayu tradisi untuk koleksi budaya berprestij.</div>
+              <div class="card-footer"><span class="card-note">RM 260</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge">Aksesori</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN_NEXT/manik.jpg" alt="Set Manik Etnik"></div>
-            <div class="product-meta">
-                <h3>Set Manik Etnik</h3>
-                <p class="product-subtitle">Set manik corak Borneo untuk cenderahati</p>
-                <div class="stars"><span class="filled">★★★★★</span><span class="rating-count">(105)</span></div>
-                <div class="product-summary"><p class="price">RM68.00</p><span class="sold">105 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/selampai pua kumbu.jpeg" alt="Selampai Pua Kumbu"></div>
+            <div class="card-content">
+              <span class="card-tag">Tekstil</span>
+              <h3>Selampai Pua Kumbu</h3>
+              <div class="card-meta">Selampai tradisi untuk pelengkap busana dan hiasan.</div>
+              <div class="card-footer"><span class="card-note">RM 118</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
 
-        <article class="product-card">
-            <span class="product-badge muted">Dekorasi</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN/Bidayuh Mini Figure.jpg" alt="Figur Mini Bidayuh Premium"></div>
-            <div class="product-meta">
-                <h3>Figur Mini Bidayuh Premium</h3>
-                <p class="product-subtitle">Edisi hadiah untuk dekorasi meja</p>
-                <div class="stars"><span class="filled">★★★★</span><span class="nofilled">★</span><span class="rating-count">(66)</span></div>
-                <div class="product-summary"><p class="price">RM55.00</p><span class="sold">66 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
+          <article class="category-card">
+            <div class="card-media"><img src="ICON/KRAFTANGAN/cenderahati.jpeg" alt="Set cenderahati komuniti"></div>
+            <div class="card-content">
+              <span class="card-tag">Hadiah</span>
+              <h3>Set Cenderahati Komuniti</h3>
+              <div class="card-meta">Pilihan hadiah tempatan yang unik untuk pelancong.</div>
+              <div class="card-footer"><span class="card-note">RM 110</span><button class="add-to-cart-btn">Add to Cart</button></div>
             </div>
-        </article>
+          </article>
+        </div>
+      </section>
+    </main>
 
-        <article class="product-card">
-            <span class="product-badge">Souvenir</span>
-            <div class="product-image-frame"><img src="ICON/KRAFTANGAN/1 set aksesori.jpg" alt="Set Souvenir Padawan"></div>
-            <div class="product-meta">
-                <h3>Set Souvenir Padawan</h3>
-                <p class="product-subtitle">Pakej cenderahati komuniti untuk pelancong</p>
-                <div class="stars"><span class="filled">★★★★★</span><span class="rating-count">(94)</span></div>
-                <div class="product-summary"><p class="price">RM110.00</p><span class="sold">94 sold</span></div>
-                <button class="product-action">Tambah ke bakul</button>
-            </div>
-        </article>
-    </div>
-</section>
-   
-
-    <script>
-        const CART_STORAGE_KEY = 'jakmiris_cart_items';
-
-        const badge = document.getElementById('cart-badge');
-        const cartBtn = document.getElementById('cart-btn');
-        const cartPanel = document.getElementById('cart-panel');
-        const cartOverlay = document.getElementById('cart-overlay');
-        const cartCloseBtn = document.getElementById('cart-close-btn');
-        const cartClearBtn = document.getElementById('cart-clear-btn');
-        const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
-        const cartItemsEl = document.getElementById('cart-items');
-        const cartTotalText = document.getElementById('cart-total-text');
-
-        function getCartItems() {
-            try {
-                const raw = localStorage.getItem(CART_STORAGE_KEY);
-                const parsed = raw ? JSON.parse(raw) : [];
-                return Array.isArray(parsed) ? parsed : [];
-            } catch (err) {
-                return [];
-            }
-        }
-
-        function saveCartItems(items) {
-            localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
-        }
-
-        function updateCartBadge() {
-            if (!badge) return;
-            const count = getCartItems().length;
-            badge.textContent = count;
-        }
-
-        function groupCartItems(items) {
-            const grouped = new Map();
-            items.forEach(item => {
-                const name = item && item.name ? item.name : 'Item';
-                grouped.set(name, (grouped.get(name) || 0) + 1);
-            });
-            return grouped;
-        }
-
-        function renderCartPanel() {
-            if (!cartItemsEl || !cartTotalText || !cartClearBtn || !cartCheckoutBtn) return;
-            const items = getCartItems();
-            const grouped = groupCartItems(items);
-
-            cartItemsEl.innerHTML = '';
-
-            if (grouped.size === 0) {
-                cartItemsEl.innerHTML = '<div class="cart-empty">Troli masih kosong.</div>';
-            } else {
-                grouped.forEach((qty, name) => {
-                    const row = document.createElement('div');
-                    row.className = 'cart-item-row';
-                    row.innerHTML =
-                        '<span class="cart-item-name">' + name + '</span>' +
-                        '<span class="cart-item-qty">x' + qty + '</span>' +
-                        '<button class="cart-item-remove" data-name="' + name.replace(/"/g, '&quot;') + '" type="button">Buang 1</button>';
-                    cartItemsEl.appendChild(row);
-                });
-            }
-
-            cartTotalText.textContent = items.length + (items.length === 1 ? ' item' : ' items');
-            cartClearBtn.disabled = items.length === 0;
-            cartCheckoutBtn.disabled = items.length === 0;
-        }
-
-        function checkoutCart() {
-            const items = getCartItems();
-            if (items.length === 0) {
-                alert('Troli masih kosong. Sila tambah item dahulu.');
-                return;
-            }
-
-            const grouped = groupCartItems(items);
-            const lines = [];
-            grouped.forEach((qty, name) => {
-                lines.push(name + ' x' + qty);
-            });
-
-            alert('Checkout berjaya!\n\nPesanan anda:\n' + lines.join('\n') + '\n\nJumlah item: ' + items.length);
-            saveCartItems([]);
-            updateCartBadge();
-            renderCartPanel();
-            closeCartPanel();
-        }
-
-        function openCartPanel() {
-            if (!cartPanel || !cartOverlay || !cartBtn) return;
-            renderCartPanel();
-            cartPanel.classList.add('open');
-            cartOverlay.classList.add('open');
-            cartPanel.setAttribute('aria-hidden', 'false');
-            cartBtn.setAttribute('aria-expanded', 'true');
-        }
-
-        function closeCartPanel() {
-            if (!cartPanel || !cartOverlay || !cartBtn) return;
-            cartPanel.classList.remove('open');
-            cartOverlay.classList.remove('open');
-            cartPanel.setAttribute('aria-hidden', 'true');
-            cartBtn.setAttribute('aria-expanded', 'false');
-        }
-
-        function toggleCartPanel() {
-            if (!cartPanel) return;
-            if (cartPanel.classList.contains('open')) {
-                closeCartPanel();
-            } else {
-                openCartPanel();
-            }
-        }
-
-        function removeOneFromCart(itemName) {
-            const items = getCartItems();
-            const index = items.findIndex(item => (item && item.name ? item.name : 'Item') === itemName);
-            if (index !== -1) {
-                items.splice(index, 1);
-                saveCartItems(items);
-                updateCartBadge();
-                renderCartPanel();
-            }
-        }
-
-        function addItemToCart(itemName) {
-            const items = getCartItems();
-            items.push({
-                name: itemName,
-                addedAt: new Date().toISOString()
-            });
-            saveCartItems(items);
-            updateCartBadge();
-            renderCartPanel();
-        }
-
-        document.querySelectorAll('.product-action').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const card = btn.closest('.product-card');
-                const nameEl = card ? card.querySelector('.product-meta h3') : null;
-                const itemName = nameEl ? nameEl.textContent.trim() : 'Item';
-                addItemToCart(itemName);
-
-                const originalText = btn.textContent;
-                btn.textContent = '✓ Ditambah';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                }, 1000);
-            });
-        });
-
-        updateCartBadge();
-        renderCartPanel();
-
-        if (cartBtn) {
-            cartBtn.addEventListener('click', toggleCartPanel);
-        }
-        if (cartCloseBtn) {
-            cartCloseBtn.addEventListener('click', closeCartPanel);
-        }
-        if (cartOverlay) {
-            cartOverlay.addEventListener('click', closeCartPanel);
-        }
-        if (cartClearBtn) {
-            cartClearBtn.addEventListener('click', () => {
-                saveCartItems([]);
-                updateCartBadge();
-                renderCartPanel();
-            });
-        }
-        if (cartCheckoutBtn) {
-            cartCheckoutBtn.addEventListener('click', checkoutCart);
-        }
-
-        if (cartItemsEl) {
-            cartItemsEl.addEventListener('click', (event) => {
-                const removeBtn = event.target.closest('.cart-item-remove');
-                if (!removeBtn) return;
-                removeOneFromCart(removeBtn.dataset.name || 'Item');
-            });
-        }
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') closeCartPanel();
-        });
-
-        window.addEventListener('storage', (event) => {
-            if (event.key !== CART_STORAGE_KEY) return;
-            updateCartBadge();
-            renderCartPanel();
-        });
-    </script>
+    <footer class="site-footer">
+      <span>JakMiris Handicraft • Koleksi hasil tangan komuniti tempatan</span>
+    </footer>
+  </div>
 </body>
 </html>
